@@ -13,7 +13,6 @@
 		B958C75218F7D8320043A3AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B958C75018F7D8320043A3AC /* InfoPlist.strings */; };
 		B958C75418F7D8320043A3AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C75318F7D8320043A3AC /* main.m */; };
 		B958C75818F7D8320043A3AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C75718F7D8320043A3AC /* AppDelegate.m */; };
-		B958C75B18F7D8320043A3AC /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B958C75918F7D8320043A3AC /* Main_iPhone.storyboard */; };
 		B958C75E18F7D8320043A3AC /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B958C75C18F7D8320043A3AC /* Main_iPad.storyboard */; };
 		B958C76118F7D8320043A3AC /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C76018F7D8320043A3AC /* FirstViewController.m */; };
 		B958C76418F7D8320043A3AC /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C76318F7D8320043A3AC /* SecondViewController.m */; };
@@ -23,6 +22,8 @@
 		B958C76F18F7D8320043A3AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B958C74B18F7D8320043A3AC /* UIKit.framework */; };
 		B958C77718F7D8320043A3AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B958C77518F7D8320043A3AC /* InfoPlist.strings */; };
 		B958C77918F7D8320043A3AC /* chatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C77818F7D8320043A3AC /* chatTests.m */; };
+		B958C78718F7ED720043A3AC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C78618F7ED720043A3AC /* LoginViewController.m */; };
+		B958C78918F80EC10043A3AC /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B958C78818F80EC10043A3AC /* Main_iPhone.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,7 +47,6 @@
 		B958C75518F7D8320043A3AC /* chat-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "chat-Prefix.pch"; sourceTree = "<group>"; };
 		B958C75618F7D8320043A3AC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B958C75718F7D8320043A3AC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B958C75A18F7D8320043A3AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
 		B958C75D18F7D8320043A3AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
 		B958C75F18F7D8320043A3AC /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		B958C76018F7D8320043A3AC /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
@@ -58,6 +58,9 @@
 		B958C77418F7D8320043A3AC /* chatTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "chatTests-Info.plist"; sourceTree = "<group>"; };
 		B958C77618F7D8320043A3AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B958C77818F7D8320043A3AC /* chatTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = chatTests.m; sourceTree = "<group>"; };
+		B958C78518F7ED720043A3AC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		B958C78618F7ED720043A3AC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		B958C78818F80EC10043A3AC /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,8 +122,10 @@
 			children = (
 				B958C75618F7D8320043A3AC /* AppDelegate.h */,
 				B958C75718F7D8320043A3AC /* AppDelegate.m */,
-				B958C75918F7D8320043A3AC /* Main_iPhone.storyboard */,
+				B958C78818F80EC10043A3AC /* Main_iPhone.storyboard */,
 				B958C75C18F7D8320043A3AC /* Main_iPad.storyboard */,
+				B958C78518F7ED720043A3AC /* LoginViewController.h */,
+				B958C78618F7ED720043A3AC /* LoginViewController.m */,
 				B958C75F18F7D8320043A3AC /* FirstViewController.h */,
 				B958C76018F7D8320043A3AC /* FirstViewController.m */,
 				B958C76218F7D8320043A3AC /* SecondViewController.h */,
@@ -235,9 +240,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B958C78918F80EC10043A3AC /* Main_iPhone.storyboard in Resources */,
 				B958C75E18F7D8320043A3AC /* Main_iPad.storyboard in Resources */,
 				B958C76618F7D8320043A3AC /* Images.xcassets in Resources */,
-				B958C75B18F7D8320043A3AC /* Main_iPhone.storyboard in Resources */,
 				B958C75218F7D8320043A3AC /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -261,6 +266,7 @@
 				B958C75818F7D8320043A3AC /* AppDelegate.m in Sources */,
 				B958C76118F7D8320043A3AC /* FirstViewController.m in Sources */,
 				B958C75418F7D8320043A3AC /* main.m in Sources */,
+				B958C78718F7ED720043A3AC /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,14 +295,6 @@
 				B958C75118F7D8320043A3AC /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		B958C75918F7D8320043A3AC /* Main_iPhone.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B958C75A18F7D8320043A3AC /* Base */,
-			);
-			name = Main_iPhone.storyboard;
 			sourceTree = "<group>";
 		};
 		B958C75C18F7D8320043A3AC /* Main_iPad.storyboard */ = {
@@ -398,7 +396,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "chat/chat-Prefix.pch";
 				INFOPLIST_FILE = "chat/chat-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -411,7 +411,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "chat/chat-Prefix.pch";
 				INFOPLIST_FILE = "chat/chat-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
