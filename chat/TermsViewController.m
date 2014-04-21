@@ -1,23 +1,18 @@
 //
-//  LoginViewController.m
+//  TermsViewController.m
 //  chat
 //
-//  Created by Kenny on 2014/04/11.
+//  Created by brightvision on 14-4-21.
 //
 //
 
-#import "LoginViewController.h"
+#import "TermsViewController.h"
 
-@interface LoginViewController ()
-
+@interface TermsViewController ()
 
 @end
 
-@implementation LoginViewController
-
-@synthesize scrollView;
-@synthesize textField;
-@synthesize switchAccount;
+@implementation TermsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,9 +27,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-
-    textField.delegate = self;
-   [switchAccount setTitle:NSLocalizedString(@"switch_account", nil) forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,15 +45,5 @@
     // Pass the selected object to the new view controller.
 }
 */
-
-- (void)textFieldDidBeginEditing:(UITextField *)sender
-{
-    [self.scrollView setContentOffset:CGPointMake(0, sender.frame.origin.y / 3) animated:YES];
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)sender
-{
-    [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
-}
 
 @end
