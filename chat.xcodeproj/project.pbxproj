@@ -7,16 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B92114C118FEC48C0057EC2E /* FriendSelectViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B92114C018FEC48C0057EC2E /* FriendSelectViewController.m */; };
 		B958C74818F7D8320043A3AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B958C74718F7D8320043A3AC /* Foundation.framework */; };
 		B958C74A18F7D8320043A3AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B958C74918F7D8320043A3AC /* CoreGraphics.framework */; };
 		B958C74C18F7D8320043A3AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B958C74B18F7D8320043A3AC /* UIKit.framework */; };
 		B958C75218F7D8320043A3AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B958C75018F7D8320043A3AC /* InfoPlist.strings */; };
 		B958C75418F7D8320043A3AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C75318F7D8320043A3AC /* main.m */; };
 		B958C75818F7D8320043A3AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C75718F7D8320043A3AC /* AppDelegate.m */; };
-		B958C75E18F7D8320043A3AC /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B958C75C18F7D8320043A3AC /* Main_iPad.storyboard */; };
-		B958C76118F7D8320043A3AC /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C76018F7D8320043A3AC /* FirstViewController.m */; };
-		B958C76418F7D8320043A3AC /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C76318F7D8320043A3AC /* SecondViewController.m */; };
-		B958C76618F7D8320043A3AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B958C76518F7D8320043A3AC /* Images.xcassets */; };
 		B958C76D18F7D8320043A3AC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B958C76C18F7D8320043A3AC /* XCTest.framework */; };
 		B958C76E18F7D8320043A3AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B958C74718F7D8320043A3AC /* Foundation.framework */; };
 		B958C76F18F7D8320043A3AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B958C74B18F7D8320043A3AC /* UIKit.framework */; };
@@ -24,6 +21,16 @@
 		B958C77918F7D8320043A3AC /* chatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C77818F7D8320043A3AC /* chatTests.m */; };
 		B958C78718F7ED720043A3AC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C78618F7ED720043A3AC /* LoginViewController.m */; };
 		B958C78918F80EC10043A3AC /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B958C78818F80EC10043A3AC /* Main_iPhone.storyboard */; };
+		B958C78C18F949F90043A3AC /* ThingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C78B18F949F90043A3AC /* ThingsViewController.m */; };
+		B958C78F18FBAF350043A3AC /* DataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C78E18FBAF350043A3AC /* DataManager.m */; };
+		B958C79218FBB7140043A3AC /* MomentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C79118FBB7140043A3AC /* MomentsViewController.m */; };
+		B958C79418FBDB790043A3AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B958C79318FBDB790043A3AC /* Images.xcassets */; };
+		B958C79718FBE7A20043A3AC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C79618FBE7A20043A3AC /* HomeViewController.m */; };
+		B95A6E9D1903F75900954F9D /* FINDALLMOMENT_result.txt in Resources */ = {isa = PBXBuildFile; fileRef = B95A6E9C1903F75900954F9D /* FINDALLMOMENT_result.txt */; };
+		B9CB01E018FFC942001D4100 /* MomentsAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01DF18FFC942001D4100 /* MomentsAddViewController.m */; };
+		B9CB01E31900157F001D4100 /* ThingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01E21900157F001D4100 /* ThingsTableViewController.m */; };
+		B9CB01E619001639001D4100 /* ThingsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01E519001639001D4100 /* ThingsCollectionViewController.m */; };
+		B9CB01E91900F7C6001D4100 /* ThingsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01E81900F7C6001D4100 /* ThingsPageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B92114BF18FEC48C0057EC2E /* FriendSelectViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FriendSelectViewController.h; sourceTree = "<group>"; };
+		B92114C018FEC48C0057EC2E /* FriendSelectViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FriendSelectViewController.m; sourceTree = "<group>"; };
 		B958C74418F7D8320043A3AC /* chat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = chat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B958C74718F7D8320043A3AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B958C74918F7D8320043A3AC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -47,12 +56,6 @@
 		B958C75518F7D8320043A3AC /* chat-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "chat-Prefix.pch"; sourceTree = "<group>"; };
 		B958C75618F7D8320043A3AC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		B958C75718F7D8320043A3AC /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		B958C75D18F7D8320043A3AC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
-		B958C75F18F7D8320043A3AC /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		B958C76018F7D8320043A3AC /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		B958C76218F7D8320043A3AC /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		B958C76318F7D8320043A3AC /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		B958C76518F7D8320043A3AC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		B958C76B18F7D8320043A3AC /* chatTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = chatTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B958C76C18F7D8320043A3AC /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		B958C77418F7D8320043A3AC /* chatTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "chatTests-Info.plist"; sourceTree = "<group>"; };
@@ -61,6 +64,24 @@
 		B958C78518F7ED720043A3AC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		B958C78618F7ED720043A3AC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		B958C78818F80EC10043A3AC /* Main_iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main_iPhone.storyboard; sourceTree = "<group>"; };
+		B958C78A18F949F90043A3AC /* ThingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThingsViewController.h; sourceTree = "<group>"; };
+		B958C78B18F949F90043A3AC /* ThingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThingsViewController.m; sourceTree = "<group>"; };
+		B958C78D18FBAF350043A3AC /* DataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataManager.h; sourceTree = "<group>"; };
+		B958C78E18FBAF350043A3AC /* DataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataManager.m; sourceTree = "<group>"; };
+		B958C79018FBB7140043A3AC /* MomentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsViewController.h; sourceTree = "<group>"; };
+		B958C79118FBB7140043A3AC /* MomentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsViewController.m; sourceTree = "<group>"; };
+		B958C79318FBDB790043A3AC /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		B958C79518FBE7A20043A3AC /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		B958C79618FBE7A20043A3AC /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		B95A6E9C1903F75900954F9D /* FINDALLMOMENT_result.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FINDALLMOMENT_result.txt; sourceTree = "<group>"; };
+		B9CB01DE18FFC942001D4100 /* MomentsAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsAddViewController.h; sourceTree = "<group>"; };
+		B9CB01DF18FFC942001D4100 /* MomentsAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsAddViewController.m; sourceTree = "<group>"; };
+		B9CB01E11900157F001D4100 /* ThingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThingsTableViewController.h; sourceTree = "<group>"; };
+		B9CB01E21900157F001D4100 /* ThingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThingsTableViewController.m; sourceTree = "<group>"; };
+		B9CB01E419001639001D4100 /* ThingsCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThingsCollectionViewController.h; sourceTree = "<group>"; };
+		B9CB01E519001639001D4100 /* ThingsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThingsCollectionViewController.m; sourceTree = "<group>"; };
+		B9CB01E71900F7C6001D4100 /* ThingsPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThingsPageViewController.h; sourceTree = "<group>"; };
+		B9CB01E81900F7C6001D4100 /* ThingsPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThingsPageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,17 +141,31 @@
 		B958C74D18F7D8320043A3AC /* chat */ = {
 			isa = PBXGroup;
 			children = (
+				B95A6E9C1903F75900954F9D /* FINDALLMOMENT_result.txt */,
 				B958C75618F7D8320043A3AC /* AppDelegate.h */,
 				B958C75718F7D8320043A3AC /* AppDelegate.m */,
 				B958C78818F80EC10043A3AC /* Main_iPhone.storyboard */,
-				B958C75C18F7D8320043A3AC /* Main_iPad.storyboard */,
 				B958C78518F7ED720043A3AC /* LoginViewController.h */,
 				B958C78618F7ED720043A3AC /* LoginViewController.m */,
-				B958C75F18F7D8320043A3AC /* FirstViewController.h */,
-				B958C76018F7D8320043A3AC /* FirstViewController.m */,
-				B958C76218F7D8320043A3AC /* SecondViewController.h */,
-				B958C76318F7D8320043A3AC /* SecondViewController.m */,
-				B958C76518F7D8320043A3AC /* Images.xcassets */,
+				B958C79518FBE7A20043A3AC /* HomeViewController.h */,
+				B958C79618FBE7A20043A3AC /* HomeViewController.m */,
+				B958C79018FBB7140043A3AC /* MomentsViewController.h */,
+				B958C79118FBB7140043A3AC /* MomentsViewController.m */,
+				B9CB01DE18FFC942001D4100 /* MomentsAddViewController.h */,
+				B9CB01DF18FFC942001D4100 /* MomentsAddViewController.m */,
+				B958C78A18F949F90043A3AC /* ThingsViewController.h */,
+				B958C78B18F949F90043A3AC /* ThingsViewController.m */,
+				B9CB01E71900F7C6001D4100 /* ThingsPageViewController.h */,
+				B9CB01E81900F7C6001D4100 /* ThingsPageViewController.m */,
+				B9CB01E11900157F001D4100 /* ThingsTableViewController.h */,
+				B9CB01E21900157F001D4100 /* ThingsTableViewController.m */,
+				B9CB01E419001639001D4100 /* ThingsCollectionViewController.h */,
+				B9CB01E519001639001D4100 /* ThingsCollectionViewController.m */,
+				B92114BF18FEC48C0057EC2E /* FriendSelectViewController.h */,
+				B92114C018FEC48C0057EC2E /* FriendSelectViewController.m */,
+				B958C78D18FBAF350043A3AC /* DataManager.h */,
+				B958C78E18FBAF350043A3AC /* DataManager.m */,
+				B958C79318FBDB790043A3AC /* Images.xcassets */,
 				B958C74E18F7D8320043A3AC /* Supporting Files */,
 			);
 			path = chat;
@@ -240,9 +275,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B958C79418FBDB790043A3AC /* Images.xcassets in Resources */,
 				B958C78918F80EC10043A3AC /* Main_iPhone.storyboard in Resources */,
-				B958C75E18F7D8320043A3AC /* Main_iPad.storyboard in Resources */,
-				B958C76618F7D8320043A3AC /* Images.xcassets in Resources */,
+				B95A6E9D1903F75900954F9D /* FINDALLMOMENT_result.txt in Resources */,
 				B958C75218F7D8320043A3AC /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -262,10 +297,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B958C76418F7D8320043A3AC /* SecondViewController.m in Sources */,
+				B9CB01E31900157F001D4100 /* ThingsTableViewController.m in Sources */,
+				B9CB01E619001639001D4100 /* ThingsCollectionViewController.m in Sources */,
+				B958C79218FBB7140043A3AC /* MomentsViewController.m in Sources */,
+				B958C78C18F949F90043A3AC /* ThingsViewController.m in Sources */,
+				B958C78F18FBAF350043A3AC /* DataManager.m in Sources */,
+				B9CB01E018FFC942001D4100 /* MomentsAddViewController.m in Sources */,
+				B9CB01E91900F7C6001D4100 /* ThingsPageViewController.m in Sources */,
 				B958C75818F7D8320043A3AC /* AppDelegate.m in Sources */,
-				B958C76118F7D8320043A3AC /* FirstViewController.m in Sources */,
 				B958C75418F7D8320043A3AC /* main.m in Sources */,
+				B958C79718FBE7A20043A3AC /* HomeViewController.m in Sources */,
+				B92114C118FEC48C0057EC2E /* FriendSelectViewController.m in Sources */,
 				B958C78718F7ED720043A3AC /* LoginViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,14 +337,6 @@
 				B958C75118F7D8320043A3AC /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		B958C75C18F7D8320043A3AC /* Main_iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B958C75D18F7D8320043A3AC /* Base */,
-			);
-			name = Main_iPad.storyboard;
 			sourceTree = "<group>";
 		};
 		B958C77518F7D8320043A3AC /* InfoPlist.strings */ = {
@@ -477,6 +511,7 @@
 				B958C77E18F7D8320043A3AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B958C77F18F7D8320043A3AC /* Build configuration list for PBXNativeTarget "chatTests" */ = {
 			isa = XCConfigurationList;
@@ -485,6 +520,7 @@
 				B958C78118F7D8320043A3AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
