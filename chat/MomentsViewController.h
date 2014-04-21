@@ -11,4 +11,7 @@
 
 @interface MomentsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+@property (weak, nonatomic) IBOutlet UIView *momentsType;
+- (IBAction)momentsTypeSelect:(id)sender;
+
 @end

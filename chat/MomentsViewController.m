@@ -21,6 +21,8 @@
 
 @implementation MomentsViewController
 
+@synthesize momentsType;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -86,5 +88,16 @@
 /*
  <<< UITableViewDelegate <<<
 */
+
+- (IBAction)momentsTypeSelect:(id)sender
+{
+    [momentsType setHidden:NO];
+}
+
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    NSLog(@"============");
+    [momentsType setHidden:YES];
+}
 
 @end
