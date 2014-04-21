@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ThingsPageViewController : UIPageViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@interface ThingsPageViewController : UIPageViewController <UIPageViewControllerDataSource, UIPageViewControllerDelegate> {
+    UITableViewController *thingsTableViewController;
+    UICollectionViewController *thingsCollectionViewController;
+}
+
+@property (nonatomic, strong) UITableViewController *thingsTableViewController;
+@property (nonatomic, strong) UICollectionViewController *thingsCollectionViewController;
 
 @end

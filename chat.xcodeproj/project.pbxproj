@@ -27,6 +27,7 @@
 		B958C79418FBDB790043A3AC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B958C79318FBDB790043A3AC /* Images.xcassets */; };
 		B958C79718FBE7A20043A3AC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C79618FBE7A20043A3AC /* HomeViewController.m */; };
 		B95A6E9D1903F75900954F9D /* FINDALLMOMENT_result.txt in Resources */ = {isa = PBXBuildFile; fileRef = B95A6E9C1903F75900954F9D /* FINDALLMOMENT_result.txt */; };
+		B95A6E9F19053BFF00954F9D /* FINDTHING_result.txt in Resources */ = {isa = PBXBuildFile; fileRef = B95A6E9E19053BFF00954F9D /* FINDTHING_result.txt */; };
 		B9CB01E018FFC942001D4100 /* MomentsAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01DF18FFC942001D4100 /* MomentsAddViewController.m */; };
 		B9CB01E31900157F001D4100 /* ThingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01E21900157F001D4100 /* ThingsTableViewController.m */; };
 		B9CB01E619001639001D4100 /* ThingsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01E519001639001D4100 /* ThingsCollectionViewController.m */; };
@@ -74,6 +75,7 @@
 		B958C79518FBE7A20043A3AC /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		B958C79618FBE7A20043A3AC /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		B95A6E9C1903F75900954F9D /* FINDALLMOMENT_result.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FINDALLMOMENT_result.txt; sourceTree = "<group>"; };
+		B95A6E9E19053BFF00954F9D /* FINDTHING_result.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FINDTHING_result.txt; sourceTree = "<group>"; };
 		B9CB01DE18FFC942001D4100 /* MomentsAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsAddViewController.h; sourceTree = "<group>"; };
 		B9CB01DF18FFC942001D4100 /* MomentsAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsAddViewController.m; sourceTree = "<group>"; };
 		B9CB01E11900157F001D4100 /* ThingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThingsTableViewController.h; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				B95A6E9C1903F75900954F9D /* FINDALLMOMENT_result.txt */,
+				B95A6E9E19053BFF00954F9D /* FINDTHING_result.txt */,
 				B958C75618F7D8320043A3AC /* AppDelegate.h */,
 				B958C75718F7D8320043A3AC /* AppDelegate.m */,
 				B958C78818F80EC10043A3AC /* Main_iPhone.storyboard */,
@@ -278,6 +281,7 @@
 				B958C79418FBDB790043A3AC /* Images.xcassets in Resources */,
 				B958C78918F80EC10043A3AC /* Main_iPhone.storyboard in Resources */,
 				B95A6E9D1903F75900954F9D /* FINDALLMOMENT_result.txt in Resources */,
+				B95A6E9F19053BFF00954F9D /* FINDTHING_result.txt in Resources */,
 				B958C75218F7D8320043A3AC /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

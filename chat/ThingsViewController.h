@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ThingsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ThingsViewController : UIViewController
+
+@property (weak, nonatomic) IBOutlet UIView *thingsDisplay;
+- (IBAction)thingsDisplaySelect:(id)sender;
 
 @end

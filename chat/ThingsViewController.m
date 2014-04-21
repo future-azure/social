@@ -17,6 +17,8 @@
 
 @implementation ThingsViewController
 
+@synthesize thingsDisplay;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -40,23 +42,15 @@
 }
 */
 
-/*
- >>> UICollectionViewDataSource >>>
- */
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+
+- (IBAction)thingsDisplaySelect:(id)sender
 {
-    return 2;
+    [thingsDisplay setHidden:NO];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:THINGS_CELL_WATERFALL
-                                                                           forIndexPath:indexPath];
-    return cell;
+    [thingsDisplay setHidden:YES];
 }
-/*
- <<< UICollectionViewDataSource <<<
- */
-
 
 @end

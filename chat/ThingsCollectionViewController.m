@@ -10,6 +10,12 @@
 
 #define THINGS_CELL_WATERFALL @"ThingsCellWaterfall"
 
+#define TAG_IMG 1
+#define TAG_NAME 2
+#define TAG_LIKE 3
+#define TAG_TAG 4
+#define TAG_COMMENT 5
+
 @interface ThingsCollectionViewController ()
 
 @end
@@ -44,13 +50,18 @@
  */
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 2;
+    return [[DataManager sharedDataManager] loadThings].count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:THINGS_CELL_WATERFALL
                                                                            forIndexPath:indexPath];
+    NSDictionary *thing = [[[DataManager sharedDataManager] loadThings] objectAtIndex:indexPath.row];
+//    [(UILabel *) [cell viewWithTag:TAG_NAME] setText:[thing objectForKey:PRODUCT_NAME]];
+    [(UILabel *) [cell viewWithTag:TAG_LIKE] setText:[[thing objectForKey:LIKE_NUM] stringValue]];
+    [(UILabel *) [cell viewWithTag:TAG_TAG] setText:[[thing objectForKey:TAG_CNT] stringValue]];
+    [(UILabel *) [cell viewWithTag:TAG_COMMENT] setText:[[thing objectForKey:COMMENT_CNT] stringValue]];
     return cell;
 }
 /*
