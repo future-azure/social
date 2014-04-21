@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 
 @interface LoginViewController ()
+@property (weak, nonatomic) IBOutlet UIButton *switchAccount;
 
 @end
 
@@ -16,6 +17,7 @@
 
 @synthesize scrollView;
 @synthesize textField;
+@synthesize switchAccount;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -32,6 +34,7 @@
     // Do any additional setup after loading the view.
 
     textField.delegate = self;
+   [switchAccount setTitle:NSLocalizedString(@"switch_account", nil) forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning
