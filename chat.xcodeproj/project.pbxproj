@@ -11,7 +11,6 @@
 		B958C74818F7D8320043A3AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B958C74718F7D8320043A3AC /* Foundation.framework */; };
 		B958C74A18F7D8320043A3AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B958C74918F7D8320043A3AC /* CoreGraphics.framework */; };
 		B958C74C18F7D8320043A3AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B958C74B18F7D8320043A3AC /* UIKit.framework */; };
-		B958C75218F7D8320043A3AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B958C75018F7D8320043A3AC /* InfoPlist.strings */; };
 		B958C75418F7D8320043A3AC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C75318F7D8320043A3AC /* main.m */; };
 		B958C75818F7D8320043A3AC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C75718F7D8320043A3AC /* AppDelegate.m */; };
 		B958C76D18F7D8320043A3AC /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B958C76C18F7D8320043A3AC /* XCTest.framework */; };
@@ -35,7 +34,6 @@
 		FEE23425190503B60046F525 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE23424190503B60046F525 /* RegisterViewController.m */; };
 		FEE234281905064E0046F525 /* UnderLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE234271905064E0046F525 /* UnderLineLabel.m */; };
 		FEE2342B19050CDC0046F525 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE2342A19050CDC0046F525 /* TermsViewController.m */; };
-		FEE23438190514250046F525 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FEE2343A190514250046F525 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +54,6 @@
 		B958C74918F7D8320043A3AC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		B958C74B18F7D8320043A3AC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B958C74F18F7D8320043A3AC /* chat-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "chat-Info.plist"; sourceTree = "<group>"; };
-		B958C75118F7D8320043A3AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B958C75318F7D8320043A3AC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B958C75518F7D8320043A3AC /* chat-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "chat-Prefix.pch"; sourceTree = "<group>"; };
 		B958C75618F7D8320043A3AC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -88,7 +85,6 @@
 		B9CB01E519001639001D4100 /* ThingsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThingsCollectionViewController.m; sourceTree = "<group>"; };
 		B9CB01E71900F7C6001D4100 /* ThingsPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThingsPageViewController.h; sourceTree = "<group>"; };
 		B9CB01E81900F7C6001D4100 /* ThingsPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThingsPageViewController.m; sourceTree = "<group>"; };
-		FE01E1F11904F3810068A479 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FE01E1F21904F3810068A479 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FEE23423190503B60046F525 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		FEE23424190503B60046F525 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
@@ -96,8 +92,6 @@
 		FEE234271905064E0046F525 /* UnderLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnderLineLabel.m; sourceTree = "<group>"; };
 		FEE2342919050CDC0046F525 /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
 		FEE2342A19050CDC0046F525 /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
-		FEE23439190514250046F525 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		FEE2343B1905142C0046F525 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -198,10 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				B958C74F18F7D8320043A3AC /* chat-Info.plist */,
-				B958C75018F7D8320043A3AC /* InfoPlist.strings */,
 				B958C75318F7D8320043A3AC /* main.m */,
 				B958C75518F7D8320043A3AC /* chat-Prefix.pch */,
-				FEE2343A190514250046F525 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -301,12 +293,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FEE23438190514250046F525 /* Localizable.strings in Resources */,
 				B958C79418FBDB790043A3AC /* Images.xcassets in Resources */,
 				B958C78918F80EC10043A3AC /* Main_iPhone.storyboard in Resources */,
 				B95A6E9D1903F75900954F9D /* FINDALLMOMENT_result.txt in Resources */,
 				B95A6E9F19053BFF00954F9D /* FINDTHING_result.txt in Resources */,
-				B958C75218F7D8320043A3AC /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,15 +352,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		B958C75018F7D8320043A3AC /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				B958C75118F7D8320043A3AC /* en */,
-				FE01E1F11904F3810068A479 /* zh-Hans */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 		B958C77518F7D8320043A3AC /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -378,15 +359,6 @@
 				FE01E1F21904F3810068A479 /* zh-Hans */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		FEE2343A190514250046F525 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FEE23439190514250046F525 /* en */,
-				FEE2343B1905142C0046F525 /* zh-Hans */,
-			);
-			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

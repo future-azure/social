@@ -16,4 +16,7 @@
 @property (nonatomic, strong) UITableViewController *thingsTableViewController;
 @property (nonatomic, strong) UICollectionViewController *thingsCollectionViewController;
 
+- (void)showTableView;
+- (void)showCollectionView;
+
 @end

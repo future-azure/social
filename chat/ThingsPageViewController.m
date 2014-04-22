@@ -71,4 +71,20 @@
     }
 }
 
+- (void)showTableView
+{
+    [self setViewControllers:[NSArray arrayWithObject:thingsTableViewController]
+                   direction:UIPageViewControllerNavigationDirectionForward
+                    animated:NO
+                  completion:nil];
+}
+
+- (void)showCollectionView
+{
+    [self setViewControllers:[NSArray arrayWithObject:thingsCollectionViewController]
+                   direction:UIPageViewControllerNavigationDirectionForward
+                    animated:NO
+                  completion:nil];
+}
+
 @end
