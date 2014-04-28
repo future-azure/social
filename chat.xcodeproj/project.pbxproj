@@ -31,6 +31,12 @@
 		B9CB01E31900157F001D4100 /* ThingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01E21900157F001D4100 /* ThingsTableViewController.m */; };
 		B9CB01E619001639001D4100 /* ThingsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01E519001639001D4100 /* ThingsCollectionViewController.m */; };
 		B9CB01E91900F7C6001D4100 /* ThingsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01E81900F7C6001D4100 /* ThingsPageViewController.m */; };
+		FE136F7E190E07DF00D0D82B /* terms.html in Resources */ = {isa = PBXBuildFile; fileRef = FE136F7D190E07DF00D0D82B /* terms.html */; };
+		FE136F8C190E1F7900D0D82B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F80190E1F7900D0D82B /* InfoPlist.strings */; };
+		FE136F8D190E1F7900D0D82B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F82190E1F7900D0D82B /* Localizable.strings */; };
+		FE136F8E190E1F7900D0D82B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F85190E1F7900D0D82B /* InfoPlist.strings */; };
+		FE136F8F190E1F7900D0D82B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F87190E1F7900D0D82B /* Localizable.strings */; };
+		FE136F90190E1F7900D0D82B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F8A190E1F7900D0D82B /* InfoPlist.strings */; };
 		FEE23425190503B60046F525 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE23424190503B60046F525 /* RegisterViewController.m */; };
 		FEE234281905064E0046F525 /* UnderLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE234271905064E0046F525 /* UnderLineLabel.m */; };
 		FEE2342B19050CDC0046F525 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE2342A19050CDC0046F525 /* TermsViewController.m */; };
@@ -86,6 +92,12 @@
 		B9CB01E71900F7C6001D4100 /* ThingsPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThingsPageViewController.h; sourceTree = "<group>"; };
 		B9CB01E81900F7C6001D4100 /* ThingsPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThingsPageViewController.m; sourceTree = "<group>"; };
 		FE01E1F21904F3810068A479 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		FE136F7D190E07DF00D0D82B /* terms.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = terms.html; sourceTree = "<group>"; };
+		FE136F81190E1F7900D0D82B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		FE136F83190E1F7900D0D82B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
+		FE136F86190E1F7900D0D82B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = InfoPlist.strings; sourceTree = "<group>"; };
+		FE136F88190E1F7900D0D82B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
+		FE136F8B190E1F7900D0D82B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = InfoPlist.strings; sourceTree = "<group>"; };
 		FEE23423190503B60046F525 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		FEE23424190503B60046F525 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		FEE23426190506470046F525 /* UnderLineLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnderLineLabel.h; sourceTree = "<group>"; };
@@ -151,6 +163,9 @@
 		B958C74D18F7D8320043A3AC /* chat */ = {
 			isa = PBXGroup;
 			children = (
+				FE136F7F190E1F7900D0D82B /* en.lproj */,
+				FE136F84190E1F7900D0D82B /* zh-Hans.lproj */,
+				FE136F89190E1F7900D0D82B /* zh-Hant.lproj */,
 				B95A6E9C1903F75900954F9D /* FINDALLMOMENT_result.txt */,
 				B95A6E9E19053BFF00954F9D /* FINDTHING_result.txt */,
 				B958C75618F7D8320043A3AC /* AppDelegate.h */,
@@ -171,6 +186,7 @@
 				B9CB01DE18FFC942001D4100 /* MomentsAddViewController.h */,
 				B9CB01DF18FFC942001D4100 /* MomentsAddViewController.m */,
 				B958C78A18F949F90043A3AC /* ThingsViewController.h */,
+				FE136F7D190E07DF00D0D82B /* terms.html */,
 				B958C78B18F949F90043A3AC /* ThingsViewController.m */,
 				B9CB01E71900F7C6001D4100 /* ThingsPageViewController.h */,
 				B9CB01E81900F7C6001D4100 /* ThingsPageViewController.m */,
@@ -214,6 +230,32 @@
 				B958C77518F7D8320043A3AC /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FE136F7F190E1F7900D0D82B /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				FE136F80190E1F7900D0D82B /* InfoPlist.strings */,
+				FE136F82190E1F7900D0D82B /* Localizable.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
+		FE136F84190E1F7900D0D82B /* zh-Hans.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				FE136F85190E1F7900D0D82B /* InfoPlist.strings */,
+				FE136F87190E1F7900D0D82B /* Localizable.strings */,
+			);
+			path = "zh-Hans.lproj";
+			sourceTree = "<group>";
+		};
+		FE136F89190E1F7900D0D82B /* zh-Hant.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				FE136F8A190E1F7900D0D82B /* InfoPlist.strings */,
+			);
+			path = "zh-Hant.lproj";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,9 +336,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B958C79418FBDB790043A3AC /* Images.xcassets in Resources */,
+				FE136F8E190E1F7900D0D82B /* InfoPlist.strings in Resources */,
+				FE136F8C190E1F7900D0D82B /* InfoPlist.strings in Resources */,
 				B958C78918F80EC10043A3AC /* Main_iPhone.storyboard in Resources */,
+				FE136F8F190E1F7900D0D82B /* Localizable.strings in Resources */,
+				FE136F8D190E1F7900D0D82B /* Localizable.strings in Resources */,
 				B95A6E9D1903F75900954F9D /* FINDALLMOMENT_result.txt in Resources */,
+				FE136F7E190E07DF00D0D82B /* terms.html in Resources */,
 				B95A6E9F19053BFF00954F9D /* FINDTHING_result.txt in Resources */,
+				FE136F90190E1F7900D0D82B /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,6 +405,46 @@
 			children = (
 				B958C77618F7D8320043A3AC /* en */,
 				FE01E1F21904F3810068A479 /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FE136F80190E1F7900D0D82B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE136F81190E1F7900D0D82B /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FE136F82190E1F7900D0D82B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE136F83190E1F7900D0D82B /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		FE136F85190E1F7900D0D82B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE136F86190E1F7900D0D82B /* zh-Hans */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FE136F87190E1F7900D0D82B /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE136F88190E1F7900D0D82B /* zh-Hans */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		FE136F8A190E1F7900D0D82B /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE136F8B190E1F7900D0D82B /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
