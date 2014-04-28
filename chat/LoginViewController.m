@@ -18,6 +18,11 @@
 @synthesize scrollView;
 @synthesize textField;
 @synthesize switchAccount;
+@synthesize signUp;
+
+
+- (IBAction)signUp:(id)sender {
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -35,6 +40,7 @@
 
     textField.delegate = self;
    [switchAccount setTitle:NSLocalizedString(@"switch_account", nil) forState:UIControlStateNormal];
+    [signUp setTitle:NSLocalizedString(@"sign_up", nil) forState:UIControlStateNormal];
 }
 
 - (void)didReceiveMemoryWarning

@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface RegisterViewController : UIViewController
+@interface RegisterViewController : UIViewController<UIPickerViewDelegate, UITextFieldDelegate,UIPickerViewDataSource> {
+    NSArray *pickerArray;
+    NSArray *codeArray;
+    UIButton *termsCheckBox;
+    
+}
+
+- (IBAction)finishButton:(id)sender;
 
 @end
