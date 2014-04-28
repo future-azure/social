@@ -17,6 +17,9 @@
 
 @implementation ThingsPageViewController
 
+@synthesize thingsTableViewController;
+@synthesize thingsCollectionViewController;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -24,8 +27,10 @@
     
     self.dataSource = self;
     self.delegate = self;
-    NSArray *viewControllers = [NSArray arrayWithObject:[self.storyboard instantiateViewControllerWithIdentifier:THINGS_TABLE_VIEW_CONTROLLER]];
-    [self setViewControllers:viewControllers
+    
+    thingsTableViewController = [self.storyboard instantiateViewControllerWithIdentifier:THINGS_TABLE_VIEW_CONTROLLER];
+    thingsCollectionViewController = [self.storyboard instantiateViewControllerWithIdentifier:THINGS_COLLECTION_VIEW_CONTROLLER];
+    [self setViewControllers:[NSArray arrayWithObject:thingsTableViewController]
                    direction:UIPageViewControllerNavigationDirectionForward
                     animated:YES
                   completion:nil];
@@ -53,7 +58,7 @@
     if ([viewController isKindOfClass:[UITableViewController class]]) {
         return nil;
     } else {
-        return [self.storyboard instantiateViewControllerWithIdentifier:THINGS_TABLE_VIEW_CONTROLLER];
+        return thingsTableViewController;
     }
 }
 
@@ -62,8 +67,24 @@
     if ([viewController isKindOfClass:[UICollectionViewController class]]) {
         return nil;
     } else {
-        return [self.storyboard instantiateViewControllerWithIdentifier:THINGS_COLLECTION_VIEW_CONTROLLER];
+        return thingsCollectionViewController;
     }
+}
+
+- (void)showTableView
+{
+    [self setViewControllers:[NSArray arrayWithObject:thingsTableViewController]
+                   direction:UIPageViewControllerNavigationDirectionForward
+                    animated:NO
+                  completion:nil];
+}
+
+- (void)showCollectionView
+{
+    [self setViewControllers:[NSArray arrayWithObject:thingsCollectionViewController]
+                   direction:UIPageViewControllerNavigationDirectionForward
+                    animated:NO
+                  completion:nil];
 }
 
 @end

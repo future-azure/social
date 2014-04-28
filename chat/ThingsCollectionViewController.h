@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataManager.h"
 
 @interface ThingsCollectionViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 

@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ThingsPageViewController.h"
 
-@interface ThingsViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@interface ThingsViewController : UIViewController
+{
+    ThingsPageViewController *thingsPageViewController;
+}
+
+@property (weak, nonatomic) IBOutlet UIView *thingsDisplay;
+
+- (IBAction)thingsDisplaySelect:(id)sender;
+- (IBAction)thingsDisplayChange:(UIButton *)sender;
 
 @end

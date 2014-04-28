@@ -61,13 +61,33 @@
                                                    encoding:NSUTF8StringEncoding
                                                       error:nil];
         NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
-        NSArray *results = [NSJSONSerialization JSONObjectWithData:data
+        NSArray *arr = [NSJSONSerialization JSONObjectWithData:data
                                                            options:NSJSONReadingAllowFragments
                                                              error:nil];
-        [moments addObjectsFromArray:results];
+        [moments addObjectsFromArray:arr];
     }
 
     return moments;
+}
+
+- (NSArray *)loadThings
+{
+    if (things.count == 0) {
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"FINDTHING_result" ofType:@"txt"];
+        NSString *json = [NSString stringWithContentsOfFile:path
+                                                   encoding:NSUTF8StringEncoding
+                                                      error:nil];
+        NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+                                                           options:NSJSONReadingAllowFragments
+                                                             error:nil];
+        data = [[dic objectForKey:@"object"] dataUsingEncoding:NSUTF8StringEncoding];
+        NSArray *arr = [NSJSONSerialization JSONObjectWithData:data
+                                                       options:NSJSONReadingAllowFragments
+                                                         error:nil];
+        [things addObjectsFromArray:arr];
+    }
+    return things;
 }
 
 @end

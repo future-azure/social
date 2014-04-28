@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataManager.h"
 
-@interface ThingsTableViewController : UITableViewController
+@interface ThingsTableViewController : UITableViewController <UITableViewDataSource, UITableViewDelegate>
 
 @end

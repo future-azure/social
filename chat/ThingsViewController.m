@@ -11,11 +11,20 @@
 #define THINGS_CELL_LIST @"ThingsCellList"
 #define THINGS_CELL_WATERFALL @"ThingsCellWaterfall"
 
+#define TAG_LIST 1
+#define TAG_LIST_SELECTED 2
+#define TAG_WATERFALL 3
+#define TAG_WATERFALL_SELECTED 4
+
+#define THINGS_PAGE_VIEW_SEGUE @"ThingsPageViewSegue"
+
 @interface ThingsViewController ()
 
 @end
 
 @implementation ThingsViewController
+
+@synthesize thingsDisplay;
 
 - (void)viewDidLoad
 {
@@ -29,34 +38,41 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:THINGS_PAGE_VIEW_SEGUE]) {
+        thingsPageViewController = [segue destinationViewController];
+    }
 }
-*/
 
-/*
- >>> UICollectionViewDataSource >>>
- */
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+- (IBAction)thingsDisplaySelect:(id)sender
 {
-    return 2;
+    [thingsDisplay setHidden:NO];
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (IBAction)thingsDisplayChange:(UIButton *)sender
 {
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:THINGS_CELL_WATERFALL
-                                                                           forIndexPath:indexPath];
-    return cell;
+    switch (sender.tag) {
+        case TAG_LIST:
+            [[thingsDisplay viewWithTag:TAG_LIST_SELECTED] setHidden:NO];
+            [[thingsDisplay viewWithTag:TAG_WATERFALL_SELECTED] setHidden:YES];
+            [thingsDisplay setHidden:YES];
+            [thingsPageViewController showTableView];
+            break;
+        case TAG_WATERFALL:
+            [[thingsDisplay viewWithTag:TAG_LIST_SELECTED] setHidden:YES];
+            [[thingsDisplay viewWithTag:TAG_WATERFALL_SELECTED] setHidden:NO];
+            [thingsDisplay setHidden:YES];
+            [thingsPageViewController showCollectionView];
+            break;
+        default:
+            break;
+    }
 }
-/*
- <<< UICollectionViewDataSource <<<
- */
 
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    [thingsDisplay setHidden:YES];
+}
 
 @end

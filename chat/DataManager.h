@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+#define USER @"user"
+#define NAME @"name"
+#define CONTEXT @"context"
+#define CREATE_TIME @"createTime"
+#define LIKE_CNT @"likeCnt"
+#define PRODUCT_NAME @"productName"
+#define LIKE_NUM @"likeNum"
+#define TAG_CNT @"tagCnt"
+#define COMMENT_CNT @"CommentCnt"
+
 @interface DataManager : NSObject {
     NSMutableArray *moments;
     NSMutableArray *things;
@@ -21,5 +31,6 @@
 + (UIImage *)resize:(UIImage *)image rect:(CGRect)rect;
 
 - (NSArray *)loadMoments;
+- (NSArray *)loadThings;
 
 @end
