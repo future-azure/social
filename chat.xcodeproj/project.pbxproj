@@ -35,7 +35,6 @@
 		B9CB01E619001639001D4100 /* ThingsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01E519001639001D4100 /* ThingsCollectionViewController.m */; };
 		B9CB01E91900F7C6001D4100 /* ThingsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01E81900F7C6001D4100 /* ThingsPageViewController.m */; };
 		FE136F7E190E07DF00D0D82B /* terms.html in Resources */ = {isa = PBXBuildFile; fileRef = FE136F7D190E07DF00D0D82B /* terms.html */; };
-		FE136F8C190E1F7900D0D82B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F80190E1F7900D0D82B /* InfoPlist.strings */; };
 		FE136F8D190E1F7900D0D82B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F82190E1F7900D0D82B /* Localizable.strings */; };
 		FE136F8E190E1F7900D0D82B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F85190E1F7900D0D82B /* InfoPlist.strings */; };
 		FE136F8F190E1F7900D0D82B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F87190E1F7900D0D82B /* Localizable.strings */; };
@@ -102,7 +101,6 @@
 		B9CB01E81900F7C6001D4100 /* ThingsPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThingsPageViewController.m; sourceTree = "<group>"; };
 		FE01E1F21904F3810068A479 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FE136F7D190E07DF00D0D82B /* terms.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = terms.html; sourceTree = "<group>"; };
-		FE136F81190E1F7900D0D82B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
 		FE136F83190E1F7900D0D82B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		FE136F86190E1F7900D0D82B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = InfoPlist.strings; sourceTree = "<group>"; };
 		FE136F88190E1F7900D0D82B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
@@ -250,7 +248,6 @@
 		FE136F7F190E1F7900D0D82B /* en.lproj */ = {
 			isa = PBXGroup;
 			children = (
-				FE136F80190E1F7900D0D82B /* InfoPlist.strings */,
 				FE136F82190E1F7900D0D82B /* Localizable.strings */,
 			);
 			path = en.lproj;
@@ -352,7 +349,6 @@
 			files = (
 				B958C79418FBDB790043A3AC /* Images.xcassets in Resources */,
 				FE136F8E190E1F7900D0D82B /* InfoPlist.strings in Resources */,
-				FE136F8C190E1F7900D0D82B /* InfoPlist.strings in Resources */,
 				B958C78918F80EC10043A3AC /* Main_iPhone.storyboard in Resources */,
 				FE136F8F190E1F7900D0D82B /* Localizable.strings in Resources */,
 				FE136F8D190E1F7900D0D82B /* Localizable.strings in Resources */,
@@ -423,14 +419,6 @@
 			children = (
 				B958C77618F7D8320043A3AC /* en */,
 				FE01E1F21904F3810068A479 /* zh-Hans */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		FE136F80190E1F7900D0D82B /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FE136F81190E1F7900D0D82B /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
