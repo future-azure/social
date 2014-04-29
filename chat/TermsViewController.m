@@ -9,10 +9,12 @@
 #import "TermsViewController.h"
 
 @interface TermsViewController ()
+@property (weak, nonatomic) IBOutlet UIWebView *myWebView;
 
 @end
 
 @implementation TermsViewController
+@synthesize myWebView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,7 +28,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    NSLog(@"termsLoad");
+  //  NSString *path = [[NSBundle mainBundle] pathForResource:@"terms" ofType:@"html"];
+  //  [myWebView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath: path]]];
+    NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"terms" ofType:@"html"];
+    NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
+    
+    NSString *path = [[NSBundle mainBundle] bundlePath];
+    NSURL *baseURL = [NSURL fileURLWithPath:path];
+    
+    [myWebView loadHTMLString:htmlString baseURL:baseURL];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,6 +45,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 /*
 #pragma mark - Navigation

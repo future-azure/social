@@ -12,9 +12,12 @@
     UIScrollView *scrollView;
     UITextField *textField;
     UIButton *switchAccount;
+    UIButton *signUp;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UITextField *textField;
 @property (strong, nonatomic) IBOutlet UIButton *switchAccount;
+
+@property (strong, nonatomic) IBOutlet UIButton *signUp;
 @end
