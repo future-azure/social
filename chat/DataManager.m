@@ -49,6 +49,9 @@
     if (self = [super init]) {
         moments = [[NSMutableArray alloc] initWithCapacity:10];
         things = [[NSMutableArray alloc] initWithCapacity:10];
+        socket = [[AsyncSocket alloc] initWithDelegate:self];
+        NSError *error = nil;
+        [socket connectToHost:@"116.228.54.226" onPort:8085 withTimeout:10 error:&error];
     }
     return self;
 }
@@ -89,5 +92,42 @@
     }
     return things;
 }
+
+/*
+ >>> AsyncSocketDelegate >>>
+ */
+- (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
+{
+    NSLog(@"Connected!");
+    NSString *json = @"{\"type\":\"FINDALLMOMENT\",\"object\":\"9\",\"toUser\":0,\"fromUser\":0}";
+    [socket writeData:[json dataUsingEncoding:NSUTF8StringEncoding] withTimeout:10 tag:1];
+}
+
+- (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
+{
+//    NSError *error = nil;
+//    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+//                                                        options:NSJSONReadingAllowFragments
+//                                                          error:&error];
+    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//    NSString *str = [NSString stringWithUTF8String:[data bytes]];
+//    NSLog(@"%@", dic);
+    NSLog(@"%@", str);
+}
+
+- (void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag
+{
+    NSLog(@"didWriteDataWithTag %ld", tag);
+    [socket readDataWithTimeout:-1 tag:0];
+}
+
+- (void)onSocketDidDisconnect:(AsyncSocket *)sock
+{
+    NSLog(@"Disconnected!");
+}
+
+/*
+ <<< AsyncSocketDelegate <<<
+ */
 
 @end

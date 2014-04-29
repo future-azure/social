@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <CFNetwork/CFNetwork.h>
+#import "AsyncSocket.h"
 
 #define USER @"user"
 #define NAME @"name"
@@ -18,9 +20,11 @@
 #define TAG_CNT @"tagCnt"
 #define COMMENT_CNT @"CommentCnt"
 
-@interface DataManager : NSObject {
+@interface DataManager : NSObject <AsyncSocketDelegate>
+{
     NSMutableArray *moments;
     NSMutableArray *things;
+    AsyncSocket *socket;
 }
 
 @property (nonatomic, strong) NSMutableArray *moments;

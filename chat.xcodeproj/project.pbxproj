@@ -27,6 +27,9 @@
 		B958C79718FBE7A20043A3AC /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B958C79618FBE7A20043A3AC /* HomeViewController.m */; };
 		B95A6E9D1903F75900954F9D /* FINDALLMOMENT_result.txt in Resources */ = {isa = PBXBuildFile; fileRef = B95A6E9C1903F75900954F9D /* FINDALLMOMENT_result.txt */; };
 		B95A6E9F19053BFF00954F9D /* FINDTHING_result.txt in Resources */ = {isa = PBXBuildFile; fileRef = B95A6E9E19053BFF00954F9D /* FINDTHING_result.txt */; };
+		B95A6EA21906E42800954F9D /* ThingsFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B95A6EA11906E42800954F9D /* ThingsFilterViewController.m */; };
+		B9B4DA04190FA34F0042CEDB /* AsyncSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B4DA01190FA34F0042CEDB /* AsyncSocket.m */; };
+		B9B4DA05190FA34F0042CEDB /* AsyncUdpSocket.m in Sources */ = {isa = PBXBuildFile; fileRef = B9B4DA03190FA34F0042CEDB /* AsyncUdpSocket.m */; };
 		B9CB01E018FFC942001D4100 /* MomentsAddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01DF18FFC942001D4100 /* MomentsAddViewController.m */; };
 		B9CB01E31900157F001D4100 /* ThingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01E21900157F001D4100 /* ThingsTableViewController.m */; };
 		B9CB01E619001639001D4100 /* ThingsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01E519001639001D4100 /* ThingsCollectionViewController.m */; };
@@ -77,6 +80,12 @@
 		B958C79618FBE7A20043A3AC /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		B95A6E9C1903F75900954F9D /* FINDALLMOMENT_result.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FINDALLMOMENT_result.txt; sourceTree = "<group>"; };
 		B95A6E9E19053BFF00954F9D /* FINDTHING_result.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = FINDTHING_result.txt; sourceTree = "<group>"; };
+		B95A6EA01906E42800954F9D /* ThingsFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThingsFilterViewController.h; sourceTree = "<group>"; };
+		B95A6EA11906E42800954F9D /* ThingsFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThingsFilterViewController.m; sourceTree = "<group>"; };
+		B9B4DA00190FA34F0042CEDB /* AsyncSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncSocket.h; sourceTree = "<group>"; };
+		B9B4DA01190FA34F0042CEDB /* AsyncSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncSocket.m; sourceTree = "<group>"; };
+		B9B4DA02190FA34F0042CEDB /* AsyncUdpSocket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsyncUdpSocket.h; sourceTree = "<group>"; };
+		B9B4DA03190FA34F0042CEDB /* AsyncUdpSocket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsyncUdpSocket.m; sourceTree = "<group>"; };
 		B9CB01DE18FFC942001D4100 /* MomentsAddViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MomentsAddViewController.h; sourceTree = "<group>"; };
 		B9CB01DF18FFC942001D4100 /* MomentsAddViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MomentsAddViewController.m; sourceTree = "<group>"; };
 		B9CB01E11900157F001D4100 /* ThingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThingsTableViewController.h; sourceTree = "<group>"; };
@@ -163,9 +172,9 @@
 				B958C78518F7ED720043A3AC /* LoginViewController.h */,
 				B958C78618F7ED720043A3AC /* LoginViewController.m */,
 				B958C79518FBE7A20043A3AC /* HomeViewController.h */,
+				B958C79618FBE7A20043A3AC /* HomeViewController.m */,
 				FEE23423190503B60046F525 /* RegisterViewController.h */,
 				FEE23424190503B60046F525 /* RegisterViewController.m */,
-				B958C79618FBE7A20043A3AC /* HomeViewController.m */,
 				B958C79018FBB7140043A3AC /* MomentsViewController.h */,
 				B958C79118FBB7140043A3AC /* MomentsViewController.m */,
 				B9CB01DE18FFC942001D4100 /* MomentsAddViewController.h */,
@@ -178,10 +187,16 @@
 				B9CB01E21900157F001D4100 /* ThingsTableViewController.m */,
 				B9CB01E419001639001D4100 /* ThingsCollectionViewController.h */,
 				B9CB01E519001639001D4100 /* ThingsCollectionViewController.m */,
+				B95A6EA01906E42800954F9D /* ThingsFilterViewController.h */,
+				B95A6EA11906E42800954F9D /* ThingsFilterViewController.m */,
 				B92114BF18FEC48C0057EC2E /* FriendSelectViewController.h */,
 				B92114C018FEC48C0057EC2E /* FriendSelectViewController.m */,
 				B958C78D18FBAF350043A3AC /* DataManager.h */,
 				B958C78E18FBAF350043A3AC /* DataManager.m */,
+				B9B4DA00190FA34F0042CEDB /* AsyncSocket.h */,
+				B9B4DA01190FA34F0042CEDB /* AsyncSocket.m */,
+				B9B4DA02190FA34F0042CEDB /* AsyncUdpSocket.h */,
+				B9B4DA03190FA34F0042CEDB /* AsyncUdpSocket.m */,
 				B958C79318FBDB790043A3AC /* Images.xcassets */,
 				B958C74E18F7D8320043A3AC /* Supporting Files */,
 			);
@@ -318,15 +333,18 @@
 				FEE2342B19050CDC0046F525 /* TermsViewController.m in Sources */,
 				B9CB01E31900157F001D4100 /* ThingsTableViewController.m in Sources */,
 				B9CB01E619001639001D4100 /* ThingsCollectionViewController.m in Sources */,
+				B9B4DA05190FA34F0042CEDB /* AsyncUdpSocket.m in Sources */,
 				B958C79218FBB7140043A3AC /* MomentsViewController.m in Sources */,
 				B958C78C18F949F90043A3AC /* ThingsViewController.m in Sources */,
 				B958C78F18FBAF350043A3AC /* DataManager.m in Sources */,
 				B9CB01E018FFC942001D4100 /* MomentsAddViewController.m in Sources */,
 				B9CB01E91900F7C6001D4100 /* ThingsPageViewController.m in Sources */,
 				B958C75818F7D8320043A3AC /* AppDelegate.m in Sources */,
+				B95A6EA21906E42800954F9D /* ThingsFilterViewController.m in Sources */,
 				B958C75418F7D8320043A3AC /* main.m in Sources */,
 				FEE234281905064E0046F525 /* UnderLineLabel.m in Sources */,
 				FEE23425190503B60046F525 /* RegisterViewController.m in Sources */,
+				B9B4DA04190FA34F0042CEDB /* AsyncSocket.m in Sources */,
 				B958C79718FBE7A20043A3AC /* HomeViewController.m in Sources */,
 				B92114C118FEC48C0057EC2E /* FriendSelectViewController.m in Sources */,
 				B958C78718F7ED720043A3AC /* LoginViewController.m in Sources */,

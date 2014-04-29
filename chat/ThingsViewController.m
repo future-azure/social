@@ -42,6 +42,9 @@
 {
     if ([segue.identifier isEqualToString:THINGS_PAGE_VIEW_SEGUE]) {
         thingsPageViewController = [segue destinationViewController];
+        for (UIGestureRecognizer *recognizer in thingsPageViewController.gestureRecognizers) {
+            recognizer.enabled = NO;
+        }
     }
 }
 
