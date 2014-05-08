@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CFNetwork/CFNetwork.h>
 #import "AsyncSocket.h"
+#import <sqlite3.h>
 
 #define USER @"user"
 #define NAME @"name"
@@ -25,6 +26,7 @@
     NSMutableArray *moments;
     NSMutableArray *things;
     AsyncSocket *socket;
+    sqlite3 *db;  
 }
 
 @property (nonatomic, strong) NSMutableArray *moments;

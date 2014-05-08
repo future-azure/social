@@ -39,6 +39,7 @@
 		FE136F8E190E1F7900D0D82B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F85190E1F7900D0D82B /* InfoPlist.strings */; };
 		FE136F8F190E1F7900D0D82B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F87190E1F7900D0D82B /* Localizable.strings */; };
 		FE136F90190E1F7900D0D82B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F8A190E1F7900D0D82B /* InfoPlist.strings */; };
+		FE9BEC76191B9A350050522E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9BEC75191B9A350050522E /* libsqlite3.dylib */; };
 		FEE23425190503B60046F525 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE23424190503B60046F525 /* RegisterViewController.m */; };
 		FEE234281905064E0046F525 /* UnderLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE234271905064E0046F525 /* UnderLineLabel.m */; };
 		FEE2342B19050CDC0046F525 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE2342A19050CDC0046F525 /* TermsViewController.m */; };
@@ -106,6 +107,7 @@
 		FE136F86190E1F7900D0D82B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = InfoPlist.strings; sourceTree = "<group>"; };
 		FE136F88190E1F7900D0D82B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
 		FE136F8B190E1F7900D0D82B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = InfoPlist.strings; sourceTree = "<group>"; };
+		FE9BEC75191B9A350050522E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		FEE23423190503B60046F525 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		FEE23424190503B60046F525 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		FEE23426190506470046F525 /* UnderLineLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnderLineLabel.h; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE9BEC76191B9A350050522E /* libsqlite3.dylib in Frameworks */,
 				B958C74A18F7D8320043A3AC /* CoreGraphics.framework in Frameworks */,
 				B958C74C18F7D8320043A3AC /* UIKit.framework in Frameworks */,
 				B958C74818F7D8320043A3AC /* Foundation.framework in Frameworks */,
@@ -162,6 +165,7 @@
 		B958C74618F7D8320043A3AC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FE9BEC75191B9A350050522E /* libsqlite3.dylib */,
 				B958C74718F7D8320043A3AC /* Foundation.framework */,
 				B958C74918F7D8320043A3AC /* CoreGraphics.framework */,
 				B958C74B18F7D8320043A3AC /* UIKit.framework */,
@@ -541,6 +545,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "chat/chat-Prefix.pch";
 				INFOPLIST_FILE = "chat/chat-Info.plist";
@@ -556,6 +561,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "chat/chat-Prefix.pch";
 				INFOPLIST_FILE = "chat/chat-Info.plist";

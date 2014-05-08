@@ -12,6 +12,11 @@
 
 @synthesize moments;
 @synthesize things;
+#define DBNAME    @"most.sqlite"
+#define ID      @"id"
+#define NUM       @"num"
+#define DATA   @"data"
+#define TABLENAME @"MOMENTINFO"
 
 + (DataManager *)sharedDataManager
 {
@@ -51,8 +56,9 @@
         things = [[NSMutableArray alloc] initWithCapacity:10];
         socket = [[AsyncSocket alloc] initWithDelegate:self];
         NSError *error = nil;
-        [socket connectToHost:@"116.228.54.226" onPort:8085 withTimeout:10 error:&error];
-    }
+      //  [socket connectToHost:@"116.228.54.226" onPort:8085 withTimeout:10 error:&error];
+         [socket connectToHost:@"192.168.1.118" onPort:8080 withTimeout:10 error:&error];
+        }
     return self;
 }
 
@@ -64,7 +70,16 @@
                                                    encoding:NSUTF8StringEncoding
                                                       error:nil];
         NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
-        NSArray *arr = [NSJSONSerialization JSONObjectWithData:data
+         NSError *error = nil;
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+                                                            options:NSJSONReadingAllowFragments
+                                                              error:&error];
+ //       NSLog(@"%@ %@", dic, error);
+        
+        NSString *str = [dic objectForKey:@"object"];
+        NSData *data1 = [str dataUsingEncoding:NSUTF8StringEncoding];
+//NSLog(@"%@", str);
+        NSArray *arr = [NSJSONSerialization JSONObjectWithData:data1
                                                            options:NSJSONReadingAllowFragments
                                                              error:nil];
         [moments addObjectsFromArray:arr];
@@ -107,15 +122,69 @@
 
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documents = [paths objectAtIndex:0];
+    NSString *database_path = [documents stringByAppendingPathComponent:DBNAME];
+    
+    if (sqlite3_open([database_path UTF8String], &db) != SQLITE_OK) {
+        sqlite3_close(db);
+        NSLog(@"数据库打开失败");
+    }
+    NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS MOMENTINFO (ID INTEGER PRIMARY KEY AUTOINCREMENT,num INTEGER, data TEXT)";
+    [self execSql:sqlCreateTable];
     NSError *error = nil;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
-                                                        options:NSJSONReadingAllowFragments
+   
+    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+//    NSString *str = [NSString stringWithUTF8String:[data bytes]];
+ //   NSLog(@"%@", str);
+    
+    BOOL isPerfix = [str hasPrefix:@"{\"type\":"];
+    if(isPerfix) {
+        NSString *sql =
+        @"DELETE FROM MOMENTINFO";
+        [self execSql:sql];
+
+    }
+    
+    NSString *sql1 = [NSString stringWithFormat:
+                      @"INSERT INTO '%@' ('%@', '%@') VALUES ('%@', '%@')",
+                      TABLENAME, NUM, DATA,  @"1", str ];
+    
+ 
+    [self execSql:sql1];
+    
+    BOOL isSuffix = [str hasSuffix:@"\"}\r\n"];
+    NSLog(@"%hhd", isSuffix);
+    if (isSuffix) {
+  
+        NSString *sqlQuery = @"SELECT * FROM MOMENTINFO WHERE NUM = 1";
+        sqlite3_stmt * statement;
+        
+        NSString *content = @"";
+    
+        if (sqlite3_prepare_v2(db, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
+        while (sqlite3_step(statement) == SQLITE_ROW) {
+            char *name = (char*)sqlite3_column_text(statement, 2);
+            NSString *nsNameStr = [[NSString alloc]initWithUTF8String:name];
+            content = [content stringByAppendingString: nsNameStr];
+        }
+    }
+    sqlite3_close(db);
+ //   NSLog(@"content = %@", content);
+ //   NSString *ur =[@"http://192.168.1.118:8088/json.html" stringByAppendingString: socket.localAddress.description];
+ //   ur = [ur stringByAppendingString: @"findallmoment_result.html"];
+ //   NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:ur]];
+    //将请求的url数据放到NSData对象中
+ //   NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
+    //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
+ //   NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&error];
+     NSData *data1 = [content dataUsingEncoding:NSUTF8StringEncoding];
+       NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data1
+                                                       options:NSJSONReadingAllowFragments
                                                           error:&error];
 
-//    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//    NSString *str = [NSString stringWithUTF8String:[data bytes]];
-//    NSLog(@"%@", dic);
     NSLog(@"%ld %@ %@", tag, dic, error);
+    }
     
     [socket readDataToData:[AsyncSocket CRLFData] withTimeout:-1 tag:tag];
 }
@@ -134,6 +203,15 @@
 - (void)onSocket:(AsyncSocket *)sock willDisconnectWithError:(NSError *)err
 {
     NSLog(@"ERROR - %@", err);
+}
+
+-(void)execSql:(NSString *)sql
+{
+    char *err;
+    if (sqlite3_exec(db, [sql UTF8String], NULL, NULL, &err) != SQLITE_OK) {
+        sqlite3_close(db);
+        NSLog(@"数据库操作数据失败!");
+    }
 }
 
 /*
