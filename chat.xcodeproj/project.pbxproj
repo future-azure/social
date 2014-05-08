@@ -42,6 +42,7 @@
 		FEE23425190503B60046F525 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE23424190503B60046F525 /* RegisterViewController.m */; };
 		FEE234281905064E0046F525 /* UnderLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE234271905064E0046F525 /* UnderLineLabel.m */; };
 		FEE2342B19050CDC0046F525 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE2342A19050CDC0046F525 /* TermsViewController.m */; };
+		FEF4C94C1919192B004A28B0 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEF4C94B1919192B004A28B0 /* SettingViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,8 @@
 		FEE234271905064E0046F525 /* UnderLineLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnderLineLabel.m; sourceTree = "<group>"; };
 		FEE2342919050CDC0046F525 /* TermsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TermsViewController.h; sourceTree = "<group>"; };
 		FEE2342A19050CDC0046F525 /* TermsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TermsViewController.m; sourceTree = "<group>"; };
+		FEF4C94A1919192B004A28B0 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
+		FEF4C94B1919192B004A28B0 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -213,6 +216,8 @@
 				B9B4DA03190FA34F0042CEDB /* AsyncUdpSocket.m */,
 				B958C79318FBDB790043A3AC /* Images.xcassets */,
 				B958C74E18F7D8320043A3AC /* Supporting Files */,
+				FEF4C94A1919192B004A28B0 /* SettingViewController.h */,
+				FEF4C94B1919192B004A28B0 /* SettingViewController.m */,
 			);
 			path = chat;
 			sourceTree = "<group>";
@@ -382,6 +387,7 @@
 				B958C78C18F949F90043A3AC /* ThingsViewController.m in Sources */,
 				B958C78F18FBAF350043A3AC /* DataManager.m in Sources */,
 				B9CB01E018FFC942001D4100 /* MomentsAddViewController.m in Sources */,
+				FEF4C94C1919192B004A28B0 /* SettingViewController.m in Sources */,
 				B9CB01E91900F7C6001D4100 /* ThingsPageViewController.m in Sources */,
 				B958C75818F7D8320043A3AC /* AppDelegate.m in Sources */,
 				B95A6EA21906E42800954F9D /* ThingsFilterViewController.m in Sources */,
