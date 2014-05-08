@@ -99,20 +99,25 @@
 - (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
 {
     NSLog(@"Connected!");
-    NSString *json = @"{\"type\":\"FINDALLMOMENT\",\"object\":\"9\",\"toUser\":0,\"fromUser\":0}";
+    NSString *json = @"{\"type\":\"FINDALLMOMENT\",\"object\":\"9\",\"toUser\":0,\"fromUser\":0}\r\n";
+//    NSString *json = @"{\"type\":\"FINDALLTHING\",\"toUser\":0,\"fromUser\":0}";
+    NSLog(@"%@", json);
     [socket writeData:[json dataUsingEncoding:NSUTF8StringEncoding] withTimeout:10 tag:1];
 }
 
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
-//    NSError *error = nil;
-//    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
-//                                                        options:NSJSONReadingAllowFragments
-//                                                          error:&error];
-    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    NSError *error = nil;
+    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+                                                        options:NSJSONReadingAllowFragments
+                                                          error:&error];
+
+//    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
 //    NSString *str = [NSString stringWithUTF8String:[data bytes]];
 //    NSLog(@"%@", dic);
-    NSLog(@"%@", str);
+    NSLog(@"%ld %@ %@", tag, dic, error);
+    
+    [socket readDataToData:[AsyncSocket CRLFData] withTimeout:-1 tag:tag];
 }
 
 - (void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag
@@ -124,6 +129,11 @@
 - (void)onSocketDidDisconnect:(AsyncSocket *)sock
 {
     NSLog(@"Disconnected!");
+}
+
+- (void)onSocket:(AsyncSocket *)sock willDisconnectWithError:(NSError *)err
+{
+    NSLog(@"ERROR - %@", err);
 }
 
 /*

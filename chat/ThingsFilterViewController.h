@@ -17,7 +17,4 @@
     NSInteger type;
 }
 
-@property (weak, nonatomic) IBOutlet UIPickerView *pickerMin;
-@property (weak, nonatomic) IBOutlet UIPickerView *pickerMax;
-
 @end

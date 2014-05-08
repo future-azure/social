@@ -17,16 +17,13 @@
 
 @implementation ThingsFilterViewController
 
-@synthesize pickerMin;
-@synthesize pickerMax;
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    minItems = [NSArray arrayWithObjects:@"$50K", @"$100K", @"$150K", @"$200K", @"$250K", nil];
-    maxItems = [NSArray arrayWithObjects:@"$50K", @"$100K", @"$150K", @"$200K", @"$250K", nil];
+    minItems = [NSArray arrayWithObjects:@"$50K", @"$100K", @"$150K", @"$200K", @"$250K", @"$250K", @"$250K", nil];
+    maxItems = [NSArray arrayWithObjects:@"$50K", @"$100K", @"$150K", @"$200K", @"$250K", @"$250K", @"$250K", nil];
     min = 0;
     max = 0;
     type = 2;
