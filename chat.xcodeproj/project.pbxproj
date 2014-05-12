@@ -39,6 +39,8 @@
 		FE136F8E190E1F7900D0D82B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F85190E1F7900D0D82B /* InfoPlist.strings */; };
 		FE136F8F190E1F7900D0D82B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F87190E1F7900D0D82B /* Localizable.strings */; };
 		FE136F90190E1F7900D0D82B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F8A190E1F7900D0D82B /* InfoPlist.strings */; };
+		FE5C231D191C9FAF00DE8007 /* SIAlertView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FE5C231A191C9FAF00DE8007 /* SIAlertView.bundle */; };
+		FE5C231E191C9FAF00DE8007 /* SIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5C231C191C9FAF00DE8007 /* SIAlertView.m */; };
 		FE9BEC76191B9A350050522E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9BEC75191B9A350050522E /* libsqlite3.dylib */; };
 		FEE23425190503B60046F525 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE23424190503B60046F525 /* RegisterViewController.m */; };
 		FEE234281905064E0046F525 /* UnderLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE234271905064E0046F525 /* UnderLineLabel.m */; };
@@ -107,6 +109,9 @@
 		FE136F86190E1F7900D0D82B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = InfoPlist.strings; sourceTree = "<group>"; };
 		FE136F88190E1F7900D0D82B /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Localizable.strings; sourceTree = "<group>"; };
 		FE136F8B190E1F7900D0D82B /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = InfoPlist.strings; sourceTree = "<group>"; };
+		FE5C231A191C9FAF00DE8007 /* SIAlertView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SIAlertView.bundle; path = "../../../../../Downloads/下载/SIAlertView/SIAlertView/SIAlertView.bundle"; sourceTree = "<group>"; };
+		FE5C231B191C9FAF00DE8007 /* SIAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIAlertView.h; path = "../../../../../Downloads/下载/SIAlertView/SIAlertView/SIAlertView.h"; sourceTree = "<group>"; };
+		FE5C231C191C9FAF00DE8007 /* SIAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIAlertView.m; path = "../../../../../Downloads/下载/SIAlertView/SIAlertView/SIAlertView.m"; sourceTree = "<group>"; };
 		FE9BEC75191B9A350050522E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		FEE23423190503B60046F525 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		FEE23424190503B60046F525 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
@@ -177,6 +182,9 @@
 		B958C74D18F7D8320043A3AC /* chat */ = {
 			isa = PBXGroup;
 			children = (
+				FE5C231A191C9FAF00DE8007 /* SIAlertView.bundle */,
+				FE5C231B191C9FAF00DE8007 /* SIAlertView.h */,
+				FE5C231C191C9FAF00DE8007 /* SIAlertView.m */,
 				FE136F7F190E1F7900D0D82B /* en.lproj */,
 				FE136F84190E1F7900D0D82B /* zh-Hans.lproj */,
 				FE136F89190E1F7900D0D82B /* zh-Hant.lproj */,
@@ -357,6 +365,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B958C79418FBDB790043A3AC /* Images.xcassets in Resources */,
+				FE5C231D191C9FAF00DE8007 /* SIAlertView.bundle in Resources */,
 				FE136F8E190E1F7900D0D82B /* InfoPlist.strings in Resources */,
 				B958C78918F80EC10043A3AC /* Main_iPhone.storyboard in Resources */,
 				FE136F8F190E1F7900D0D82B /* Localizable.strings in Resources */,
@@ -394,6 +403,7 @@
 				FEF4C94C1919192B004A28B0 /* SettingViewController.m in Sources */,
 				B9CB01E91900F7C6001D4100 /* ThingsPageViewController.m in Sources */,
 				B958C75818F7D8320043A3AC /* AppDelegate.m in Sources */,
+				FE5C231E191C9FAF00DE8007 /* SIAlertView.m in Sources */,
 				B95A6EA21906E42800954F9D /* ThingsFilterViewController.m in Sources */,
 				B958C75418F7D8320043A3AC /* main.m in Sources */,
 				FEE234281905064E0046F525 /* UnderLineLabel.m in Sources */,

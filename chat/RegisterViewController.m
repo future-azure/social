@@ -8,6 +8,7 @@
 
 #import "RegisterViewController.h"
 #import "UnderLineLabel.h"
+#import "SIAlertView.h"
 
 @interface RegisterViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *top_title_show;
@@ -55,6 +56,24 @@
     
     top_title_show.text = NSLocalizedString(@"select_country", nil);
     title.text =NSLocalizedString(@"phone_num", nil);
+    
+    //NSMutableArray *newArray = [[NSMutableArray alloc] init];
+//    NSArray *oldArray = [NSArray arrayWithObjects:
+//                         @"a",@"b",@"c",@"d",@"e",@"f",@"g",@"h",nil];
+//    NSLog(@"oldArray:%@",oldArray);
+//    
+//    for(id obj in oldArray)
+//    {
+//        [newArray addObject: obj];
+//    }
+//    
+//    NSArray *country = [[DataManager sharedDataManager] loadCountry] ;
+//    [(UILabel *) [cell viewWithTag:TAG_USER] setText:[[moment objectForKey:USER] objectForKey:NAME]];
+//    [(UILabel *) [cell viewWithTag:TAG_CONTEXT] setText:[moment objectForKey:CONTEXT]];
+//    [(UILabel *) [cell viewWithTag:TAG_DATE] setText:[moment objectForKey:CREATE_TIME]];
+//    [(UILabel *) [cell viewWithTag:TAG_LIKE] setText:[[moment objectForKey:LIKE_CNT] stringValue]];
+//    [(UILabel *) [cell viewWithTag:TAG_COMMENT] setText:[[moment objectForKey:COMMENT_CNT] stringValue]];
+//    return cell;
 
     UnderLineLabel *label = [[UnderLineLabel alloc] initWithFrame:CGRectMake(agree_to.frame.origin.x, agree_to.frame.origin.y, 141, 18)];
 
@@ -95,10 +114,7 @@
     
     pickerArray = [NSArray arrayWithObjects:@"86   中国",@"381  南斯拉夫",@"27   南非",@"263  津巴布韦", nil];
     codeArray = [NSArray arrayWithObjects:@"86",@"381",@"27",@"263", nil];
-   // countyName.inputView = countrySelect;
-   // countyName.inputAccessoryView = buttonSelect;
-  //  countyName.delegate = self;
-  //  [countyName setTitle:NSLocalizedString(@"switch_account", nil) forState:UIControlStateNormal];
+ 
     
     countrySelect.delegate = self;
 
@@ -142,7 +158,6 @@
 -(bool)getSelect:(UIButton *)btn
 
 {
-    
     return btn.selected;
     
 }
@@ -182,6 +197,102 @@
     self.countryCode.text = [codeArray objectAtIndex:row];
 }
 
-
+- (IBAction)next:(id)sender {
+    NSLog(@"next register");
+    NSString *code = self.countryCode.text;
+    NSString *phone = self.phone_number.text;
+    
+    if( nil == code || 0 == code.length) {
+        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:NSLocalizedString(@"error", nil) andMessage:NSLocalizedString(@"select_country", nil)];
+        [alertView addButtonWithTitle:NSLocalizedString(@"ok", nil)
+                                 type:SIAlertViewButtonTypeDefault
+                              handler:^(SIAlertView *alertView) {
+                                  NSLog(@"OK Clicked");
+                                  
+                              }];
+        alertView.titleColor = [UIColor blueColor];
+        alertView.cornerRadius = 10;
+        alertView.buttonFont = [UIFont boldSystemFontOfSize:15];
+        alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
+        
+        alertView.willShowHandler = ^(SIAlertView *alertView) {
+            NSLog(@"%@, willShowHandler2", alertView);
+        };
+        alertView.didShowHandler = ^(SIAlertView *alertView) {
+            NSLog(@"%@, didShowHandler2", alertView);
+        };
+        alertView.willDismissHandler = ^(SIAlertView *alertView) {
+            NSLog(@"%@, willDismissHandler2", alertView);
+        };
+        alertView.didDismissHandler = ^(SIAlertView *alertView) {
+            NSLog(@"%@, didDismissHandler2", alertView);
+        };
+        
+        [alertView show];
+        
+        return;
+    }
+    if( nil == phone || 0 == phone.length) {
+        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:NSLocalizedString(@"error", nil) andMessage:NSLocalizedString(@"enter_phone", nil)];
+        [alertView addButtonWithTitle:NSLocalizedString(@"ok", nil)
+                                 type:SIAlertViewButtonTypeDefault
+                              handler:^(SIAlertView *alertView) {
+                                  NSLog(@"OK Clicked");
+                                  
+                              }];
+        alertView.titleColor = [UIColor blueColor];
+        alertView.cornerRadius = 10;
+        alertView.buttonFont = [UIFont boldSystemFontOfSize:15];
+        alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
+        
+        alertView.willShowHandler = ^(SIAlertView *alertView) {
+            NSLog(@"%@, willShowHandler2", alertView);
+        };
+        alertView.didShowHandler = ^(SIAlertView *alertView) {
+            NSLog(@"%@, didShowHandler2", alertView);
+        };
+        alertView.willDismissHandler = ^(SIAlertView *alertView) {
+            NSLog(@"%@, willDismissHandler2", alertView);
+        };
+        alertView.didDismissHandler = ^(SIAlertView *alertView) {
+            NSLog(@"%@, didDismissHandler2", alertView);
+        };
+        
+        [alertView show];
+        return;
+    }
+    NSLog(@"%hhd", termsCheckBox.selected);
+    if(termsCheckBox.selected == 0) {
+        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:NSLocalizedString(@"error", nil) andMessage:NSLocalizedString(@"agree_to_register", nil)];
+        [alertView addButtonWithTitle:NSLocalizedString(@"ok", nil)                                 type:SIAlertViewButtonTypeDefault
+                              handler:^(SIAlertView *alertView) {
+                                  NSLog(@"OK Clicked");
+                                  
+                              }];
+        alertView.titleColor = [UIColor blueColor];
+        alertView.cornerRadius = 10;
+        alertView.buttonFont = [UIFont boldSystemFontOfSize:15];
+        alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
+        
+        alertView.willShowHandler = ^(SIAlertView *alertView) {
+            NSLog(@"%@, willShowHandler2", alertView);
+        };
+        alertView.didShowHandler = ^(SIAlertView *alertView) {
+            NSLog(@"%@, didShowHandler2", alertView);
+        };
+        alertView.willDismissHandler = ^(SIAlertView *alertView) {
+            NSLog(@"%@, willDismissHandler2", alertView);
+        };
+        alertView.didDismissHandler = ^(SIAlertView *alertView) {
+            NSLog(@"%@, didDismissHandler2", alertView);
+        };
+        
+        [alertView show];
+        return;
+    }
+    
+    
+    [self performSegueWithIdentifier:@"verification" sender:self];
+}
 
 @end

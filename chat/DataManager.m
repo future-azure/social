@@ -12,11 +12,10 @@
 
 @synthesize moments;
 @synthesize things;
-#define DBNAME    @"most.sqlite"
-#define ID      @"id"
-#define NUM       @"num"
-#define DATA   @"data"
-#define TABLENAME @"MOMENTINFO"
+@synthesize country;
+@synthesize type;
+
+
 
 + (DataManager *)sharedDataManager
 {
@@ -52,18 +51,30 @@
 - (id)init
 {
     if (self = [super init]) {
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documents = [paths objectAtIndex:0];
+        NSString *database_path = [documents stringByAppendingPathComponent:DBNAME];
+        
+        if (sqlite3_open([database_path UTF8String], &db) != SQLITE_OK) {
+            sqlite3_close(db);
+            NSLog(@"数据库打开失败");
+        }
+
         moments = [[NSMutableArray alloc] initWithCapacity:10];
         things = [[NSMutableArray alloc] initWithCapacity:10];
         socket = [[AsyncSocket alloc] initWithDelegate:self];
-        NSError *error = nil;
+       
       //  [socket connectToHost:@"116.228.54.226" onPort:8085 withTimeout:10 error:&error];
-         [socket connectToHost:@"192.168.1.118" onPort:8080 withTimeout:10 error:&error];
+        
         }
     return self;
 }
 
 - (NSArray *)loadMoments
 {
+    type = @"FINDALLMOMENT";
+     NSError *error = nil;
+     [socket connectToHost:@"192.168.1.118" onPort:8080 withTimeout:10 error:&error];
     if (moments.count == 0) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"FINDALLMOMENT_result" ofType:@"txt"];
         NSString *json = [NSString stringWithContentsOfFile:path
@@ -108,35 +119,39 @@
     return things;
 }
 
+- (void)loadCountry
+{
+    [country removeAllObjects];
+    NSError *error = nil;
+    type = @"COUNTRY";
+    [socket connectToHost:@"192.168.1.118" onPort:8080 withTimeout:10 error:&error];
+}
+
 /*
  >>> AsyncSocketDelegate >>>
  */
 - (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
 {
     NSLog(@"Connected!");
-    NSString *json = @"{\"type\":\"FINDALLMOMENT\",\"object\":\"9\",\"toUser\":0,\"fromUser\":0}\r\n";
-//    NSString *json = @"{\"type\":\"FINDALLTHING\",\"toUser\":0,\"fromUser\":0}";
+    NSString *json;
+    if([@"FINDALLMOMENT" isEqualToString:type]) {
+        json = @"{\"type\":\"FINDALLMOMENT\",\"object\":\"9\",\"toUser\":0,\"fromUser\":0}\r\n";
+    }else if([@"COUNTRY" isEqualToString:type]) {
+         json = @"{\"type\":\"COUNTRY\",\"object\":\"en\",\"toUser\":0,\"fromUser\":0}\r\n";
+    }
+    
     NSLog(@"%@", json);
     [socket writeData:[json dataUsingEncoding:NSUTF8StringEncoding] withTimeout:10 tag:1];
 }
 
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documents = [paths objectAtIndex:0];
-    NSString *database_path = [documents stringByAppendingPathComponent:DBNAME];
-    
-    if (sqlite3_open([database_path UTF8String], &db) != SQLITE_OK) {
-        sqlite3_close(db);
-        NSLog(@"数据库打开失败");
-    }
+     if([@"FINDALLMOMENT" isEqualToString:type]) {
     NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS MOMENTINFO (ID INTEGER PRIMARY KEY AUTOINCREMENT,num INTEGER, data TEXT)";
     [self execSql:sqlCreateTable];
     NSError *error = nil;
    
     NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-//    NSString *str = [NSString stringWithUTF8String:[data bytes]];
- //   NSLog(@"%@", str);
     
     BOOL isPerfix = [str hasPrefix:@"{\"type\":"];
     if(isPerfix) {
@@ -170,20 +185,30 @@
         }
     }
     sqlite3_close(db);
- //   NSLog(@"content = %@", content);
- //   NSString *ur =[@"http://192.168.1.118:8088/json.html" stringByAppendingString: socket.localAddress.description];
- //   ur = [ur stringByAppendingString: @"findallmoment_result.html"];
- //   NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:ur]];
-    //将请求的url数据放到NSData对象中
- //   NSData *response = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:nil];
-    //IOS5自带解析类NSJSONSerialization从response中解析出数据放到字典中
- //   NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:response options:NSJSONReadingMutableLeaves error:&error];
      NSData *data1 = [content dataUsingEncoding:NSUTF8StringEncoding];
        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data1
                                                        options:NSJSONReadingAllowFragments
                                                           error:&error];
 
     NSLog(@"%ld %@ %@", tag, dic, error);
+    }
+         
+          if([@"COUNTRY" isEqualToString:type]) {
+              NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+                                                                  options:NSJSONReadingAllowFragments
+                                                                    error:&error];
+              NSString *str = [dic objectForKey:@"object"];
+              NSData *data1 = [str dataUsingEncoding:NSUTF8StringEncoding];
+              //NSLog(@"%@", str);
+              NSArray *arr = [NSJSONSerialization JSONObjectWithData:data1
+                                                             options:NSJSONReadingAllowFragments
+                                                               error:nil];
+              [country addObjectsFromArray:arr];
+
+              NSLog(@"%ld %@ %@", tag, dic, error);
+              
+
+          }
     }
     
     [socket readDataToData:[AsyncSocket CRLFData] withTimeout:-1 tag:tag];

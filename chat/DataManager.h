@@ -21,16 +21,32 @@
 #define TAG_CNT @"tagCnt"
 #define COMMENT_CNT @"CommentCnt"
 
+#define ID @"id"
+#define COUNTRYCODE @"country_code"
+#define COUNTRYNAME @"country_name"
+#define LANGUAGETYPE @"language_type"
+#define SHORTNAME @"short_name"
+#define DBNAME    @"most.sqlite"
+
+#define NUM       @"num"
+#define DATA   @"data"
+#define TABLENAME @"MOMENTINFO"
+
 @interface DataManager : NSObject <AsyncSocketDelegate>
 {
     NSMutableArray *moments;
     NSMutableArray *things;
     AsyncSocket *socket;
+    NSMutableArray *country;
+    NSString *type;
     sqlite3 *db;  
 }
 
+
 @property (nonatomic, strong) NSMutableArray *moments;
 @property (nonatomic, strong) NSMutableArray *things;
+@property (nonatomic, strong) NSMutableArray *country;
+@property (nonatomic, strong)  NSString *type;
 
 + (DataManager *)sharedDataManager;
 + (UIImage *) imageWithColor:(UIColor*)color size:(CGSize)size;
@@ -38,5 +54,6 @@
 
 - (NSArray *)loadMoments;
 - (NSArray *)loadThings;
+- (void)loadCountry;
 
 @end
