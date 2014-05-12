@@ -30,7 +30,8 @@
 
 #define NUM       @"num"
 #define DATA   @"data"
-#define TABLENAME @"MOMENTINFO"
+#define MOMENTINFO @"MOMENTINFO"
+#define COUNTRYINFO @"COUNTRYINFO"
 
 @interface DataManager : NSObject <AsyncSocketDelegate>
 {
@@ -55,5 +56,6 @@
 - (NSArray *)loadMoments;
 - (NSArray *)loadThings;
 - (void)loadCountry;
+- (void)readDataWithTimeout:(NSTimeInterval)timeout tag:(long)tag;
 
 @end

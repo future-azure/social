@@ -59,43 +59,50 @@
             sqlite3_close(db);
             NSLog(@"数据库打开失败");
         }
-
+        
         moments = [[NSMutableArray alloc] initWithCapacity:10];
         things = [[NSMutableArray alloc] initWithCapacity:10];
         socket = [[AsyncSocket alloc] initWithDelegate:self];
-       
-      //  [socket connectToHost:@"116.228.54.226" onPort:8085 withTimeout:10 error:&error];
+        NSError *error = nil;
         
-        }
+        //  [socket connectToHost:@"116.228.54.226" onPort:8085 withTimeout:10 error:&error];
+        [socket connectToHost:@"192.168.1.156" onPort:8085 withTimeout:10 error:&error];
+        
+    }
     return self;
 }
 
 - (NSArray *)loadMoments
 {
     type = @"FINDALLMOMENT";
-     NSError *error = nil;
-     [socket connectToHost:@"192.168.1.118" onPort:8080 withTimeout:10 error:&error];
+    NSString *json;
+    
+    json = @"{\"type\":\"FINDALLMOMENT\",\"object\":\"9\",\"toUser\":0,\"fromUser\":0}\r\n";
+    
+    NSLog(@"%@", json);
+    [socket writeData:[json dataUsingEncoding:NSUTF8StringEncoding] withTimeout:10 tag:1];
+    
     if (moments.count == 0) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"FINDALLMOMENT_result" ofType:@"txt"];
         NSString *json = [NSString stringWithContentsOfFile:path
                                                    encoding:NSUTF8StringEncoding
                                                       error:nil];
         NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
-         NSError *error = nil;
+        NSError *error = nil;
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
                                                             options:NSJSONReadingAllowFragments
                                                               error:&error];
- //       NSLog(@"%@ %@", dic, error);
+        //       NSLog(@"%@ %@", dic, error);
         
         NSString *str = [dic objectForKey:@"object"];
         NSData *data1 = [str dataUsingEncoding:NSUTF8StringEncoding];
-//NSLog(@"%@", str);
+        //NSLog(@"%@", str);
         NSArray *arr = [NSJSONSerialization JSONObjectWithData:data1
-                                                           options:NSJSONReadingAllowFragments
-                                                             error:nil];
+                                                       options:NSJSONReadingAllowFragments
+                                                         error:nil];
         [moments addObjectsFromArray:arr];
     }
-
+    
     return moments;
 }
 
@@ -108,8 +115,8 @@
                                                       error:nil];
         NSData *data = [json dataUsingEncoding:NSUTF8StringEncoding];
         NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
-                                                           options:NSJSONReadingAllowFragments
-                                                             error:nil];
+                                                            options:NSJSONReadingAllowFragments
+                                                              error:nil];
         data = [[dic objectForKey:@"object"] dataUsingEncoding:NSUTF8StringEncoding];
         NSArray *arr = [NSJSONSerialization JSONObjectWithData:data
                                                        options:NSJSONReadingAllowFragments
@@ -122,9 +129,16 @@
 - (void)loadCountry
 {
     [country removeAllObjects];
-    NSError *error = nil;
+    //  NSError *error = nil;
     type = @"COUNTRY";
-    [socket connectToHost:@"192.168.1.118" onPort:8080 withTimeout:10 error:&error];
+    NSString *json;
+    
+    json = @"{\"type\":\"COUNTRY\",\"object\":\"en\",\"toUser\":0,\"fromUser\":0}\r\n";
+    
+    NSLog(@"%@", json);
+    [socket writeData:[json dataUsingEncoding:NSUTF8StringEncoding] withTimeout:10 tag:1];
+    [socket readDataWithTimeout:-1 tag:0];
+    //  [socket connectToHost:@"192.168.1.118" onPort:8080 withTimeout:10 error:&error];
 }
 
 /*
@@ -133,83 +147,127 @@
 - (void)onSocket:(AsyncSocket *)sock didConnectToHost:(NSString *)host port:(UInt16)port
 {
     NSLog(@"Connected!");
-    NSString *json;
-    if([@"FINDALLMOMENT" isEqualToString:type]) {
-        json = @"{\"type\":\"FINDALLMOMENT\",\"object\":\"9\",\"toUser\":0,\"fromUser\":0}\r\n";
-    }else if([@"COUNTRY" isEqualToString:type]) {
-         json = @"{\"type\":\"COUNTRY\",\"object\":\"en\",\"toUser\":0,\"fromUser\":0}\r\n";
-    }
-    
-    NSLog(@"%@", json);
-    [socket writeData:[json dataUsingEncoding:NSUTF8StringEncoding] withTimeout:10 tag:1];
+    //    NSString *json;
+    //    if([@"FINDALLMOMENT" isEqualToString:type]) {
+    //        json = @"{\"type\":\"FINDALLMOMENT\",\"object\":\"9\",\"toUser\":0,\"fromUser\":0}\r\n";
+    //    }else if([@"COUNTRY" isEqualToString:type]) {
+    //         json = @"{\"type\":\"COUNTRY\",\"object\":\"en\",\"toUser\":0,\"fromUser\":0}\r\n";
+    //    }
+    //
+    //    NSLog(@"%@", json);
+    //    [socket writeData:[json dataUsingEncoding:NSUTF8StringEncoding] withTimeout:10 tag:1];
 }
 
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag
 {
-     if([@"FINDALLMOMENT" isEqualToString:type]) {
-    NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS MOMENTINFO (ID INTEGER PRIMARY KEY AUTOINCREMENT,num INTEGER, data TEXT)";
-    [self execSql:sqlCreateTable];
     NSError *error = nil;
-   
-    NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
-    BOOL isPerfix = [str hasPrefix:@"{\"type\":"];
-    if(isPerfix) {
-        NSString *sql =
-        @"DELETE FROM MOMENTINFO";
-        [self execSql:sql];
-
-    }
-    
-    NSString *sql1 = [NSString stringWithFormat:
-                      @"INSERT INTO '%@' ('%@', '%@') VALUES ('%@', '%@')",
-                      TABLENAME, NUM, DATA,  @"1", str ];
-    
- 
-    [self execSql:sql1];
-    
-    BOOL isSuffix = [str hasSuffix:@"\"}\r\n"];
-    NSLog(@"%hhd", isSuffix);
-    if (isSuffix) {
-  
-        NSString *sqlQuery = @"SELECT * FROM MOMENTINFO WHERE NUM = 1";
-        sqlite3_stmt * statement;
+    if([@"FINDALLMOMENT" isEqualToString:type]) {
+        NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS MOMENTINFO (ID INTEGER PRIMARY KEY AUTOINCREMENT,num INTEGER, data TEXT)";
+        [self execSql:sqlCreateTable];
         
-        NSString *content = @"";
-    
-        if (sqlite3_prepare_v2(db, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
-        while (sqlite3_step(statement) == SQLITE_ROW) {
-            char *name = (char*)sqlite3_column_text(statement, 2);
-            NSString *nsNameStr = [[NSString alloc]initWithUTF8String:name];
-            content = [content stringByAppendingString: nsNameStr];
+        NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        
+        BOOL isPerfix = [str hasPrefix:@"{\"type\":"];
+        if(isPerfix) {
+            NSString *sql =
+            @"DELETE FROM MOMENTINFO";
+            [self execSql:sql];
+            
+        }
+        
+        NSString *sql1 = [NSString stringWithFormat:
+                          @"INSERT INTO '%@' ('%@', '%@') VALUES ('%@', '%@')",
+                          MOMENTINFO, NUM, DATA,  @"1", str ];
+        
+        
+        [self execSql:sql1];
+        
+        BOOL isSuffix = [str hasSuffix:@"\"}\r\n"];
+        NSLog(@"%hhd", isSuffix);
+        if (isSuffix) {
+            
+            NSString *sqlQuery = @"SELECT * FROM MOMENTINFO WHERE NUM = 1";
+            sqlite3_stmt * statement;
+            
+            NSString *content = @"";
+            
+            if (sqlite3_prepare_v2(db, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
+                while (sqlite3_step(statement) == SQLITE_ROW) {
+                    char *name = (char*)sqlite3_column_text(statement, 2);
+                    NSString *nsNameStr = [[NSString alloc]initWithUTF8String:name];
+                    content = [content stringByAppendingString: nsNameStr];
+                }
+            }
+            sqlite3_close(db);
+            NSData *data1 = [content dataUsingEncoding:NSUTF8StringEncoding];
+            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data1
+                                                                options:NSJSONReadingAllowFragments
+                                                                  error:&error];
+            
+            NSLog(@"%ld %@ %@", tag, dic, error);
         }
     }
-    sqlite3_close(db);
-     NSData *data1 = [content dataUsingEncoding:NSUTF8StringEncoding];
-       NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data1
+    
+    if([@"COUNTRY" isEqualToString:type]) {
+        NSString *sqlCreateTable = @"CREATE TABLE IF NOT EXISTS COUNTRYINFO (ID INTEGER PRIMARY KEY AUTOINCREMENT,num INTEGER, data TEXT)";
+        [self execSql:sqlCreateTable];
+        
+        NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        
+        BOOL isPerfix = [str hasPrefix:@"{\"type\":"];
+        if(isPerfix) {
+            NSString *sql =
+            @"DELETE FROM COUNTRYINFO";
+            [self execSql:sql];
+            
+        }
+        
+        NSString *sql1 = [NSString stringWithFormat:
+                          @"INSERT INTO '%@' ('%@', '%@') VALUES ('%@', '%@')",
+                          COUNTRYINFO, NUM, DATA,  @"1", str ];
+        
+        
+        [self execSql:sql1];
+        
+        BOOL isSuffix = [str hasSuffix:@"\"}\r\n"];
+        NSLog(@"%hhd", isSuffix);
+        if (isSuffix) {
+            
+            NSString *sqlQuery = @"SELECT * FROM COUNTRYINFO WHERE NUM = 1";
+            sqlite3_stmt * statement;
+            
+            NSString *content = @"";
+            
+            if (sqlite3_prepare_v2(db, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
+                while (sqlite3_step(statement) == SQLITE_ROW) {
+                    char *name = (char*)sqlite3_column_text(statement, 2);
+                    NSString *nsNameStr = [[NSString alloc]initWithUTF8String:name];
+                    content = [content stringByAppendingString: nsNameStr];
+                }
+            }
+            sqlite3_close(db);
+            NSData *data1 = [content dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data1
+                                                            options:NSJSONReadingAllowFragments
+                                                              error:&error];
+        NSLog(@"%ld %@ %@", tag, dic, error);
+
+        NSString *str = [dic objectForKey:@"object"];
+        NSLog(@"%@", str);
+        NSData *data2 = [str dataUsingEncoding:NSUTF8StringEncoding];
+        //NSLog(@"%@", str);
+        country = [NSJSONSerialization JSONObjectWithData:data2
                                                        options:NSJSONReadingAllowFragments
-                                                          error:&error];
+                                                         error:nil];
+            NSLog(@"%@", country);
 
-    NSLog(@"%ld %@ %@", tag, dic, error);
+     //   [country addObjectsFromArray:arr];
+        }
+        
+        
     }
-         
-          if([@"COUNTRY" isEqualToString:type]) {
-              NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
-                                                                  options:NSJSONReadingAllowFragments
-                                                                    error:&error];
-              NSString *str = [dic objectForKey:@"object"];
-              NSData *data1 = [str dataUsingEncoding:NSUTF8StringEncoding];
-              //NSLog(@"%@", str);
-              NSArray *arr = [NSJSONSerialization JSONObjectWithData:data1
-                                                             options:NSJSONReadingAllowFragments
-                                                               error:nil];
-              [country addObjectsFromArray:arr];
-
-              NSLog(@"%ld %@ %@", tag, dic, error);
-              
-
-          }
-    }
+    
     
     [socket readDataToData:[AsyncSocket CRLFData] withTimeout:-1 tag:tag];
 }
@@ -217,7 +275,7 @@
 - (void)onSocket:(AsyncSocket *)sock didWriteDataWithTag:(long)tag
 {
     NSLog(@"didWriteDataWithTag %ld", tag);
-    [socket readDataWithTimeout:-1 tag:0];
+  //  [socket readDataWithTimeout:-1 tag:0];
 }
 
 - (void)onSocketDidDisconnect:(AsyncSocket *)sock

@@ -1,25 +1,18 @@
 //
-//  SettingViewController.m
+//  ProfileSettingViewController.m
 //  chat
 //
-//  Created by brightvision on 14-5-6.
+//  Created by brightvision on 14-5-12.
 //
 //
 
-#import "SettingViewController.h"
+#import "ProfileSettingViewController.h"
 
-@interface SettingViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *title;
-@property (weak, nonatomic) IBOutlet UIImageView *profile;
+@interface ProfileSettingViewController ()
 
 @end
 
-
-
-@implementation SettingViewController
-
-@synthesize profile;
-@synthesize title;
+@implementation ProfileSettingViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,18 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    title.text =NSLocalizedString(@"me", nil);
-
     // Do any additional setup after loading the view.
-    UIImage *image=[UIImage imageNamed:@"profile_img.png"];
-    [self.profile setImage:image];
-
-    [profile.layer setCornerRadius:CGRectGetHeight([profile bounds]) / 2];
-  //  profile.frame = CGRectMake(100.f, 100.f, 100.f, 100.f);
-    profile.layer.masksToBounds = YES;
-    profile.layer.borderWidth = 2;
-    profile.layer.borderColor = [[UIColor whiteColor] CGColor];
- //   profile.layer.cornerRadius = 50;
 }
 
 - (void)didReceiveMemoryWarning

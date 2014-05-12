@@ -1,25 +1,23 @@
 //
-//  SettingViewController.m
+//  VerificationViewController.m
 //  chat
 //
-//  Created by brightvision on 14-5-6.
+//  Created by brightvision on 14-5-12.
 //
 //
 
-#import "SettingViewController.h"
+#import "VerificationViewController.h"
 
-@interface SettingViewController ()
+@interface VerificationViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *title;
-@property (weak, nonatomic) IBOutlet UIImageView *profile;
+@property (weak, nonatomic) IBOutlet UILabel *title_show;
 
 @end
 
-
-
-@implementation SettingViewController
-
-@synthesize profile;
+@implementation VerificationViewController
 @synthesize title;
+@synthesize title_show;
+@synthesize phone_number;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,19 +31,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    title.text =NSLocalizedString(@"me", nil);
-
+    title.text = NSLocalizedString(@"select_country", nil);
+ NSLog(@"%@", @"verfication");
+     title_show.text = [NSLocalizedString(@"register_confirm", nil) stringByAppendingString:phone_number];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notificationHandler:) name:@"phoneNumber" object:nil];
+    
+   
+;
+    
     // Do any additional setup after loading the view.
-    UIImage *image=[UIImage imageNamed:@"profile_img.png"];
-    [self.profile setImage:image];
-
-    [profile.layer setCornerRadius:CGRectGetHeight([profile bounds]) / 2];
-  //  profile.frame = CGRectMake(100.f, 100.f, 100.f, 100.f);
-    profile.layer.masksToBounds = YES;
-    profile.layer.borderWidth = 2;
-    profile.layer.borderColor = [[UIColor whiteColor] CGColor];
- //   profile.layer.cornerRadius = 50;
 }
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -63,5 +59,13 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (IBAction)back:(id)sender {
+  
+        [self dismissViewControllerAnimated:YES completion:nil];
+    
+}
+
+
 
 @end

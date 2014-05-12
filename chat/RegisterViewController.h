@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "DataManager.h"
+#import "VerificationViewController.h"
 
 @interface RegisterViewController : UIViewController<UIPickerViewDelegate, UITextFieldDelegate,UIPickerViewDataSource> {
-    NSArray *pickerArray;
-    NSArray *codeArray;
+    NSMutableArray *pickerArray;
+    NSMutableArray *codeArray;
     UIButton *termsCheckBox;
     
 }

@@ -41,6 +41,8 @@
 		FE136F90190E1F7900D0D82B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F8A190E1F7900D0D82B /* InfoPlist.strings */; };
 		FE5C231D191C9FAF00DE8007 /* SIAlertView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = FE5C231A191C9FAF00DE8007 /* SIAlertView.bundle */; };
 		FE5C231E191C9FAF00DE8007 /* SIAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5C231C191C9FAF00DE8007 /* SIAlertView.m */; };
+		FE5C23241920AD4F00DE8007 /* ProfileSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5C23231920AD4F00DE8007 /* ProfileSettingViewController.m */; };
+		FE5C23271920B35600DE8007 /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5C23261920B35600DE8007 /* VerificationViewController.m */; };
 		FE9BEC76191B9A350050522E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9BEC75191B9A350050522E /* libsqlite3.dylib */; };
 		FEE23425190503B60046F525 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE23424190503B60046F525 /* RegisterViewController.m */; };
 		FEE234281905064E0046F525 /* UnderLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE234271905064E0046F525 /* UnderLineLabel.m */; };
@@ -112,6 +114,10 @@
 		FE5C231A191C9FAF00DE8007 /* SIAlertView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = SIAlertView.bundle; path = "../../../../../Downloads/下载/SIAlertView/SIAlertView/SIAlertView.bundle"; sourceTree = "<group>"; };
 		FE5C231B191C9FAF00DE8007 /* SIAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIAlertView.h; path = "../../../../../Downloads/下载/SIAlertView/SIAlertView/SIAlertView.h"; sourceTree = "<group>"; };
 		FE5C231C191C9FAF00DE8007 /* SIAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIAlertView.m; path = "../../../../../Downloads/下载/SIAlertView/SIAlertView/SIAlertView.m"; sourceTree = "<group>"; };
+		FE5C23221920AD4F00DE8007 /* ProfileSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileSettingViewController.h; sourceTree = "<group>"; };
+		FE5C23231920AD4F00DE8007 /* ProfileSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileSettingViewController.m; sourceTree = "<group>"; };
+		FE5C23251920B35600DE8007 /* VerificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationViewController.h; sourceTree = "<group>"; };
+		FE5C23261920B35600DE8007 /* VerificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationViewController.m; sourceTree = "<group>"; };
 		FE9BEC75191B9A350050522E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		FEE23423190503B60046F525 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		FEE23424190503B60046F525 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
@@ -230,6 +236,10 @@
 				B958C74E18F7D8320043A3AC /* Supporting Files */,
 				FEF4C94A1919192B004A28B0 /* SettingViewController.h */,
 				FEF4C94B1919192B004A28B0 /* SettingViewController.m */,
+				FE5C23221920AD4F00DE8007 /* ProfileSettingViewController.h */,
+				FE5C23231920AD4F00DE8007 /* ProfileSettingViewController.m */,
+				FE5C23251920B35600DE8007 /* VerificationViewController.h */,
+				FE5C23261920B35600DE8007 /* VerificationViewController.m */,
 			);
 			path = chat;
 			sourceTree = "<group>";
@@ -399,6 +409,7 @@
 				B958C79218FBB7140043A3AC /* MomentsViewController.m in Sources */,
 				B958C78C18F949F90043A3AC /* ThingsViewController.m in Sources */,
 				B958C78F18FBAF350043A3AC /* DataManager.m in Sources */,
+				FE5C23271920B35600DE8007 /* VerificationViewController.m in Sources */,
 				B9CB01E018FFC942001D4100 /* MomentsAddViewController.m in Sources */,
 				FEF4C94C1919192B004A28B0 /* SettingViewController.m in Sources */,
 				B9CB01E91900F7C6001D4100 /* ThingsPageViewController.m in Sources */,
@@ -407,6 +418,7 @@
 				B95A6EA21906E42800954F9D /* ThingsFilterViewController.m in Sources */,
 				B958C75418F7D8320043A3AC /* main.m in Sources */,
 				FEE234281905064E0046F525 /* UnderLineLabel.m in Sources */,
+				FE5C23241920AD4F00DE8007 /* ProfileSettingViewController.m in Sources */,
 				FEE23425190503B60046F525 /* RegisterViewController.m in Sources */,
 				B9B4DA04190FA34F0042CEDB /* AsyncSocket.m in Sources */,
 				B958C79718FBE7A20043A3AC /* HomeViewController.m in Sources */,

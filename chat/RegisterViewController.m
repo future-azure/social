@@ -57,23 +57,21 @@
     top_title_show.text = NSLocalizedString(@"select_country", nil);
     title.text =NSLocalizedString(@"phone_num", nil);
     
-    //NSMutableArray *newArray = [[NSMutableArray alloc] init];
-//    NSArray *oldArray = [NSArray arrayWithObjects:
-//                         @"a",@"b",@"c",@"d",@"e",@"f",@"g",@"h",nil];
-//    NSLog(@"oldArray:%@",oldArray);
-//    
-//    for(id obj in oldArray)
+
+//       NSMutableArray *countryArray = [[DataManager sharedDataManager] country];
+//   
+//    for(id obj in countryArray)
 //    {
-//        [newArray addObject: obj];
+//        NSDictionary *cDic = obj;
+//
+//        [pickerArray addObject: [cDic objectForKey:COUNTRYNAME]];
+//        [codeArray addObject: [cDic objectForKey:COUNTRYCODE]];
 //    }
-//    
-//    NSArray *country = [[DataManager sharedDataManager] loadCountry] ;
-//    [(UILabel *) [cell viewWithTag:TAG_USER] setText:[[moment objectForKey:USER] objectForKey:NAME]];
-//    [(UILabel *) [cell viewWithTag:TAG_CONTEXT] setText:[moment objectForKey:CONTEXT]];
-//    [(UILabel *) [cell viewWithTag:TAG_DATE] setText:[moment objectForKey:CREATE_TIME]];
-//    [(UILabel *) [cell viewWithTag:TAG_LIKE] setText:[[moment objectForKey:LIKE_CNT] stringValue]];
-//    [(UILabel *) [cell viewWithTag:TAG_COMMENT] setText:[[moment objectForKey:COMMENT_CNT] stringValue]];
-//    return cell;
+//    //
+//    NSLog(@"pickerArray:%@", pickerArray);
+//    NSLog(@"codeArray:%@", codeArray);
+
+    
 
     UnderLineLabel *label = [[UnderLineLabel alloc] initWithFrame:CGRectMake(agree_to.frame.origin.x, agree_to.frame.origin.y, 141, 18)];
 
@@ -197,6 +195,15 @@
     self.countryCode.text = [codeArray objectAtIndex:row];
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"verification"]) //"goView2"是SEGUE连线的标识
+    {
+        id theSegue = segue.destinationViewController;
+        [theSegue setValue:self.phone_number.text forKey:@"phone_number"];
+    }
+}
+
 - (IBAction)next:(id)sender {
     NSLog(@"next register");
     NSString *code = self.countryCode.text;
@@ -290,9 +297,17 @@
         [alertView show];
         return;
     }
+//    VerificationViewController *secondView = [[VerificationViewController alloc] initWithNibName:@"VerificationViewController" bundle:[NSBundle mainBundle]];
+//    //设置SecondViewController中的值
+//    secondView.phone_number = phone;
+//    //跳转界面
+//    [self presentModalViewController:secondView animated:YES];
     
-    
-    [self performSegueWithIdentifier:@"verification" sender:self];
+
+     [self performSegueWithIdentifier:@"verification" sender:self];
+}
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
