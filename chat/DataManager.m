@@ -14,6 +14,7 @@
 @synthesize things;
 @synthesize country;
 @synthesize type;
+@synthesize socket;
 
 
 
@@ -66,7 +67,7 @@
         NSError *error = nil;
         
         //  [socket connectToHost:@"116.228.54.226" onPort:8085 withTimeout:10 error:&error];
-        [socket connectToHost:@"192.168.1.156" onPort:8085 withTimeout:10 error:&error];
+        [socket connectToHost:@"192.168.1.118" onPort:8080 withTimeout:10 error:&error];
         
     }
     return self;
@@ -288,6 +289,11 @@
     NSLog(@"ERROR - %@", err);
 }
 
+/*
+ <<< AsyncSocketDelegate <<<
+ */
+
+
 -(void)execSql:(NSString *)sql
 {
     char *err;
@@ -297,8 +303,62 @@
     }
 }
 
-/*
- <<< AsyncSocketDelegate <<<
- */
+- (void) showDialog:(NSString *)dialogType content:(NSString*)content {
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:NSLocalizedString(dialogType, nil) andMessage:NSLocalizedString(content, nil)];
+    [alertView addButtonWithTitle:NSLocalizedString(@"ok", nil)                                 type:SIAlertViewButtonTypeDefault
+                          handler:^(SIAlertView *alertView) {
+                          //    NSLog(@"OK Clicked");
+                              
+                          }];
+    alertView.titleColor = [UIColor blueColor];
+    alertView.cornerRadius = 10;
+    alertView.buttonFont = [UIFont boldSystemFontOfSize:15];
+    alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
+    
+    alertView.willShowHandler = ^(SIAlertView *alertView) {
+   //     NSLog(@"%@, willShowHandler2", alertView);
+    };
+    alertView.didShowHandler = ^(SIAlertView *alertView) {
+ //       NSLog(@"%@, didShowHandler2", alertView);
+    };
+    alertView.willDismissHandler = ^(SIAlertView *alertView) {
+  //      NSLog(@"%@, willDismissHandler2", alertView);
+    };
+    alertView.didDismissHandler = ^(SIAlertView *alertView) {
+   //     NSLog(@"%@, didDismissHandler2", alertView);
+    };
+    
+    [alertView show];
+
+}
+
+
+
+
+- (NSString *)md5:(NSString *)str
+
+{
+    
+    const char *cStr = [str UTF8String];
+    
+    unsigned char result[16];
+    
+    CC_MD5(cStr, strlen(cStr), result); // This is the md5 call
+    
+    return [NSString stringWithFormat:
+            
+            @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+            
+            result[0], result[1], result[2], result[3],
+            
+            result[4], result[5], result[6], result[7],
+            
+            result[8], result[9], result[10], result[11],
+            
+            result[12], result[13], result[14], result[15]
+            
+            ]; 
+    
+}
 
 @end

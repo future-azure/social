@@ -48,7 +48,6 @@
     NSLog(@"%@", NSStringFromSelector(_cmd));
     [super drawRect:rect];
     if (self.shouldUnderline) {
-        NSLog(@"走到了这晨");
         CGContextRef ctx = UIGraphicsGetCurrentContext();
         CGSize fontSize =[self.text sizeWithFont:self.font
                                         forWidth:self.frame.size.width
@@ -75,7 +74,7 @@
     CGSize fontSize =[self.text sizeWithFont:self.font
                                     forWidth:200
                                lineBreakMode:NSLineBreakByTruncatingTail];
-    NSLog(@"%f   %f", fontSize.width, fontSize.height);
+   
     [self setNumberOfLines:0];
     [self setFrame:CGRectMake(0, 0, fontSize.width, fontSize.height)];
     [self setCenter:center];

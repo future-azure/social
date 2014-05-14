@@ -44,6 +44,9 @@
 		FE5C23241920AD4F00DE8007 /* ProfileSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5C23231920AD4F00DE8007 /* ProfileSettingViewController.m */; };
 		FE5C23271920B35600DE8007 /* VerificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE5C23261920B35600DE8007 /* VerificationViewController.m */; };
 		FE9BEC76191B9A350050522E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9BEC75191B9A350050522E /* libsqlite3.dylib */; };
+		FEC2BC411923758B00803C4D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC2BC401923758B00803C4D /* MBProgressHUD.m */; };
+		FEC2BC441923893400803C4D /* AddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC2BC431923893400803C4D /* AddressBook.m */; };
+		FEC2BC471923A39A00803C4D /* IBActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC2BC461923A39A00803C4D /* IBActionSheet.m */; };
 		FEE23425190503B60046F525 /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE23424190503B60046F525 /* RegisterViewController.m */; };
 		FEE234281905064E0046F525 /* UnderLineLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE234271905064E0046F525 /* UnderLineLabel.m */; };
 		FEE2342B19050CDC0046F525 /* TermsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FEE2342A19050CDC0046F525 /* TermsViewController.m */; };
@@ -119,6 +122,12 @@
 		FE5C23251920B35600DE8007 /* VerificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerificationViewController.h; sourceTree = "<group>"; };
 		FE5C23261920B35600DE8007 /* VerificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerificationViewController.m; sourceTree = "<group>"; };
 		FE9BEC75191B9A350050522E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		FEC2BC3F1923758B00803C4D /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = "../../../../../Downloads/下载/MBProgressHUD-master/MBProgressHUD.h"; sourceTree = "<group>"; };
+		FEC2BC401923758B00803C4D /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = "../../../../../Downloads/下载/MBProgressHUD-master/MBProgressHUD.m"; sourceTree = "<group>"; };
+		FEC2BC421923893400803C4D /* AddressBook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressBook.h; sourceTree = "<group>"; };
+		FEC2BC431923893400803C4D /* AddressBook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressBook.m; sourceTree = "<group>"; };
+		FEC2BC451923A39A00803C4D /* IBActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IBActionSheet.h; path = "../../../../../Downloads/下载/IBActionSheet-master/IBActionSheetSample/IBActionSheetSample/IBActionSheet.h"; sourceTree = "<group>"; };
+		FEC2BC461923A39A00803C4D /* IBActionSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IBActionSheet.m; path = "../../../../../Downloads/下载/IBActionSheet-master/IBActionSheetSample/IBActionSheetSample/IBActionSheet.m"; sourceTree = "<group>"; };
 		FEE23423190503B60046F525 /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		FEE23424190503B60046F525 /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		FEE23426190506470046F525 /* UnderLineLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UnderLineLabel.h; sourceTree = "<group>"; };
@@ -188,6 +197,10 @@
 		B958C74D18F7D8320043A3AC /* chat */ = {
 			isa = PBXGroup;
 			children = (
+				FEC2BC451923A39A00803C4D /* IBActionSheet.h */,
+				FEC2BC461923A39A00803C4D /* IBActionSheet.m */,
+				FEC2BC3F1923758B00803C4D /* MBProgressHUD.h */,
+				FEC2BC401923758B00803C4D /* MBProgressHUD.m */,
 				FE5C231A191C9FAF00DE8007 /* SIAlertView.bundle */,
 				FE5C231B191C9FAF00DE8007 /* SIAlertView.h */,
 				FE5C231C191C9FAF00DE8007 /* SIAlertView.m */,
@@ -240,6 +253,8 @@
 				FE5C23231920AD4F00DE8007 /* ProfileSettingViewController.m */,
 				FE5C23251920B35600DE8007 /* VerificationViewController.h */,
 				FE5C23261920B35600DE8007 /* VerificationViewController.m */,
+				FEC2BC421923893400803C4D /* AddressBook.h */,
+				FEC2BC431923893400803C4D /* AddressBook.m */,
 			);
 			path = chat;
 			sourceTree = "<group>";
@@ -404,12 +419,14 @@
 			files = (
 				FEE2342B19050CDC0046F525 /* TermsViewController.m in Sources */,
 				B9CB01E31900157F001D4100 /* ThingsTableViewController.m in Sources */,
+				FEC2BC411923758B00803C4D /* MBProgressHUD.m in Sources */,
 				B9CB01E619001639001D4100 /* ThingsCollectionViewController.m in Sources */,
 				B9B4DA05190FA34F0042CEDB /* AsyncUdpSocket.m in Sources */,
 				B958C79218FBB7140043A3AC /* MomentsViewController.m in Sources */,
 				B958C78C18F949F90043A3AC /* ThingsViewController.m in Sources */,
 				B958C78F18FBAF350043A3AC /* DataManager.m in Sources */,
 				FE5C23271920B35600DE8007 /* VerificationViewController.m in Sources */,
+				FEC2BC441923893400803C4D /* AddressBook.m in Sources */,
 				B9CB01E018FFC942001D4100 /* MomentsAddViewController.m in Sources */,
 				FEF4C94C1919192B004A28B0 /* SettingViewController.m in Sources */,
 				B9CB01E91900F7C6001D4100 /* ThingsPageViewController.m in Sources */,
@@ -417,6 +434,7 @@
 				FE5C231E191C9FAF00DE8007 /* SIAlertView.m in Sources */,
 				B95A6EA21906E42800954F9D /* ThingsFilterViewController.m in Sources */,
 				B958C75418F7D8320043A3AC /* main.m in Sources */,
+				FEC2BC471923A39A00803C4D /* IBActionSheet.m in Sources */,
 				FEE234281905064E0046F525 /* UnderLineLabel.m in Sources */,
 				FE5C23241920AD4F00DE8007 /* ProfileSettingViewController.m in Sources */,
 				FEE23425190503B60046F525 /* RegisterViewController.m in Sources */,

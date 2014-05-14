@@ -7,12 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataManager.h"
+#import "IBActionSheet.h"
 
-@interface LoginViewController : UIViewController <UIScrollViewDelegate, UITextFieldDelegate> {
+@interface LoginViewController : UIViewController <UIScrollViewDelegate, UITextFieldDelegate,IBActionSheetDelegate> {
     UIScrollView *scrollView;
     UITextField *textField;
     UIButton *switchAccount;
     UIButton *signUp;
+    NSString *loginData;
+    NSString *type;
+    AsyncSocket *socket;
+    IBActionSheet *actionSheet;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;

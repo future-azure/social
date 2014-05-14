@@ -41,6 +41,17 @@
     textField.delegate = self;
    [switchAccount setTitle:NSLocalizedString(@"switch_account", nil) forState:UIControlStateNormal];
     [signUp setTitle:NSLocalizedString(@"sign_up", nil) forState:UIControlStateNormal];
+    
+    loginData = @"";
+    socket =[[DataManager sharedDataManager]socket];
+    // [[DataManager sharedDataManager] loadCountry];
+    socket.delegate = self;
+   
+
+}
+
+-(void) login {
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,6 +70,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+- (IBAction)login:(id)sender {
+     
+     [self login];
+}
 
 - (void)textFieldDidBeginEditing:(UITextField *)sender
 {
@@ -69,5 +84,73 @@
 {
     [self.scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
 }
+- (IBAction)switchAccount:(id)sender {
+    actionSheet = [[IBActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"cancel" destructiveButtonTitle:nil otherButtonTitles:@"1", @"2", @"3", nil];
+    
+    actionSheet.buttonResponse = IBActionSheetButtonResponseFadesOnPress;
+    
+    [actionSheet setButtonTextColor:[UIColor whiteColor] forButtonAtIndex:0];
+    [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:253/255.0 green:108/255.0 blue:53/255.0 alpha:1] forButtonAtIndex:0];
+    [actionSheet setFont:[UIFont fontWithName:@"1" size:22] forButtonAtIndex:0];
+    
+    [actionSheet setButtonTextColor:[UIColor whiteColor] forButtonAtIndex:1];
+    [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:253/255.0 green:108/255.0 blue:53/255.0 alpha:1] forButtonAtIndex:1];
+    [actionSheet setFont:[UIFont fontWithName:@"2" size:22] forButtonAtIndex:1];
+    
+    [actionSheet setButtonTextColor:[UIColor whiteColor] forButtonAtIndex:2];
+    [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:253/255.0 green:108/255.0 blue:53/255.0 alpha:1] forButtonAtIndex:2];
+    [actionSheet setFont:[UIFont fontWithName:@"3" size:22] forButtonAtIndex:2];
+    
+    
+    [actionSheet setButtonTextColor:[UIColor whiteColor] forButtonAtIndex:3];
+    [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1] forButtonAtIndex:3];
+    [actionSheet setFont:[UIFont fontWithName:@"cancel" size:22] forButtonAtIndex:3];
+    
+    [actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 0) {
+        NSLog(@"confirm");
+    }else if (buttonIndex == 1) {
+        NSLog(@"confirm1");
+    }else if(buttonIndex == 2) {
+        NSLog(@"confirm2");
+    }else if(buttonIndex == 3) {
+        NSLog(@"cancel");
+
+    }
+    
+}
+- (void)actionSheetCancel:(UIActionSheet *)actionSheet{
+    
+}
+-(void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    
+}
+-(void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex{
+    
+}
+
+//- (void)willPresentActionSheet:(UIActionSheet *)actionSheet
+//{
+//   
+//        for(id aview in actionSheet.subviews)
+//        {
+//            if([aview isKindOfClass:[UIButton class]])
+//            {
+//                if(![((UIButton*)aview).titleLabel.text isEqualToString:@"cancel"])//判断找到 对应 button
+//                {
+//                    ((UIButton*)aview).backgroundColor = [UIColor colorWithRed:253/255.0 green:108/255.0 blue:53/255.0 alpha:1];
+//                    
+//                    
+//                } else {
+//                    ((UIButton*)aview).backgroundColor = [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1];
+//                }
+//            }
+//        }
+//    
+//}
 
 @end
