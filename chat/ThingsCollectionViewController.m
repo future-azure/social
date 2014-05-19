@@ -57,7 +57,7 @@
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:THINGS_CELL_WATERFALL
                                                                            forIndexPath:indexPath];
-    NSDictionary *thing = [[[DataManager sharedDataManager] loadThings] objectAtIndex:indexPath.row];
+    NSMutableDictionary *thing = [[[DataManager sharedDataManager] loadThings] objectAtIndex:indexPath.row];
 //    [(UILabel *) [cell viewWithTag:TAG_NAME] setText:[thing objectForKey:PRODUCT_NAME]];
     [(UILabel *) [cell viewWithTag:TAG_LIKE] setText:[[thing objectForKey:LIKE_NUM] stringValue]];
     [(UILabel *) [cell viewWithTag:TAG_TAG] setText:[[thing objectForKey:TAG_CNT] stringValue]];

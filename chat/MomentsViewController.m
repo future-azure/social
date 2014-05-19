@@ -63,7 +63,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MOMENTS_CELL forIndexPath:indexPath];
-    NSDictionary *moment = [[[DataManager sharedDataManager] loadMoments] objectAtIndex:indexPath.row];
+    NSMutableDictionary *moment = [[[DataManager sharedDataManager] loadMoments] objectAtIndex:indexPath.row];
     [(UILabel *) [cell viewWithTag:TAG_USER] setText:[[moment objectForKey:USER] objectForKey:NAME]];
     [(UILabel *) [cell viewWithTag:TAG_CONTEXT] setText:[moment objectForKey:CONTEXT]];
     [(UILabel *) [cell viewWithTag:TAG_DATE] setText:[moment objectForKey:CREATE_TIME]];

@@ -18,6 +18,8 @@
     
 }
 @property (nonatomic, strong) NSMutableDictionary *phoneList;
--(NSDictionary *)readAdressBook;
+
++ (AddressBook *)initAddressBook;
+-(NSMutableDictionary *)readAdressBook;
 
 @end

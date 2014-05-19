@@ -11,9 +11,27 @@
 @implementation AddressBook
 @synthesize phoneList;
 
--(NSDictionary *)readAdressBook {
-    phoneList = [NSMutableDictionary dictionaryWithCapacity:5];
-    ABAddressBookRef addressBook = ABAddressBookCreate();
++ (AddressBook *)initAddressBook
+{
+    static AddressBook *sharedDataManager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedDataManager = [[self alloc] init];
+    });
+    return sharedDataManager;
+}
+
+- (id)init
+{
+    if (self = [super init]) {
+        phoneList = [NSMutableDictionary dictionaryWithCapacity:5];
+
+    }
+    return self;
+}
+
+-(NSMutableDictionary *)readAdressBook {
+       ABAddressBookRef addressBook = ABAddressBookCreate();
     
     CFArrayRef results = ABAddressBookCopyArrayOfAllPeople(addressBook);
     
@@ -42,7 +60,7 @@
             NSString * personPhone = (NSString*)CFBridgingRelease(ABMultiValueCopyValueAtIndex(phone, k));
             NSArray  *keys = [NSArray arrayWithObjects:PHONENUM, PHONENAME, FRIENDTYPE, nil];
             NSArray *objects = [NSArray arrayWithObjects:personPhone, personName, -1, nil];
-            NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+            NSMutableDictionary *dictionary = [NSMutableDictionary dictionaryWithObjects:objects forKeys:keys];
             [phoneList setObject:dictionary forKey:personPhone];
             
         }

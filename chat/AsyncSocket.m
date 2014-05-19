@@ -644,14 +644,14 @@ static void MyCFWriteStreamCallback(CFWriteStreamRef stream, CFStreamEventType t
 @interface AsyncSpecialPacket : NSObject
 {
   @public
-	NSDictionary *tlsSettings;
+	NSMutableDictionary *tlsSettings;
 }
-- (id)initWithTLSSettings:(NSDictionary *)settings;
+- (id)initWithTLSSettings:(NSMutableDictionary *)settings;
 @end
 
 @implementation AsyncSpecialPacket
 
-- (id)initWithTLSSettings:(NSDictionary *)settings
+- (id)initWithTLSSettings:(NSMutableDictionary *)settings
 {
 	if((self = [super init]))
 	{
@@ -1306,7 +1306,7 @@ static void MyCFWriteStreamCallback(CFWriteStreamRef stream, CFStreamEventType t
 			if (errPtr)
 			{
 				NSString *errMsg = [NSString stringWithCString:gai_strerror(error) encoding:NSASCIIStringEncoding];
-				NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+				NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 				
 				*errPtr = [NSError errorWithDomain:@"kCFStreamErrorDomainNetDB" code:error userInfo:info];
 			}
@@ -1629,7 +1629,7 @@ Failed:
 		if (errPtr)
 		{
 			NSString *errMsg = @"Remote address is not IPv4 or IPv6";
-			NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+			NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 			
 			*errPtr = [NSError errorWithDomain:AsyncSocketErrorDomain code:AsyncSocketCFSocketError userInfo:info];
 		}
@@ -1664,7 +1664,7 @@ Failed:
 		if (errPtr)
 		{
 			NSString *errMsg = @"Interface address is not IPv4 or IPv6";
-			NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+			NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 			
 			*errPtr = [NSError errorWithDomain:AsyncSocketErrorDomain code:AsyncSocketCFSocketError userInfo:info];
 		}
@@ -2412,7 +2412,7 @@ Failed:
 - (NSError *)getErrnoError
 {
 	NSString *errorMsg = [NSString stringWithUTF8String:strerror(errno)];
-	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errorMsg forKey:NSLocalizedDescriptionKey];
+	NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithObject:errorMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:NSPOSIXErrorDomain code:errno userInfo:userInfo];
 }
@@ -2427,7 +2427,7 @@ Failed:
 														 @"AsyncSocket", [NSBundle mainBundle],
 														 @"General CFSocket error", nil);
 	
-	NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+	NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:AsyncSocketErrorDomain code:AsyncSocketCFSocketError userInfo:info];
 }
@@ -2459,7 +2459,7 @@ Failed:
 														 @"AsyncSocket", [NSBundle mainBundle],
 														 @"Connection canceled", nil);
 	
-	NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+	NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:AsyncSocketErrorDomain code:AsyncSocketCanceledError userInfo:info];
 }
@@ -2473,7 +2473,7 @@ Failed:
 														 @"AsyncSocket", [NSBundle mainBundle],
 														 @"Attempt to connect to host timed out", nil);
 	
-	NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+	NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:AsyncSocketErrorDomain code:AsyncSocketConnectTimeoutError userInfo:info];
 }
@@ -2487,7 +2487,7 @@ Failed:
 														 @"AsyncSocket", [NSBundle mainBundle],
 														 @"Read operation reached set maximum length", nil);
 	
-	NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+	NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:AsyncSocketErrorDomain code:AsyncSocketReadMaxedOutError userInfo:info];
 }
@@ -2501,7 +2501,7 @@ Failed:
 														 @"AsyncSocket", [NSBundle mainBundle],
 														 @"Read operation timed out", nil);
 	
-	NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+	NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:AsyncSocketErrorDomain code:AsyncSocketReadTimeoutError userInfo:info];
 }
@@ -2515,7 +2515,7 @@ Failed:
 														 @"AsyncSocket", [NSBundle mainBundle],
 														 @"Write operation timed out", nil);
 	
-	NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+	NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:AsyncSocketErrorDomain code:AsyncSocketWriteTimeoutError userInfo:info];
 }
@@ -2555,10 +2555,10 @@ Failed:
 		domain = @"kCFStreamErrorDomainSSL";
 	}
 	
-	NSDictionary *info = nil;
+	NSMutableDictionary *info = nil;
 	if(message != nil)
 	{
-		info = [NSDictionary dictionaryWithObject:message forKey:NSLocalizedDescriptionKey];
+		info = [NSMutableDictionary dictionaryWithObject:message forKey:NSLocalizedDescriptionKey];
 	}
 	return [NSError errorWithDomain:domain code:err.error userInfo:info];
 }
@@ -4072,7 +4072,7 @@ Failed:
 #pragma mark Security
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-- (void)startTLS:(NSDictionary *)tlsSettings
+- (void)startTLS:(NSMutableDictionary *)tlsSettings
 {
 #if DEBUG_THREAD_SAFETY
 	[self checkForThreadSafety];
@@ -4088,7 +4088,7 @@ Failed:
         // 
         // So we use an empty dictionary instead, which works perfectly.
         
-        tlsSettings = [NSDictionary dictionary];
+        tlsSettings = [NSMutableDictionary dictionary];
     }
 	
 	AsyncSpecialPacket *packet = [[AsyncSpecialPacket alloc] initWithTLSSettings:tlsSettings];

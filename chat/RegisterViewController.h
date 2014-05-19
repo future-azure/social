@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DataManager.h"
+#import "AppDelegate.h"
 
 @interface RegisterViewController : UIViewController<UIPickerViewDelegate, UITextFieldDelegate,UIPickerViewDataSource> {
     NSMutableArray *pickerArray;
@@ -17,6 +18,8 @@
     NSString *type;
     AsyncSocket *socket;
     NSString *veriCode;
+    DataManager *dataManager;
+
     
     
 }

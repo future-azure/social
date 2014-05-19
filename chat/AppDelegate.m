@@ -10,12 +10,60 @@
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+@synthesize newMomentFlag;
+@synthesize newThingFlag;
+@synthesize newChatFlag;
+
+@synthesize newFriendCount;
+@synthesize recommendFriendCount;
+
+@synthesize user;
+@synthesize friendMap;
+@synthesize anewFriendMap;
+@synthesize recommendFriendMap;
+
+@synthesize languageType;
+
+//TODO：最近聊天
+@synthesize momentUpdateTime;
+@synthesize thingUpdateTime;
+@synthesize setting;
+@synthesize userDB;
+@synthesize loginUserDB;
+@synthesize settingDB;
+@synthesize imageDB;
+@synthesize messageDB;
+@synthesize recentMessageDB;
+@synthesize anewFriendDB;
+@synthesize recommendFriendDB;
+@synthesize userImage;
+
+@synthesize dataManager;
+
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSMutableDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    dataManager = [DataManager sharedDataManager];
+    userDB = [UserDB initUserDB];
+    loginUserDB = [LoginUserDB initUserDB];
+    settingDB = [SettingDB initUserDB];
+    imageDB = [ImageDB initDB];
+    messageDB = [MessageDB initUserDB];
+    recentMessageDB = [RecentMessageDB initUserDB];
+    anewFriendDB = [NewFriendDB initUserDB];
+    recommendFriendDB = [RecommendFriendDB initUserDB];
+    
+    user = [[NSMutableDictionary alloc]initWithCapacity:5];
+    friendMap = [[NSMutableDictionary alloc]initWithCapacity:5];
+    anewFriendMap = [[NSMutableDictionary alloc]initWithCapacity:5];
+    recommendFriendMap = [[NSMutableDictionary alloc]initWithCapacity:5];
+    setting = [[NSMutableDictionary alloc]initWithCapacity:5];
+
+    
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -42,5 +90,7 @@
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
+
+
 
 @end

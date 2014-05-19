@@ -589,7 +589,7 @@ typedef enum AsyncSocketError AsyncSocketError;
  * certificate, and then use the X509Certificate class to verify the issuer after the socket has been secured.
  * The X509Certificate class is part of the CocoaAsyncSocket open source project.
 **/
-- (void)startTLS:(NSDictionary *)tlsSettings;
+- (void)startTLS:(NSMutableDictionary *)tlsSettings;
 
 /**
  * For handling readDataToData requests, data is necessarily read from the socket in small increments.

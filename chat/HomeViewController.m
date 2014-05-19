@@ -48,11 +48,11 @@
                                rect:CGRectMake(0, 0, tabBarItemSize.width * 0.5, tabBarItemSize.height * 0.7)];
         [item setSelectedImage:[image imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
 
-        [item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+        [item setTitleTextAttributes:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                                       [UIColor whiteColor], NSForegroundColorAttributeName,
                                       [UIFont fontWithName:@"ArialHebrew" size:12], NSFontAttributeName,
                                       nil] forState:UIControlStateNormal];
-        [item setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:
+        [item setTitleTextAttributes:[NSMutableDictionary dictionaryWithObjectsAndKeys:
                                       [UIColor darkGrayColor], NSForegroundColorAttributeName,
                                       [UIFont fontWithName:@"ArialHebrew" size:12], NSFontAttributeName,
                                       nil] forState:UIControlStateSelected];

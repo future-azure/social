@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "DataManager.h"
 #import "IBActionSheet.h"
+#import "AppDelegate.h"
+#import "AddressBook.h"
 
-@interface LoginViewController : UIViewController <UIScrollViewDelegate, UITextFieldDelegate,IBActionSheetDelegate> {
+
+@interface LoginViewController : UIViewController <UIScrollViewDelegate, UITextFieldDelegate,IBActionSheetDelegate, MBProgressHUDDelegate> {
+    MBProgressHUD *HUD;
     UIScrollView *scrollView;
     UITextField *textField;
     UIButton *switchAccount;
@@ -19,6 +23,16 @@
     NSString *type;
     AsyncSocket *socket;
     IBActionSheet *actionSheet;
+    NSNumber *accountType;
+ //   NSMutableDictionary *user;
+    DataManager *dataManager;
+    AddressBook *addressBook;
+    AppDelegate *myDelegate;
+    ImageDB *imgdb;
+    MessageDB *msgdb;
+    RecentMessageDB *recentMsgDb;
+    NSMutableData *imageData;
+    
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;

@@ -9,10 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <CFNetwork/CFNetwork.h>
 #import "AsyncSocket.h"
-#import <sqlite3.h>
+
 #import "SIAlertView.h"
 #import <CommonCrypto/CommonDigest.h>
 #import "MBProgressHUD.h"
+//#import "AppDelegate.h"
 
 #define USER @"user"
 #define NAME @"name"
@@ -43,7 +44,7 @@
     AsyncSocket *socket;
     NSMutableArray *country;
     NSString *type;
-    sqlite3 *db;  
+    NSUserDefaults *defaults;
 }
 
 
@@ -52,6 +53,7 @@
 @property (nonatomic, strong) NSMutableArray *country;
 @property (nonatomic, strong)  NSString *type;
 @property (nonatomic, strong)  AsyncSocket *socket;
+@property (nonatomic, strong)  NSUserDefaults *defaults;
 
 + (DataManager *)sharedDataManager;
 + (UIImage *) imageWithColor:(UIColor*)color size:(CGSize)size;
@@ -62,6 +64,10 @@
 - (void)loadCountry;
 - (void) showDialog:(NSString *)dialogType content:(NSString*)content;
 - (NSString *)md5:(NSString *)str;
+- (NSArray *)getLoggedUser;
+- (NSUserDefaults *)getDefaults;
+- (NSString *)toJSONData:(id)theData;
+
 
 
 @end

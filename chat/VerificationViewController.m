@@ -35,7 +35,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    socket =[[DataManager sharedDataManager]socket];
+    AppDelegate *myDelegate = [[UIApplication sharedApplication] delegate];
+    if (myDelegate.dataManager == nil) {
+        myDelegate.dataManager = [DataManager sharedDataManager];
+    }
+    dataManager = myDelegate.dataManager;
+    socket =[dataManager socket];
     socket.delegate = self;
     registerUser = @"";
     
@@ -66,7 +71,7 @@
     NSString *temp1 = @"\\\",\\\"phoneNum\\\":\\\"";
     NSString *temp2 = @"\\\",\\\"password\\\":\\\"";
     NSString *temp3 = @"\\\"}\",\"toUser\":0,\"fromUser\":0}\r\n";
-    NSString *password =[[DataManager sharedDataManager]md5:verifiCode];
+    NSString *password =[dataManager md5:verifiCode];
 
     json = [temp stringByAppendingFormat:@"%@%@%@%@%@%@",country_code, temp1, phone_number, temp2,password, temp3];
     NSLog(@"%@", json);
@@ -87,7 +92,7 @@
     NSString *code = self.codeInput.text;
     
     if( nil == code || 0 == code.length ||![verifiCode isEqualToString:code] ) {
-        [[DataManager sharedDataManager] showDialog:@"error" content:@"verifycode_error"];
+        [dataManager showDialog:@"error" content:@"verifycode_error"];
         return;
     }
     [self register];
@@ -105,12 +110,12 @@
         NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
         registerUser =[registerUser stringByAppendingString:str];
-        BOOL isSuffix = [str hasSuffix:@"\"}\r\n"];
+        BOOL isSuffix = [str hasSuffix:@"}\r\n"];
       //  NSLog(@"%hhd", isSuffix);
         if (isSuffix) {
             
             NSData *data1 = [registerUser dataUsingEncoding:NSUTF8StringEncoding];
-            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data1
+            NSMutableDictionary *dic = [NSJSONSerialization JSONObjectWithData:data1
                                                                 options:NSJSONReadingAllowFragments
                                                                   error:&error];
          //   NSLog(@"%ld %@ %@", tag, dic, error);
@@ -119,7 +124,7 @@
           //  NSLog(@"%@", str);
             NSData *data2 = [str dataUsingEncoding:NSUTF8StringEncoding];
             //NSLog(@"%@", str);
-            NSDictionary *user = [NSJSONSerialization JSONObjectWithData:data2
+            NSMutableDictionary *user = [NSJSONSerialization JSONObjectWithData:data2
                                                                 options:NSJSONReadingAllowFragments
                                                                   error:&error];
 
@@ -128,7 +133,7 @@
             if (userId > -1) {
                 //login
             } else {
-                [[DataManager sharedDataManager] showDialog:@"error" content:@"register_error"];
+                [dataManager showDialog:@"error" content:@"register_error"];
                 return;
 
             }

@@ -768,7 +768,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 		if(errPtr)
 		{
 			NSString *errMsg = [NSString stringWithCString:gai_strerror(gai_error) encoding:NSASCIIStringEncoding];
-			NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+			NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 			
 			*errPtr = [NSError errorWithDomain:@"kCFStreamErrorDomainNetDB" code:gai_error userInfo:info];
 		}
@@ -869,7 +869,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 		if(errPtr)
 		{
 			NSString *errMsg = [NSString stringWithCString:gai_strerror(error) encoding:NSASCIIStringEncoding];
-			NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+			NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 			
 			*errPtr = [NSError errorWithDomain:@"kCFStreamErrorDomainNetDB" code:error userInfo:info];
 		}
@@ -1018,7 +1018,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 	if(errPtr)
 	{
 		NSString *errMsg = @"remoteAddr parameter is not a valid address";
-		NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+		NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 		
 		*errPtr = [NSError errorWithDomain:AsyncUdpSocketErrorDomain
 									  code:AsyncUdpSocketBadParameter
@@ -1067,7 +1067,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 		{
 			NSString *errMsg = [NSString stringWithCString:gai_strerror(error) encoding:NSASCIIStringEncoding];
 			NSString *errDsc = [NSString stringWithFormat:@"Invalid parameter 'address': %@", errMsg];
-			NSDictionary *info = [NSDictionary dictionaryWithObject:errDsc forKey:NSLocalizedDescriptionKey];
+			NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errDsc forKey:NSLocalizedDescriptionKey];
 			
 			*errPtr = [NSError errorWithDomain:@"kCFStreamErrorDomainNetDB" code:error userInfo:info];
 		}
@@ -1086,7 +1086,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 		{
 			NSString *errMsg = [NSString stringWithCString:gai_strerror(error) encoding:NSASCIIStringEncoding];
 			NSString *errDsc = [NSString stringWithFormat:@"Invalid parameter 'group': %@", errMsg];
-			NSDictionary *info = [NSDictionary dictionaryWithObject:errDsc forKey:NSLocalizedDescriptionKey];
+			NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errDsc forKey:NSLocalizedDescriptionKey];
 			
 			*errPtr = [NSError errorWithDomain:@"kCFStreamErrorDomainNetDB" code:error userInfo:info];
 		}
@@ -1112,7 +1112,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 			if(errPtr)
 			{
 				NSString *errMsg = @"Unable to join IPv4 multicast group";
-				NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+				NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 				
 				*errPtr = [NSError errorWithDomain:@"kCFStreamErrorDomainPOSIX" code:error userInfo:info];
 			}
@@ -1141,7 +1141,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 			if(errPtr)
 			{
 				NSString *errMsg = @"Unable to join IPv6 multicast group";
-				NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+				NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 				
 				*errPtr = [NSError errorWithDomain:@"kCFStreamErrorDomainPOSIX" code:error userInfo:info];
 			}
@@ -1159,7 +1159,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 	if(errPtr)
 	{
 		NSString *errMsg = @"Invalid group and/or address, not matching existing socket(s)";
-		NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+		NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 		
 		*errPtr = [NSError errorWithDomain:AsyncUdpSocketErrorDomain
 		                              code:AsyncUdpSocketBadParameter
@@ -1189,7 +1189,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 			if(errPtr)
 			{
 				NSString *errMsg = @"Unable to enable broadcast message sending";
-				NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+				NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 				
 				*errPtr = [NSError errorWithDomain:@"kCFStreamErrorDomainPOSIX" code:error userInfo:info];
 			}
@@ -1344,7 +1344,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 - (NSError *)getErrnoError
 {
 	NSString *errorMsg = [NSString stringWithUTF8String:strerror(errno)];
-	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:errorMsg forKey:NSLocalizedDescriptionKey];
+	NSMutableDictionary *userInfo = [NSMutableDictionary dictionaryWithObject:errorMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:NSPOSIXErrorDomain code:errno userInfo:userInfo];
 }
@@ -1356,7 +1356,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 - (NSError *)getSocketError
 {
 	NSString *errMsg = @"General CFSocket error";
-	NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+	NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:AsyncUdpSocketErrorDomain code:AsyncUdpSocketCFSocketError userInfo:info];
 }
@@ -1364,7 +1364,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 - (NSError *)getIPv4UnavailableError
 {
 	NSString *errMsg = @"IPv4 is unavailable due to binding/connecting using IPv6 only";
-	NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+	NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:AsyncUdpSocketErrorDomain code:AsyncUdpSocketIPv4Unavailable userInfo:info];
 }
@@ -1372,7 +1372,7 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 - (NSError *)getIPv6UnavailableError
 {
 	NSString *errMsg = @"IPv6 is unavailable due to binding/connecting using IPv4 only or is not supported on this platform";
-	NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+	NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:AsyncUdpSocketErrorDomain code:AsyncUdpSocketIPv6Unavailable userInfo:info];
 }
@@ -1380,14 +1380,14 @@ static void MyCFSocketCallback(CFSocketRef, CFSocketCallBackType, CFDataRef, con
 - (NSError *)getSendTimeoutError
 {
 	NSString *errMsg = @"Send operation timed out";
-	NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+	NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:AsyncUdpSocketErrorDomain code:AsyncUdpSocketSendTimeoutError userInfo:info];
 }
 - (NSError *)getReceiveTimeoutError
 {
 	NSString *errMsg = @"Receive operation timed out";
-	NSDictionary *info = [NSDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
+	NSMutableDictionary *info = [NSMutableDictionary dictionaryWithObject:errMsg forKey:NSLocalizedDescriptionKey];
 	
 	return [NSError errorWithDomain:AsyncUdpSocketErrorDomain code:AsyncUdpSocketReceiveTimeoutError userInfo:info];
 }

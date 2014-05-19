@@ -64,8 +64,13 @@
     NSLog(@"Country Code is %@", [currentLocale objectForKey:NSLocaleCountryCode]);
     // 获取手机语言
     NSString* strLanguage = [[[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"] objectAtIndex:0];
-    socket =[[DataManager sharedDataManager]socket];
-    // [[DataManager sharedDataManager] loadCountry];
+    AppDelegate *myDelegate = [[UIApplication sharedApplication] delegate];
+    if (myDelegate.dataManager == nil) {
+        myDelegate.dataManager = [DataManager sharedDataManager];
+    }
+    dataManager = myDelegate.dataManager;
+    socket =[dataManager socket];
+    // [dataManager loadCountry];
     socket.delegate = self;
     [self loadCountry];
     
@@ -132,12 +137,12 @@
         NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
         countryData =[countryData stringByAppendingString:str];
-        BOOL isSuffix = [str hasSuffix:@"\"}\r\n"];
+        BOOL isSuffix = [str hasSuffix:@"}\r\n"];
       //  NSLog(@"%hhd", isSuffix);
         if (isSuffix) {
             
             NSData *data1 = [countryData dataUsingEncoding:NSUTF8StringEncoding];
-            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data1
+            NSMutableDictionary *dic = [NSJSONSerialization JSONObjectWithData:data1
                                                                 options:NSJSONReadingAllowFragments
                                                                   error:&error];
         //    NSLog(@"%ld %@ %@", tag, dic, error);
@@ -151,11 +156,11 @@
                                                                         error:nil];
         //    NSLog(@"%@", country);
             
-            //NSMutableArray *countryArray = [[DataManager sharedDataManager] country];
+            //NSMutableArray *countryArray = [dataManager country];
             
             for(id obj in country)
             {
-                NSDictionary *cDic = obj;
+                NSMutableDictionary *cDic = obj;
             //    NSLog(@"%@", [cDic objectForKey:COUNTRYNAME]);
              //   NSLog(@"%@", [cDic objectForKey:COUNTRYCODE]);
                 [pickerArray addObject: [cDic objectForKey:COUNTRYNAME]];
@@ -215,7 +220,7 @@
         
     }
     if([@"HASREG" isEqualToString:type]) {
-            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+            NSMutableDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
                                                                 options:NSJSONReadingAllowFragments
                                                                   error:&error];
           //  NSLog(@"%ld %@ %@", tag, dic, error);
@@ -223,7 +228,7 @@
             NSString *str = [dic objectForKey:@"object"];
         //    NSLog(@"%@", str);
         if([@"true" isEqualToString:str]) {
-            [[DataManager sharedDataManager] showDialog:@"error" content:@"register_already"];
+            [dataManager showDialog:@"error" content:@"register_already"];
             return;
         } else {
             NSString *register_confirm =NSLocalizedString(@"register_confirm", nil);
@@ -266,7 +271,7 @@
         
     }
     if([@"SMSREQUEST" isEqualToString:type]) {
-        NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+        NSMutableDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
                                                             options:NSJSONReadingAllowFragments
                                                               error:&error];
    //     NSLog(@"%ld %@ %@", tag, dic, error);
@@ -276,21 +281,21 @@
         NSRange range = [str rangeOfString:@"fails"];//判断字符串是否包含
         if (range.length >0)//包含
         {
-            [[DataManager sharedDataManager] showDialog:@"error" content:@"send_error"];
+            [dataManager showDialog:@"error" content:@"send_error"];
             return;
             
         }
         range = [str rangeOfString:@"FAILS"];//判断字符串是否包含
         if (range.length >0)//包含
         {
-            [[DataManager sharedDataManager] showDialog:@"error" content:@"send_error"];
+            [dataManager showDialog:@"error" content:@"send_error"];
             return;
             
         }
        //TODO: 需要恢复
 //        if ([@"" isEqualToString:str])//包含
 //        {
-//            [[DataManager sharedDataManager] showDialog:@"error" content:@"send_error"];
+//            [dataManager showDialog:@"error" content:@"send_error"];
 //            return;
 //            
 //        }
@@ -378,16 +383,16 @@
     NSString *phone = self.phone_number.text;
     
     if( nil == code || 0 == code.length) {
-        [[DataManager sharedDataManager] showDialog:@"error" content:@"select_country"];
+        [dataManager showDialog:@"error" content:@"select_country"];
         return;
     }
     if( nil == phone || 0 == phone.length) {
-        [[DataManager sharedDataManager] showDialog:@"error" content:@"enter_phone"];
+        [dataManager showDialog:@"error" content:@"enter_phone"];
         return;
     }
     NSLog(@"%hhd", termsCheckBox.selected);
     if(termsCheckBox.selected == 0) {
-        [[DataManager sharedDataManager] showDialog:@"error" content:@"agree_to_register"];
+        [dataManager showDialog:@"error" content:@"agree_to_register"];
         return;
     }
     [self checkHasReg];
