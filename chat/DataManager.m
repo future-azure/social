@@ -70,13 +70,13 @@
 
 - (NSArray *)loadMoments
 {
-    type = @"FINDALLMOMENT";
-    NSString *json;
+   // type = @"FINDALLMOMENT";
+   // NSString *json;
     
-    json = @"{\"type\":\"FINDALLMOMENT\",\"object\":\"9\",\"toUser\":0,\"fromUser\":0}\r\n";
+  //  json = @"{\"type\":\"FINDALLMOMENT\",\"object\":\"9\",\"toUser\":0,\"fromUser\":0}\r\n";
     
-    NSLog(@"%@", json);
-    [socket writeData:[json dataUsingEncoding:NSUTF8StringEncoding] withTimeout:10 tag:1];
+ //   NSLog(@"%@", json);
+   // [socket writeData:[json dataUsingEncoding:NSUTF8StringEncoding] withTimeout:10 tag:1];
     
     if (moments.count == 0) {
         NSString *path = [[NSBundle mainBundle] pathForResource:@"FINDALLMOMENT_result" ofType:@"txt"];
