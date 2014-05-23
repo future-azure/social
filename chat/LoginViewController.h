@@ -11,9 +11,13 @@
 #import "IBActionSheet.h"
 #import "AppDelegate.h"
 #import "AddressBook.h"
+#import "UIViewPassValueDelegate.h"
+#import "PhoneLoginViewController.h"
+#import "AccountSelectingViewController.h"
 
 
-@interface LoginViewController : UIViewController <UIScrollViewDelegate, UITextFieldDelegate,IBActionSheetDelegate, MBProgressHUDDelegate> {
+@interface LoginViewController : UIViewController <UIScrollViewDelegate, UITextFieldDelegate,IBActionSheetDelegate, MBProgressHUDDelegate,
+UIViewPassValueDelegate> {
     MBProgressHUD *HUD;
     UIScrollView *scrollView;
     UITextField *textField;

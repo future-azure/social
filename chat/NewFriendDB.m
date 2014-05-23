@@ -30,12 +30,12 @@
 }
 - (NSMutableDictionary *) selectInfo:(int)id1 userId:(int)userId{
     NSString *sql = @"CREATE table IF NOT EXISTS new_friend_";
-    NSString *sql1 = @" (id INTEGER PRIMARY KEY AUTOINCREMENT, friend_id INTEGER PRIMARY KEY, friend_request_delete INTEGER, friend_type INTEGER, request_view INTEGER);";
+    NSString *sql1 = @" (id INTEGER, friend_id INTEGER, friend_request_delete INTEGER, friend_type INTEGER, request_view INTEGER, PRIMARY KEY(id, friend_id));";
     sql = [sql stringByAppendingFormat:@"%d%@",userId, sql1];
     [database execSql:sql];
     
     
-    NSString *sqlQuery = [NSString stringWithFormat:@"SELECT * FROM new_friend_'%d' WHERE id= '%d'", userId, id1];
+    NSString *sqlQuery = [NSString stringWithFormat:@"SELECT * FROM new_friend_%d WHERE id= '%d'", userId, id1];
     sqlite3_stmt * statement;
     if (sqlite3_prepare_v2(db, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
         if (sqlite3_step(statement) == SQLITE_ROW) {
@@ -60,14 +60,14 @@
 }
 - (void) addUserList:(NSArray *)userList user:(NSDictionary*)user userId:(int)userId{
     NSString *sql = @"CREATE table IF NOT EXISTS new_friend_";
-    NSString *sql1 = @" (id INTEGER PRIMARY KEY AUTOINCREMENT, friend_id INTEGER PRIMARY KEY, friend_request_delete INTEGER, friend_type INTEGER, request_view INTEGER);";
+    NSString *sql1 = @" (id INTEGER, friend_id INTEGER, friend_request_delete INTEGER, friend_type INTEGER, request_view INTEGER, PRIMARY KEY(id, friend_id));";
     sql = [sql stringByAppendingFormat:@"%d%@",userId, sql1];
     [database execSql:sql];
     
     for(id obj in userList)
     {
         NSMutableDictionary *cDic = obj;
-        sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO new_friend_'%d' VALUES ('%@','%@','%@','%@','%@');", userId, [user objectForKey:@"id"],[cDic objectForKey:@"id"],[cDic objectForKey:@"friendType"],[cDic objectForKey:@"friendRequest"],[cDic objectForKey:@"requestView"]];
+        sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO new_friend_%d VALUES ('%@','%@','%@','%@','%@');", userId, [user objectForKey:@"id"],[cDic objectForKey:@"id"],[cDic objectForKey:@"friendType"],[cDic objectForKey:@"friendRequest"],[cDic objectForKey:@"requestView"]];
         [database execSql:sql];
     }
     
@@ -75,13 +75,13 @@
 - (void) addUser: (NSMutableDictionary *)u  user:(NSDictionary*)user  userId:(int)userId{
     
     NSString *sql = @"CREATE table IF NOT EXISTS new_friend_";
-    NSString *sql1 = @" (id INTEGER PRIMARY KEY AUTOINCREMENT, friend_id INTEGER PRIMARY KEY, friend_request_delete INTEGER, friend_type INTEGER, request_view INTEGER);";
+    NSString *sql1 = @" (id INTEGER, friend_id INTEGER, friend_request_delete INTEGER, friend_type INTEGER, request_view INTEGER, PRIMARY KEY(id, friend_id));";
     sql = [sql stringByAppendingFormat:@"%d%@",userId, sql1];
     [database execSql:sql];
 
     
     
-   sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO new_friend_'%d' VALUES ('%@','%@','%@','%@','%@');", userId, [user objectForKey:@"id"],[u objectForKey:@"id"],[u objectForKey:@"friendType"],[u objectForKey:@"friendRequest"],[u objectForKey:@"requestView"]];
+   sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO new_friend_%d VALUES ('%@','%@','%@','%@','%@');", userId, [user objectForKey:@"id"],[u objectForKey:@"id"],[u objectForKey:@"friendType"],[u objectForKey:@"friendRequest"],[u objectForKey:@"requestView"]];
     [database execSql:sql];
     
     
@@ -96,21 +96,21 @@
 }
 - (void) updateUser:(NSDictionary *)user userId:(int)userId {
     NSString *sql = @"CREATE table IF NOT EXISTS new_friend_";
-    NSString *sql1 = @" (id INTEGER PRIMARY KEY AUTOINCREMENT, friend_id INTEGER PRIMARY KEY, friend_request_delete INTEGER, friend_type INTEGER, request_view INTEGER);";
+    NSString *sql1 = @" (id INTEGER, friend_id INTEGER, friend_request_delete INTEGER, friend_type INTEGER, request_view INTEGER, PRIMARY KEY(id, friend_id));";
     sql = [sql stringByAppendingFormat:@"%d%@",userId, sql1];
     [database execSql:sql];
     
-    sql = [NSString stringWithFormat:@"update new_friend_'%d' set friend_request_delete = 1 where id = '%@'", userId, [user objectForKey:@"id"]];
+    sql = [NSString stringWithFormat:@"update new_friend_%d set friend_request_delete = 1 where id = '%@'", userId, [user objectForKey:@"id"]];
     [database execSql:sql];
 }
 
 - (void) updateUserView:(NSDictionary *)user userId:(int)userId  {
     NSString *sql = @"CREATE table IF NOT EXISTS new_friend_";
-    NSString *sql1 = @" (id INTEGER PRIMARY KEY AUTOINCREMENT, friend_id INTEGER PRIMARY KEY, friend_request_delete INTEGER, friend_type INTEGER, request_view INTEGER);";
+    NSString *sql1 = @" (id INTEGER, friend_id INTEGER, friend_request_delete INTEGER, friend_type INTEGER, request_view INTEGER, PRIMARY KEY(id, friend_id));";
     sql = [sql stringByAppendingFormat:@"%d%@",userId, sql1];
     [database execSql:sql];
     
-    sql = [NSString stringWithFormat:@"update new_friend_'%d' set request_view = 1 where id = '%@'", userId, [user objectForKey:@"id"]];
+    sql = [NSString stringWithFormat:@"update new_friend_%d set request_view = 1 where id = '%@'", userId, [user objectForKey:@"id"]];
     [database execSql:sql];
 }
 
@@ -124,14 +124,14 @@
 
 - (NSMutableDictionary *) getUser:(NSDictionary *)user userId:(int)userId{
     NSString *sql = @"CREATE table IF NOT EXISTS new_friend_";
-    NSString *sql1 = @" (id INTEGER PRIMARY KEY AUTOINCREMENT, friend_id INTEGER PRIMARY KEY, friend_request_delete INTEGER, friend_type INTEGER, request_view INTEGER);";
+    NSString *sql1 = @" (id INTEGER, friend_id INTEGER, friend_request_delete INTEGER, friend_type INTEGER, request_view INTEGER, PRIMARY KEY(id, friend_id));";
     sql = [sql stringByAppendingFormat:@"%d%@",userId, sql1];
     [database execSql:sql];
     
     
     NSMutableDictionary *userList = [NSMutableDictionary dictionaryWithCapacity:5];
     
-    NSString *sqlQuery = [NSString stringWithFormat:@"select * from new_friend_'%d' where id='%@'",userId, [user objectForKey:@"id"]];
+    NSString *sqlQuery = [NSString stringWithFormat:@"select * from new_friend_%d where id='%@'",userId, [user objectForKey:@"id"]];
     
     sqlite3_stmt * statement;
     if (sqlite3_prepare_v2(db, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
@@ -152,21 +152,21 @@
 }
 - (void) deleteAll:(NSDictionary *)user userId:(int)userId {
     NSString *sql = @"CREATE table IF NOT EXISTS new_friend_";
-    NSString *sql1 = @" (id INTEGER PRIMARY KEY AUTOINCREMENT, friend_id INTEGER PRIMARY KEY, friend_request_delete INTEGER, friend_type INTEGER, request_view INTEGER);";
+    NSString *sql1 = @" (id INTEGER, friend_id INTEGER, friend_request_delete INTEGER, friend_type INTEGER, request_view INTEGER, PRIMARY KEY(id, friend_id));";
     sql = [sql stringByAppendingFormat:@"%d%@",userId, sql1];
     [database execSql:sql];
     
-    NSString *sqlQuery = [NSString stringWithFormat:@"delete from new_friend_'%d' where id = '%@'", userId, [user objectForKey:@"id"]];
+    NSString *sqlQuery = [NSString stringWithFormat:@"delete from new_friend_%d where id = '%@'", userId, [user objectForKey:@"id"]];
     [database execSql:sqlQuery];
     
 }
 - (void) delete:(int)fId id1:(int)id1 userId:(int)userId {
     NSString *sql = @"CREATE table IF NOT EXISTS new_friend_";
-    NSString *sql1 = @" (id INTEGER PRIMARY KEY AUTOINCREMENT, friend_id INTEGER PRIMARY KEY, friend_request_delete INTEGER, friend_type INTEGER, request_view INTEGER);";
+    NSString *sql1 = @" (id INTEGER, friend_id INTEGER, friend_request_delete INTEGER, friend_type INTEGER, request_view INTEGER, PRIMARY KEY(id, friend_id));";
     sql = [sql stringByAppendingFormat:@"%d%@",userId, sql1];
     [database execSql:sql];
 
-    NSString *sqlQuery = [NSString stringWithFormat:@"delete from new_friend_'%d' where id = '%d' and friend_id = '%d'", userId, id1, fId];
+    NSString *sqlQuery = [NSString stringWithFormat:@"delete from new_friend_%d where id = '%d' and friend_id = '%d'", userId, id1, fId];
     [database execSql:sqlQuery];
     
 }

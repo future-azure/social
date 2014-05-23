@@ -45,7 +45,9 @@
 {
     char *err;
     if (sqlite3_exec(db, [sql UTF8String], NULL, NULL, &err) != SQLITE_OK) {
+        NSLog(@"sql: %@", sql);
         sqlite3_close(db);
+        NSLog(@"error: %s", err);
         NSLog(@"数据库操作数据失败!");
     }
 }

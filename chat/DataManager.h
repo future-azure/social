@@ -67,6 +67,7 @@
 - (NSArray *)getLoggedUser;
 - (NSUserDefaults *)getDefaults;
 - (NSString *)toJSONData:(id)theData;
+- (void)connect;
 
 
 

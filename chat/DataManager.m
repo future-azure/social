@@ -59,13 +59,20 @@
         moments = [[NSMutableArray alloc] initWithCapacity:10];
         things = [[NSMutableArray alloc] initWithCapacity:10];
         socket = [[AsyncSocket alloc] initWithDelegate:self];
-        NSError *error = nil;
-        
-         [socket connectToHost:@"116.228.54.226" onPort:8085 withTimeout:10 error:&error];
-        //[socket connectToHost:@"192.168.1.118" onPort:8080 withTimeout:10 error:&error];
+//        NSError *error = nil;
+//        
+//       //  [socket connectToHost:@"116.228.54.226" onPort:8085 withTimeout:10 error:&error];
+//        [socket connectToHost:@"192.168.1.118" onPort:8080 withTimeout:10 error:&error];
         
     }
     return self;
+}
+
+-(void) connect {
+    NSError *error = nil;
+    
+    //  [socket connectToHost:@"116.228.54.226" onPort:8085 withTimeout:10 error:&error];
+    [socket connectToHost:@"192.168.1.118" onPort:8080 withTimeout:10 error:&error];
 }
 
 - (NSArray *)loadMoments

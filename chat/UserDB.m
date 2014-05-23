@@ -36,7 +36,7 @@
     [database execSql:sql];
     
 
-    NSString *sqlQuery = [NSString stringWithFormat:@"SELECT * FROM user_'%d' WHERE id= '%d'", userId, id1];
+    NSString *sqlQuery = [NSString stringWithFormat:@"SELECT * FROM user_%d WHERE id= %d", userId, id1];
     sqlite3_stmt * statement;
     if (sqlite3_prepare_v2(db, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
                 if (sqlite3_step(statement) == SQLITE_ROW) {
@@ -71,7 +71,7 @@
     for(id obj in userList)
     {
         NSMutableDictionary *cDic = obj;
-        sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO user_'%d' VALUES ('%@','%@','%@','%@','%@','%@');", userId, [cDic objectForKey:@"id"],[cDic objectForKey:@"name"], [cDic objectForKey:@"imgId"],[cDic objectForKey:@"img"],[cDic objectForKey:@"isOnline"],[cDic objectForKey:@"group"]];
+        sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO user_%d VALUES ('%@','%@','%@','%@','%@','%@');", userId, [cDic objectForKey:@"id"],[cDic objectForKey:@"name"], [cDic objectForKey:@"imgId"],[cDic objectForKey:@"img"],[cDic objectForKey:@"isOnline"],[cDic objectForKey:@"group"]];
         [database execSql:sql];
     }
     
@@ -83,7 +83,7 @@
     [database execSql:sql];
     
   
-        sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO user_'%d' VALUES ('%@','%@','%@','%@','%@','%@');", userId, [user objectForKey:@"id"],[user objectForKey:@"name"], [user objectForKey:@"imgId"],[user objectForKey:@"img"],[user objectForKey:@"isOnline"],[user objectForKey:@"group"]];
+        sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO user_%d VALUES ('%@','%@','%@','%@','%@','%@');", userId, [user objectForKey:@"id"],[user objectForKey:@"name"], [user objectForKey:@"imgId"],[user objectForKey:@"img"],[user objectForKey:@"isOnline"],[user objectForKey:@"group"]];
         [database execSql:sql];
     
 
@@ -110,7 +110,7 @@
     
     NSMutableArray *userList = [[NSMutableArray alloc] init];
     
-    NSString *sqlQuery = [NSString stringWithFormat:@"SELECT * FROM user_'%d'", userId];
+    NSString *sqlQuery = [NSString stringWithFormat:@"SELECT * FROM user_%d", userId];
     sqlite3_stmt * statement;
     if (sqlite3_prepare_v2(db, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
         while (sqlite3_step(statement) == SQLITE_ROW) {
@@ -141,7 +141,7 @@
     NSString *sql1 = @" (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, img TEXT, imgPath TEXT, isOnline TEXT, _group TEXT);";
     sql = [sql stringByAppendingFormat:@"%d%@",userId, sql1];
     [database execSql:sql];
-    NSString *sqlQuery = [NSString stringWithFormat:@"DELETE FROM user_'%d'", userId];
+    NSString *sqlQuery = [NSString stringWithFormat:@"DELETE FROM user_%d", userId];
     [database execSql:sqlQuery];
 
 }
@@ -150,7 +150,7 @@
     NSString *sql1 = @" (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, img TEXT, imgPath TEXT, isOnline TEXT, _group TEXT);";
     sql = [sql stringByAppendingFormat:@"%d%@",userId, sql1];
     [database execSql:sql];
-    NSString *sqlQuery = [NSString stringWithFormat:@"DELETE FROM user_'%d' where id = '%d'", userId, id1];
+    NSString *sqlQuery = [NSString stringWithFormat:@"DELETE FROM user_%d where id = %d", userId, id1];
     [database execSql:sqlQuery];
     
 }

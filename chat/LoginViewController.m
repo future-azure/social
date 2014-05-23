@@ -12,6 +12,7 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *idInput;
 @property (weak, nonatomic) IBOutlet UILabel *idLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *userImg;
 
 @end
 
@@ -23,6 +24,7 @@
 @synthesize signUp;
 @synthesize idLabel;
 @synthesize idInput;
+@synthesize userImg;
 
 
 - (IBAction)signUp:(id)sender {
@@ -57,24 +59,59 @@
     
     myDelegate = [[UIApplication sharedApplication] delegate];
     if (myDelegate.dataManager == nil) {
+       // [dataManager socket]
         myDelegate.dataManager = [DataManager sharedDataManager];
-    }
+   }
     imgdb = myDelegate.imageDB;
     msgdb = myDelegate.messageDB;
     recentMsgDb = myDelegate.recentMessageDB;
     dataManager = myDelegate.dataManager;
     NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-    NSString *userId = [defaults objectForKey:@"userId"];//根据键值取出name
+    NSNumber *userId = [defaults objectForKey:@"userId"];//根据键值取出name
     NSString *password = [defaults objectForKey:@"password"];//根据键值取出name
     if (userId != nil && password != nil) {
-        idLabel.text = userId;
+        NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+        idLabel.text = [numberFormatter stringFromNumber:userId];
+      //  idLabel.text = userId;
         textField.text = password;
     }
+    [dataManager connect];
     socket =[dataManager socket];
     // [[DataManager sharedDataManager] loadCountry];
     socket.delegate = self;
     
     
+}
+
+- (void)passValue:(NSString *)value
+{
+    idInput.text = value;
+    idInput.hidden = false;
+    idLabel.hidden = true;
+    textField.text = @"";
+    accountType = [NSNumber numberWithInt:3];
+   // NSLog(@"the get value is %@", value);
+}
+
+- (void)passUser:(NSDictionary *)value
+{
+    if (value != nil) {
+        idInput.hidden = true;
+        idLabel.text = [[value objectForKey:@"id"] stringValue];
+        idLabel.hidden = false;
+        textField.text = [value objectForKey:@"password"];
+        if ([value objectForKey:@"imgId"] != nil) {
+            int imgId = [[value objectForKey:@"imgId"] intValue];
+            if (imgId != -1) {
+                UIImage *bm = [imgdb getImage:imgId];
+                if (bm != nil) {
+                    [userImg setImage:bm];
+                }
+            }
+        }
+    }
+    accountType = [NSNumber numberWithInt:1];
+   // NSLog(@"the get value is %@", value);
 }
 
 -(void) showHubLoading:(NSString *)str {
@@ -103,6 +140,19 @@
     NSString *json;
     NSString *temp = @"\",\"toUser\":0,\"fromUser\":0}\r\n";
     json = @"{\"type\":\"LOGIN\",\"object\":\"";
+    json = [json stringByAppendingFormat:@"%@%@",obj, temp];
+    NSLog(@"%@", json);
+    [socket writeData:[json dataUsingEncoding:NSUTF8StringEncoding] withTimeout:10 tag:1];
+    [socket readDataWithTimeout:-1 tag:0];
+}
+
+-(void) passwordRequest:(NSString *)obj {
+    [self showHubLoading:NSLocalizedString(@"handleing", nil)];
+    
+    type = @"SENDPW";
+    NSString *json;
+    NSString *temp = @"\",\"toUser\":0,\"fromUser\":0}\r\n";
+    json = @"{\"type\":\"SENDPW\",\"object\":\"";
     json = [json stringByAppendingFormat:@"%@%@",obj, temp];
     NSLog(@"%@", json);
     [socket writeData:[json dataUsingEncoding:NSUTF8StringEncoding] withTimeout:10 tag:1];
@@ -203,21 +253,32 @@
     [actionSheet showInView:self.view];
 }
 
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+-(void)actionSheet:(UIActionSheet *)actionSheet1 clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex == 0) {
+    NSString *buttonTitle = [actionSheet1 buttonTitleAtIndex:buttonIndex];
+    if ([NSLocalizedString(@"logged_account", nil) isEqualToString:buttonTitle]) {
         accountType = [NSNumber numberWithInt: 1];
-        NSLog(@"confirm");
-    }else if (buttonIndex == 1) {
+         [self performSegueWithIdentifier:@"loggedAccount" sender:self];
+    }else if ([NSLocalizedString(@"id_email", nil) isEqualToString:buttonTitle]) {
         accountType = [NSNumber numberWithInt: 2];
         idLabel.hidden = true;
         idInput.hidden = false;
-    }else if(buttonIndex == 2) {
+    }else if([NSLocalizedString(@"phone", nil) isEqualToString:buttonTitle]) {
+
         accountType = [NSNumber numberWithInt: 3];
-        NSLog(@"confirm2");
-    }else if(buttonIndex == 3) {
+        
+        [self performSegueWithIdentifier:@"phoneLogin" sender:self];
+
+      //  NSLog(@"confirm2");
+    }else if([NSLocalizedString(@"cancel", nil) isEqualToString:buttonTitle]) {
+
         NSLog(@"cancel");
         
+    }else if ([NSLocalizedString(@"log_in_via_email", nil) isEqualToString:buttonTitle]) {
+        [self sendPassword:1];
+    }else if([NSLocalizedString(@"log_in_via_sms", nil) isEqualToString:buttonTitle]) {
+        
+        [self sendPassword:2];
     }
     
 }
@@ -230,7 +291,92 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet willDismissWithButtonIndex:(NSInteger)buttonIndex{
     
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"phoneLogin"]) //"goView2"是SEGUE连线的标识
+    {
+       // id theSegue = segue.destinationViewController;
+        PhoneLoginViewController *phoneLogin=
+        
+        segue.destinationViewController;
+        
+        phoneLogin.delegate = self;
+           }
+    
+    if([segue.identifier isEqualToString:@"loggedAccount"]) //"goView2"是SEGUE连线的标识
+    {
+        // id theSegue = segue.destinationViewController;
+        AccountSelectingViewController *accountLogin=
+        
+        segue.destinationViewController;
+        
+        accountLogin.delegate = self;
+    }
+}
+
+-(void)sendPassword:(int)type1 {
+    NSString *userId = idInput.text;
+    if (idInput.hidden) {
+        userId = idLabel.text;
+    }
+    NSNumber *intString;
+    NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+    NSArray  *keys;
+    NSArray *objects;
+    
+    if (userId == nil || [@"" isEqualToString:userId] ) {
+        [dataManager showDialog:NSLocalizedString(@"info", nil) content:NSLocalizedString(@"id_empty", nil)];
+        return;
+    }
+    
+    if ([f numberFromString:userId])
+    {
+        intString=[NSNumber numberWithInt:[userId intValue]];
+        keys = [NSArray arrayWithObjects:@"languageType", @"id",nil];
+        objects = [NSArray arrayWithObjects:@"en", userId ,nil];
+        
+    } else {
+        keys = [NSArray arrayWithObjects:@"languageType", @"email", nil];
+        objects = [NSArray arrayWithObjects:@"en", userId, nil];
+        
+    }
+    
+    NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
+    NSMutableDictionary *map = [NSMutableDictionary dictionaryWithCapacity:3];
+    NSNumber *sendType = [NSNumber numberWithInt:type1];
+    [map setObject:dictionary forKey:@"user"];
+    [map setObject:accountType forKey:@"accountType"];
+    [map setObject:sendType forKey:@"sendType"];
+    
+    NSString *mapString = [dataManager toJSONData:map];
+    mapString = [mapString stringByReplacingOccurrencesOfString :@"\"" withString:@"\\\""];
+    mapString = [mapString stringByReplacingOccurrencesOfString :@"\r" withString:@""];
+    mapString = [mapString stringByReplacingOccurrencesOfString :@"\n" withString:@""];
+    
+    [self passwordRequest:mapString];
+}
+
 - (IBAction)forgotPassword:(id)sender {
+    actionSheet = [[IBActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel",nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"log_in_via_email", nil), NSLocalizedString(@"log_in_via_sms", nil), nil];
+    
+    actionSheet.buttonResponse = IBActionSheetButtonResponseFadesOnPress;
+    
+    [actionSheet setButtonTextColor:[UIColor whiteColor] forButtonAtIndex:0];
+    [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:253/255.0 green:108/255.0 blue:53/255.0 alpha:1] forButtonAtIndex:0];
+    [actionSheet setFont:[UIFont fontWithName:NSLocalizedString(@"log_in_via_email", nil) size:22] forButtonAtIndex:0];
+    
+    [actionSheet setButtonTextColor:[UIColor whiteColor] forButtonAtIndex:1];
+    [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:253/255.0 green:108/255.0 blue:53/255.0 alpha:1] forButtonAtIndex:1];
+    [actionSheet setFont:[UIFont fontWithName:NSLocalizedString(@"log_in_via_sms", nil) size:22] forButtonAtIndex:1];
+    
+    
+    [actionSheet setButtonTextColor:[UIColor whiteColor] forButtonAtIndex:2];
+    [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1] forButtonAtIndex:2];
+    [actionSheet setFont:[UIFont fontWithName:NSLocalizedString(@"cancel",nil) size:22] forButtonAtIndex:2];
+    
+    [actionSheet showInView:self.view];
+
 }
 
 //数据加载过程中调用,获取数据
@@ -304,31 +450,15 @@
                     myDelegate.momentUpdateTime =  [NSDate date];
                     myDelegate.thingUpdateTime = [NSDate date];
                     myDelegate.setting = [myDelegate.settingDB getUserSetting:userId];
-                    ImageDB *imagedb = myDelegate.imageDB;
+                    imgdb = myDelegate.imageDB;
                     int imgId = [[user objectForKey:@"imgId"] intValue];
-                    UIImage *bm = [imagedb getImage:imgId];
+                    UIImage *bm = [imgdb getImage:imgId];
                     if (bm != nil) {
                         myDelegate.userImage = bm;
                     } else {
                         NSString *tomcat_server = TOMCAT_SERVER;
                         NSString *url = [NSString stringWithFormat:@"%@%@", tomcat_server, [user objectForKey:@"img"]];
                         url = [url stringByReplacingOccurrencesOfString:@"\\" withString:@"/"];
-//                        dispatch_queue_t queue =  dispatch_get_main_queue();;
-//                       // queue = dispatch_queue_create("com.example.operation", NULL);
-//                        dispatch_async(queue, ^{
-//                            NSString *urlString = url;
-//                            NSData *imageData = [NSData dataWithContentsOfURL:[NSURL URLWithString:urlString]];
-//                            
-//                            UIImage *imge = [UIImage imageWithData:imageData];
-//                            
-//                            dispatch_async(dispatch_get_main_queue(), ^{
-//                                ImageDB *imgdb = myDelegate.imageDB;
-//                                
-//                                myDelegate.userImage = imge;
-//                                
-//                                [imgdb addImage:userId bm:imge];
-//                            });
-//                        });
                         NSURL *url1 = [NSURL URLWithString:url];
                         NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
                         [request setURL:url1];
@@ -468,7 +598,53 @@
             }
         }
     }
-    
+    if([@"SENDPW" isEqualToString:type]) {
+        NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        
+        loginData =[loginData stringByAppendingString:str];
+        BOOL isSuffix = [str hasSuffix:@"}\r\n"];
+        //  NSLog(@"%hhd", isSuffix);
+        if (isSuffix) {
+            
+            NSData *data1 = [loginData dataUsingEncoding:NSUTF8StringEncoding];
+            loginData = @"";
+            [self closeHubLoading];
+
+            NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:data1
+                                                                options:NSJSONReadingAllowFragments
+                                                                  error:&error];
+            //    NSLog(@"%ld %@ %@", tag, dic, error);
+            
+            NSString *str = [dic objectForKey:@"object"];
+            
+            if (str != nil) {
+                //   NSLog(@"%@", str);
+                NSData *data2 = [str dataUsingEncoding:NSUTF8StringEncoding];
+                //NSLog(@"%@", str);
+                NSDictionary *result = [NSJSONSerialization JSONObjectWithData:data2
+                                                                       options:NSJSONReadingAllowFragments
+                                                                         error:nil];
+                NSNumber *successNum = [result objectForKey:@"result"];
+                NSNumber *typeNum = [result objectForKey:@"sendType"];
+                int success = [successNum intValue];
+                 int sendType = [typeNum intValue];
+                
+                if (success == 1) {
+                    if (sendType == 1) {
+                        [dataManager showDialog:NSLocalizedString(@"info", nil) content:NSLocalizedString(@"send_pw_email_success", nil)];
+                    } else if(sendType == 2) {
+                        [dataManager showDialog:NSLocalizedString(@"info", nil) content:NSLocalizedString(@"send_pw_sms_success", nil)];
+                    }
+                } else if (success == 2) {
+                     [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"send_pw_email_error", nil)];
+                } else {
+                     [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"send_pw_error", nil)];
+                }
+                
+            }
+        }
+    }
+
     
     [socket readDataToData:[AsyncSocket CRLFData] withTimeout:-1 tag:tag];
 }

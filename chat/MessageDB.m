@@ -41,7 +41,7 @@
         come = 1;
     }
     
-    sql = [NSString stringWithFormat:@"insert into  msg_'%d'_'%d'  (name,img, imgPath, date,isCome,message)  VALUES ('%@','%@','%@','%@','%d','%@');", userId, friendId, [entity objectForKey:@"name"],[entity objectForKey:@"img"], [entity objectForKey:@"imgPath"],[entity objectForKey:@"date"],come,[entity objectForKey:@"message"]];
+    sql = [NSString stringWithFormat:@"insert into  msg_%d_%d  (name,img, imgPath, date,isCome,message)  VALUES ('%@','%@','%@','%@','%d','%@');", userId, friendId, [entity objectForKey:@"name"],[entity objectForKey:@"img"], [entity objectForKey:@"imgPath"],[entity objectForKey:@"date"],come,[entity objectForKey:@"message"]];
     [database execSql:sql];
     
 }
@@ -54,7 +54,7 @@
     
     NSMutableArray *msgList = [[NSMutableArray alloc] init];
     
-    NSString *sqlQuery = [NSString stringWithFormat:@"SELECT * from msg_'%d'_'%d' ORDER BY _id DESC", userId, friendId];
+    NSString *sqlQuery = [NSString stringWithFormat:@"SELECT * from msg_%d_%d ORDER BY _id DESC", userId, friendId];
     sqlite3_stmt * statement;
     if (sqlite3_prepare_v2(db, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
         while (sqlite3_step(statement) == SQLITE_ROW) {
@@ -91,7 +91,7 @@
 }
 
 - (void) clearMsg:(int)userId friend:(int)friendId {
-    NSString *sql =[NSString stringWithFormat:@"DROP TABLE IF EXISTS msg_'%d'_'%d'", userId, friendId];
+    NSString *sql =[NSString stringWithFormat:@"DROP TABLE IF EXISTS msg_%d_%d", userId, friendId];
       [database execSql:sql];
 
 }
@@ -103,7 +103,7 @@
             char *name =(char*)sqlite3_column_text(statement, 0);
             NSString *tableName = [[NSString alloc]initWithUTF8String:name];
            
-            NSString *msg = [NSString stringWithFormat:@"msg_'%d'_", userId];
+            NSString *msg = [NSString stringWithFormat:@"msg_%d_", userId];
 
             NSRange foundObj=[tableName rangeOfString:msg options:NSCaseInsensitiveSearch];
             if(foundObj.length>0) {

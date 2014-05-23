@@ -10,6 +10,7 @@
 #import "DataManager.h"
 #import "AppDelegate.h"
 
+
 @interface RegisterViewController : UIViewController<UIPickerViewDelegate, UITextFieldDelegate,UIPickerViewDataSource> {
     NSMutableArray *pickerArray;
     NSMutableArray *codeArray;

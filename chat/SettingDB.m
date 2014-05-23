@@ -34,10 +34,10 @@
     sql = [sql stringByAppendingFormat:@"%d%@",userId, sql1];
     [database execSql:sql];
     
-    sql = [NSString stringWithFormat:@"CREATE UNIQUE INDEX IF NOT EXISTS unique_index_id ON user_setting_'%d' (_id);",userId];
+    sql = [NSString stringWithFormat:@"CREATE UNIQUE INDEX IF NOT EXISTS unique_index_id ON user_setting_%d (_id);",userId];
     [database execSql:sql];
     
-    NSString *sqlQuery = [NSString stringWithFormat:@"SELECT *,datetime(begin_time,'localtime'), datetime(end_time,'localtime') FROM user_setting_'%d' ORDER BY _id DESC LIMIT 1", userId];
+    NSString *sqlQuery = [NSString stringWithFormat:@"SELECT *,datetime(begin_time,'localtime'), datetime(end_time,'localtime') FROM user_setting_%d ORDER BY _id DESC LIMIT 1", userId];
     sqlite3_stmt * statement;
     if (sqlite3_prepare_v2(db, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
         if (sqlite3_step(statement) == SQLITE_ROW) {
@@ -85,11 +85,11 @@
     sql = [sql stringByAppendingFormat:@"%d%@",userId, sql1];
     [database execSql:sql];
     
-    sql = [NSString stringWithFormat:@"CREATE UNIQUE INDEX IF NOT EXISTS unique_index_id ON user_setting_'%d' (_id);",userId];
+    sql = [NSString stringWithFormat:@"CREATE UNIQUE INDEX IF NOT EXISTS unique_index_id ON user_setting_%d (_id);",userId];
     [database execSql:sql];
     
     
-    sql = [NSString stringWithFormat:@"INSERT OR REPLACE user_setting_'%d' (_id, enterSend, fontSize, language, chatBg,  alert, sound, soundName, vibe, whole_day, begin_time, end_time, offer) values(1,'%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@');", userId, [userSetting objectForKey:@"enterSend"],[userSetting objectForKey:@"fontSize"], [userSetting objectForKey:@"langauge"],[userSetting objectForKey:@"chatBg"],[userSetting objectForKey:@"alert"],[userSetting objectForKey:@"sound"], [userSetting objectForKey:@"soundName"],[userSetting objectForKey:@"vibe"], [userSetting objectForKey:@"whole_day"],[userSetting objectForKey:@"begin_time"],[userSetting objectForKey:@"end_time"],[userSetting objectForKey:@"offer"]];
+    sql = [NSString stringWithFormat:@"INSERT OR REPLACE user_setting_%d (_id, enterSend, fontSize, language, chatBg,  alert, sound, soundName, vibe, whole_day, begin_time, end_time, offer) values(1,'%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@');", userId, [userSetting objectForKey:@"enterSend"],[userSetting objectForKey:@"fontSize"], [userSetting objectForKey:@"langauge"],[userSetting objectForKey:@"chatBg"],[userSetting objectForKey:@"alert"],[userSetting objectForKey:@"sound"], [userSetting objectForKey:@"soundName"],[userSetting objectForKey:@"vibe"], [userSetting objectForKey:@"whole_day"],[userSetting objectForKey:@"begin_time"],[userSetting objectForKey:@"end_time"],[userSetting objectForKey:@"offer"]];
     [database execSql:sql];
     
 }

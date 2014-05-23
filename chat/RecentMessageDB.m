@@ -34,10 +34,10 @@
     sql = [sql stringByAppendingFormat:@"%d%@",userId,sql1];
     [database execSql:sql];
     
-    sql = [NSString stringWithFormat:@"CREATE UNIQUE INDEX IF NOT EXISTS unique_index_id ON recent_msg_'%d' (_id);", userId];
+    sql = [NSString stringWithFormat:@"CREATE UNIQUE INDEX IF NOT EXISTS unique_index_id ON recent_msg_%d (_id);", userId];
     [database execSql:sql];
     
-    sql = [NSString stringWithFormat:@"INSERT OR REPLACE into  recent_msg_'%d' (_id,name,img, imgPath, date,message, count) values('%d','%@','%@','%@','%@','%@', '%@');", userId, friendId, [entity objectForKey:@"name"],[entity objectForKey:@"img"], [entity objectForKey:@"imgPath"],[entity objectForKey:@"time"],[entity objectForKey:@"msg"],[entity objectForKey:@"count"]];
+    sql = [NSString stringWithFormat:@"INSERT OR REPLACE into  recent_msg_%d (_id,name,img, imgPath, date,message, count) values('%d','%@','%@','%@','%@','%@', '%@');", userId, friendId, [entity objectForKey:@"name"],[entity objectForKey:@"img"], [entity objectForKey:@"imgPath"],[entity objectForKey:@"time"],[entity objectForKey:@"msg"],[entity objectForKey:@"count"]];
     [database execSql:sql];
     
 }
@@ -48,10 +48,10 @@
     sql = [sql stringByAppendingFormat:@"%d%@",userId,sql1];
     [database execSql:sql];
     
-    sql = [NSString stringWithFormat:@"CREATE UNIQUE INDEX IF NOT EXISTS unique_index_id ON recent_msg_'%d' (_id);", userId];
+    sql = [NSString stringWithFormat:@"CREATE UNIQUE INDEX IF NOT EXISTS unique_index_id ON recent_msg_%d (_id);", userId];
     [database execSql:sql];
     
-    sql = [NSString stringWithFormat:@"update recent_msg_'%d' set count = 0 where _id = '%d';", userId, friendId];
+    sql = [NSString stringWithFormat:@"update recent_msg_%d set count = 0 where _id = '%d';", userId, friendId];
     [database execSql:sql];
     
     
@@ -63,13 +63,13 @@
     sql = [sql stringByAppendingFormat:@"%d%@",userId,sql1];
     [database execSql:sql];
     
-    sql = [NSString stringWithFormat:@"CREATE UNIQUE INDEX IF NOT EXISTS unique_index_id ON recent_msg_'%d' (_id);", userId];
+    sql = [NSString stringWithFormat:@"CREATE UNIQUE INDEX IF NOT EXISTS unique_index_id ON recent_msg_%d (_id);", userId];
     [database execSql:sql];
 
     
     NSMutableArray *msgList = [[NSMutableArray alloc] init];
     
-    NSString *sqlQuery = [NSString stringWithFormat:@"SELECT * from recent_msg_'%d' ORDER BY _id DESC", userId];
+    NSString *sqlQuery = [NSString stringWithFormat:@"SELECT * from recent_msg_%d ORDER BY _id DESC", userId];
     sqlite3_stmt * statement;
     if (sqlite3_prepare_v2(db, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
         while (sqlite3_step(statement) == SQLITE_ROW) {
@@ -108,11 +108,11 @@
     sql = [sql stringByAppendingFormat:@"%d%@",userId,sql1];
     [database execSql:sql];
     
-    sql = [NSString stringWithFormat:@"CREATE UNIQUE INDEX IF NOT EXISTS unique_index_id ON recent_msg_'%d' (_id);", userId];
+    sql = [NSString stringWithFormat:@"CREATE UNIQUE INDEX IF NOT EXISTS unique_index_id ON recent_msg_%d (_id);", userId];
     [database execSql:sql];
     
     
-    sql =[NSString stringWithFormat:@"DELETE FROM recent_msg_'%d' where _id = '%d'", userId, friendId];
+    sql =[NSString stringWithFormat:@"DELETE FROM recent_msg_%d where _id = '%d'", userId, friendId];
     [database execSql:sql];
     
 }
@@ -122,11 +122,11 @@
     sql = [sql stringByAppendingFormat:@"%d%@",userId,sql1];
     [database execSql:sql];
     
-    sql = [NSString stringWithFormat:@"CREATE UNIQUE INDEX IF NOT EXISTS unique_index_id ON recent_msg_'%d' (_id);", userId];
+    sql = [NSString stringWithFormat:@"CREATE UNIQUE INDEX IF NOT EXISTS unique_index_id ON recent_msg_%d (_id);", userId];
     [database execSql:sql];
     
     
-    sql =[NSString stringWithFormat:@"DELETE FROM recent_msg_'%d'", userId];
+    sql =[NSString stringWithFormat:@"DELETE FROM recent_msg_%d", userId];
     [database execSql:sql];
 }
 

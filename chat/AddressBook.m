@@ -65,10 +65,9 @@
             
         }
         
-        
+        CFRelease(person);
     }
     
-    CFRelease(results);
     CFRelease(addressBook);
     return phoneList;
     

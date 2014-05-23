@@ -7,7 +7,32 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataManager.h"
+#import "AppDelegate.h"
+#import "UIViewPassValueDelegate.h"
+#import "NameSettingViewController.h"
+#import "RegionSettingViewController.h"
+#import "StatusSettingViewController.h"
+#import "GenderSettingViewController.h"
+#import "IBActionSheet.h"
 
-@interface ProfileSettingViewController : UIViewController
+@interface ProfileSettingViewController : UIViewController<MBProgressHUDDelegate,IBActionSheetDelegate, 
+UIViewPassValueDelegate> {
+    MBProgressHUD *HUD;
+    NSString *type;
+    AsyncSocket *socket;
+    
+    NSMutableDictionary *user;
+    IBActionSheet *actionSheet;
+    
+    DataManager *dataManager;
+    
+    AppDelegate *myDelegate;
+    NSObject<UIViewPassValueDelegate> * delegate;
+    
+    
+}
+
+@property(nonatomic, retain) NSObject<UIViewPassValueDelegate> * delegate;
 
 @end
