@@ -8,9 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "UIViewPassValueDelegate.h"
+#import "DataManager.h"
+#import "AppDelegate.h"
 
-@interface StatusSettingViewController : UIViewController<UIViewPassValueDelegate> {
+@interface StatusSettingViewController : UIViewController<UITextFieldDelegate> {
     NSObject<UIViewPassValueDelegate> * delegate;
+    NSString *old_status;
+    NSString *type;
+    AsyncSocket *socket;
+    
+    NSMutableDictionary *user;
+    DataManager *dataManager;
+    
+    AppDelegate *myDelegate;
+    
+    NSString *userData;
+
     
     
 }

@@ -100,6 +100,7 @@
                                                                        options:NSJSONReadingAllowFragments
                                                                          error:&error];
             //    NSLog(@"%ld %@ %@", tag, dic, error);
+            countryData = @"";
             
             NSString *str = [dic objectForKey:@"object"];
             //   NSLog(@"%@", str);

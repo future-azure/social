@@ -44,6 +44,9 @@
 		FE166E71192DD8A30094D659 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE166E70192DD8A30094D659 /* AddressBook.framework */; };
 		FE166E74192DEDF60094D659 /* PhoneLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE166E73192DEDF60094D659 /* PhoneLoginViewController.m */; };
 		FE166E78192E34990094D659 /* AccountSelectingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE166E77192E34990094D659 /* AccountSelectingViewController.m */; };
+		FE235111193031C700DA45A9 /* transparencyPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = FE235110193031C700DA45A9 /* transparencyPattern.png */; };
+		FE235113193031DD00DA45A9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FE235112193031DD00DA45A9 /* LICENSE */; };
+		FE2351161930324600DA45A9 /* CaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2351141930324600DA45A9 /* CaptureViewController.m */; };
 		FE510EFF1924B6DA0055B4E6 /* UserDB.m in Sources */ = {isa = PBXBuildFile; fileRef = FE510EFE1924B6DA0055B4E6 /* UserDB.m */; };
 		FE510F021924B6EF0055B4E6 /* LoginUserDB.m in Sources */ = {isa = PBXBuildFile; fileRef = FE510F011924B6EF0055B4E6 /* LoginUserDB.m */; };
 		FE510F051924B7E00055B4E6 /* SettingDB.m in Sources */ = {isa = PBXBuildFile; fileRef = FE510F041924B7E00055B4E6 /* SettingDB.m */; };
@@ -80,7 +83,7 @@
 		FE741B79192F451E007DEB28 /* HMCustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = FE741B78192F451E007DEB28 /* HMCustomSwitch.m */; };
 		FE741B7C192F6990007DEB28 /* GenderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE741B7B192F6990007DEB28 /* GenderTableViewCell.m */; };
 		FE741B7F192F6ACC007DEB28 /* GenderSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE741B7E192F6ACC007DEB28 /* GenderSettingViewController.m */; };
-		FE741B82192F6DC2007DEB28 /* AGSimpleImageEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE741B81192F6DC2007DEB28 /* AGSimpleImageEditorView.m */; };
+		FE741B82192F6DC2007DEB28 /* AGSimpleImageEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE741B81192F6DC2007DEB28 /* AGSimpleImageEditorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FE741B84192F6DE2007DEB28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE741B83192F6DE2007DEB28 /* QuartzCore.framework */; };
 		FE741B86192F6DE9007DEB28 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE741B85192F6DE9007DEB28 /* AssetsLibrary.framework */; };
 		FE9BEC76191B9A350050522E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9BEC75191B9A350050522E /* libsqlite3.dylib */; };
@@ -163,6 +166,10 @@
 		FE166E76192E34990094D659 /* AccountSelectingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSelectingViewController.h; sourceTree = "<group>"; };
 		FE166E77192E34990094D659 /* AccountSelectingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSelectingViewController.m; sourceTree = "<group>"; };
 		FE166E79192E355B0094D659 /* UIViewPassValueDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewPassValueDelegate.h; sourceTree = "<group>"; };
+		FE235110193031C700DA45A9 /* transparencyPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = transparencyPattern.png; path = "../../../../../Downloads/下载/AGSimpleImageEditorView-master/AGSimpleImageEditorView Demo/AGSimpleImageEditorView/transparencyPattern.png"; sourceTree = "<group>"; };
+		FE235112193031DD00DA45A9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = "../../../../../Downloads/下载/AGSimpleImageEditorView-master/AGSimpleImageEditorView Demo/AGSimpleImageEditorView/LICENSE"; sourceTree = "<group>"; };
+		FE2351141930324600DA45A9 /* CaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CaptureViewController.m; path = "../../../../../Downloads/下载/ImagePickerDemo/ImagePickerDemo/CaptureViewController.m"; sourceTree = "<group>"; };
+		FE2351151930324600DA45A9 /* CaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CaptureViewController.h; path = "../../../../../Downloads/下载/ImagePickerDemo/ImagePickerDemo/CaptureViewController.h"; sourceTree = "<group>"; };
 		FE510EFD1924B6DA0055B4E6 /* UserDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDB.h; sourceTree = "<group>"; };
 		FE510EFE1924B6DA0055B4E6 /* UserDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDB.m; sourceTree = "<group>"; };
 		FE510F001924B6EF0055B4E6 /* LoginUserDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginUserDB.h; sourceTree = "<group>"; };
@@ -325,6 +332,9 @@
 		B958C74D18F7D8320043A3AC /* chat */ = {
 			isa = PBXGroup;
 			children = (
+				FE2351141930324600DA45A9 /* CaptureViewController.m */,
+				FE2351151930324600DA45A9 /* CaptureViewController.h */,
+				FE23510E1930315200DA45A9 /* AGSimpleImageEditorView */,
 				FE65A50A1929F5F40097573B /* SDWebImage */,
 				FE510EF91924B63A0055B4E6 /* util */,
 				FE510EF81924B60B0055B4E6 /* Widget */,
@@ -442,6 +452,17 @@
 			path = "zh-Hant.lproj";
 			sourceTree = "<group>";
 		};
+		FE23510E1930315200DA45A9 /* AGSimpleImageEditorView */ = {
+			isa = PBXGroup;
+			children = (
+				FE235110193031C700DA45A9 /* transparencyPattern.png */,
+				FE235112193031DD00DA45A9 /* LICENSE */,
+				FE741B80192F6DC2007DEB28 /* AGSimpleImageEditorView.h */,
+				FE741B81192F6DC2007DEB28 /* AGSimpleImageEditorView.m */,
+			);
+			name = AGSimpleImageEditorView;
+			sourceTree = "<group>";
+		};
 		FE510EF71924B5FA0055B4E6 /* DBUtil */ = {
 			isa = PBXGroup;
 			children = (
@@ -492,8 +513,6 @@
 		FE510EF91924B63A0055B4E6 /* util */ = {
 			isa = PBXGroup;
 			children = (
-				FE741B80192F6DC2007DEB28 /* AGSimpleImageEditorView.h */,
-				FE741B81192F6DC2007DEB28 /* AGSimpleImageEditorView.m */,
 				FEC2BC421923893400803C4D /* AddressBook.h */,
 				FEC2BC431923893400803C4D /* AddressBook.m */,
 				B9B4DA00190FA34F0042CEDB /* AsyncSocket.h */,
@@ -621,10 +640,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				B958C79418FBDB790043A3AC /* Images.xcassets in Resources */,
+				FE235111193031C700DA45A9 /* transparencyPattern.png in Resources */,
 				FE5C231D191C9FAF00DE8007 /* SIAlertView.bundle in Resources */,
 				FE136F8E190E1F7900D0D82B /* InfoPlist.strings in Resources */,
 				B958C78918F80EC10043A3AC /* Main_iPhone.storyboard in Resources */,
 				FE136F8F190E1F7900D0D82B /* Localizable.strings in Resources */,
+				FE235113193031DD00DA45A9 /* LICENSE in Resources */,
 				FE136F8D190E1F7900D0D82B /* Localizable.strings in Resources */,
 				B95A6E9D1903F75900954F9D /* FINDALLMOMENT_result.txt in Resources */,
 				FE136F7E190E07DF00D0D82B /* terms.html in Resources */,
@@ -701,6 +722,7 @@
 				FE510F0E1924B8BA0055B4E6 /* RecentMessageDB.m in Sources */,
 				FE65A52A1929F5F40097573B /* SDImageCache.m in Sources */,
 				FE65A5291929F5F40097573B /* NSData+ImageContentType.m in Sources */,
+				FE2351161930324600DA45A9 /* CaptureViewController.m in Sources */,
 				B958C79718FBE7A20043A3AC /* HomeViewController.m in Sources */,
 				FE65A5301929F5F40097573B /* SDWebImagePrefetcher.m in Sources */,
 				FE65A5331929F5F40097573B /* UIImage+MultiFormat.m in Sources */,

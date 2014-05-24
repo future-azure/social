@@ -15,10 +15,11 @@
 #import "StatusSettingViewController.h"
 #import "GenderSettingViewController.h"
 #import "IBActionSheet.h"
+#import "CaptureViewController.h"
 
 @interface ProfileSettingViewController : UIViewController<MBProgressHUDDelegate,IBActionSheetDelegate, 
-UIViewPassValueDelegate> {
-    MBProgressHUD *HUD;
+UIViewPassValueDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate> {
+
     NSString *type;
     AsyncSocket *socket;
     

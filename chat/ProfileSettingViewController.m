@@ -153,10 +153,22 @@
 
 -(void)actionSheet:(UIActionSheet *)actionSheet1 clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    UIImagePickerController * picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
     NSString *buttonTitle = [actionSheet1 buttonTitleAtIndex:buttonIndex];
     if ([NSLocalizedString(@"camera", nil) isEqualToString:buttonTitle]) {
+        if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+            picker.sourceType = UIImagePickerControllerSourceTypeCamera;
+            
+        }else{
+            NSLog(@"模拟器无法打开相机");
+            return;
+        }
+        [self presentModalViewController:picker animated:YES];
        
     }else if ([NSLocalizedString(@"album", nil) isEqualToString:buttonTitle]) {
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+        [self presentModalViewController:picker animated:YES];
         
     }else if([NSLocalizedString(@"cancel", nil) isEqualToString:buttonTitle]) {
         
@@ -174,6 +186,62 @@
     
 }
 
+#pragma 拍照选择照片协议方法
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
+{
+    
+    [UIApplication sharedApplication].statusBarHidden = NO;
+    
+    NSString *mediaType = [info objectForKey:UIImagePickerControllerMediaType];
+    
+    NSData *data;
+    
+    if ([mediaType isEqualToString:@"public.image"]){
+        
+        //切忌不可直接使用originImage，因为这是没有经过格式化的图片数据，可能会导致选择的图片颠倒或是失真等现象的发生，从UIImagePickerControllerOriginalImage中的Origin可以看出，很原始，哈哈
+        UIImage *originImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+        
+        //图片压缩，因为原图都是很大的，不必要传原图
+        UIImage *scaleImage = [self scaleImage:originImage toScale:0.3];
+        
+        //以下这两步都是比较耗时的操作，最好开一个HUD提示用户，这样体验会好些，不至于阻塞界面
+        if (UIImagePNGRepresentation(scaleImage) == nil) {
+            //将图片转换为JPG格式的二进制数据
+            data = UIImageJPEGRepresentation(scaleImage, 1);
+        } else {
+            //将图片转换为PNG格式的二进制数据
+            data = UIImagePNGRepresentation(scaleImage);
+        }
+        
+        //将二进制数据生成UIImage
+        UIImage *image = [UIImage imageWithData:data];
+        
+        //将图片传递给截取界面进行截取并设置回调方法（协议）
+        CaptureViewController *captureView = [[CaptureViewController alloc] init];
+        captureView.delegate = self;
+        captureView.image = image;
+        //隐藏UIImagePickerController本身的导航栏
+        picker.navigationBar.hidden = YES;
+        [picker pushViewController:captureView animated:YES];
+        
+    }
+}
+
+#pragma mark - 图片回传协议方法
+-(void)passImage:(UIImage *)image
+{
+    userImage.image = image;
+}
+
+#pragma mark- 缩放图片
+-(UIImage *)scaleImage:(UIImage *)image toScale:(float)scaleSize
+{
+    UIGraphicsBeginImageContext(CGSizeMake(image.size.width*scaleSize,image.size.height*scaleSize));
+    [image drawInRect:CGRectMake(0, 0, image.size.width * scaleSize, image.size.height *scaleSize)];
+    UIImage *scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return scaledImage;
+}
 
 
 - (IBAction)profileSetting:(id)sender {
@@ -252,10 +320,11 @@
 
 - (void) passValue:(NSString *)value {
     user = myDelegate.user;
-    curName.text = [user objectForKey:@"name"];
-    curRegion.text = [user objectForKey:@"region"];
-    curStatus.text = [user objectForKey:@"status"];
-    curGender.text = [user objectForKey:@"gender"];
+    curName.text = [user objectForKey:@"name"]==nil? NSLocalizedString(@"not_setting", nil) : [user objectForKey:@"name"];
+    curRegion.text = [user objectForKey:@"region"]==nil? NSLocalizedString(@"not_setting", nil) : [user objectForKey:@"region"];
+    curGender.text = [user objectForKey:@"gender"]==nil? NSLocalizedString(@"not_setting", nil) : [user objectForKey:@"gender"];
+    curStatus.text = [user objectForKey:@"status"]==nil? NSLocalizedString(@"not_setting", nil) : [user objectForKey:@"status"];
+
 }
 
 - (void) passUser:(NSDictionary *)value {

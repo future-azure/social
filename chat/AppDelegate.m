@@ -59,6 +59,8 @@
     anewFriendMap = [[NSMutableDictionary alloc]initWithCapacity:5];
     recommendFriendMap = [[NSMutableDictionary alloc]initWithCapacity:5];
     setting = [[NSMutableDictionary alloc]initWithCapacity:5];
+    
+    languageType = @"en";
 
     
     return YES;
