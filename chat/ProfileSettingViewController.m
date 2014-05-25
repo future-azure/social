@@ -52,11 +52,11 @@
 {
     [super viewDidLoad];
     title.text = NSLocalizedString(@"profile", nil);
-    [profileImage setTitle:NSLocalizedString(@"profile_image", nil) forState:UIControlStateNormal];
-    [name setTitle:NSLocalizedString(@"name", nil) forState:UIControlStateNormal];
-    [gender setTitle:NSLocalizedString(@"gender", nil) forState:UIControlStateNormal];
-    [region setTitle:NSLocalizedString(@"region", nil) forState:UIControlStateNormal];
-    [status setTitle:NSLocalizedString(@"status", nil) forState:UIControlStateNormal];
+    [profileImage setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"profile_image", nil)] forState:UIControlStateNormal];
+    [name setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"name", nil)] forState:UIControlStateNormal];
+    [gender setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"gender", nil)] forState:UIControlStateNormal];
+    [region setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"region", nil)] forState:UIControlStateNormal];
+    [status setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"status", nil)] forState:UIControlStateNormal];
     
     myDelegate = [[UIApplication sharedApplication] delegate];
     if (myDelegate.dataManager == nil) {

@@ -19,6 +19,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *points;
 @property (weak, nonatomic) IBOutlet UIButton *vip;
 @property (weak, nonatomic) IBOutlet UINavigationItem *navigationItem;
+@property (weak, nonatomic) IBOutlet UIButton *account;
+@property (weak, nonatomic) IBOutlet UIButton *setting;
+@property (weak, nonatomic) IBOutlet UIButton *about;
 
 @end
 
@@ -33,6 +36,9 @@
 @synthesize points;
 @synthesize vip;
 @synthesize navigationItem;
+@synthesize account;
+@synthesize setting;
+@synthesize about;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,6 +54,11 @@
     [super viewDidLoad];
     navigationItem.hidesBackButton = true;
     title.text =NSLocalizedString(@"me", nil);
+    
+    [account setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"account", nil)] forState:UIControlStateNormal];
+    [setting setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"setting", nil)] forState:UIControlStateNormal];
+    [about setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"about", nil)] forState:UIControlStateNormal];
+   
     
     myDelegate = [[UIApplication sharedApplication] delegate];
     if (myDelegate.dataManager == nil) {
@@ -236,6 +247,10 @@
 
 - (void)passUser:(NSDictionary *)value
 {
+}
+
+- (void)passImage:(UIImage *)image {
+    
 }
 
 - (void)onSocket:(AsyncSocket *)sock didReadData:(NSData *)data withTag:(long)tag

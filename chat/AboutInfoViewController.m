@@ -1,22 +1,22 @@
 //
-//  TermsViewController.m
+//  AboutInfoViewController.m
 //  chat
 //
-//  Created by brightvision on 14-4-21.
+//  Created by brightvision on 14-5-25.
 //
 //
 
-#import "TermsViewController.h"
+#import "AboutInfoViewController.h"
 
-@interface TermsViewController ()
-@property (weak, nonatomic) IBOutlet UIWebView *myWebView;
+@interface AboutInfoViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
 
 @end
 
-@implementation TermsViewController
-@synthesize myWebView;
+@implementation AboutInfoViewController
 @synthesize title;
+@synthesize webView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,11 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"termsLoad");
-  //  NSString *path = [[NSBundle mainBundle] pathForResource:@"terms" ofType:@"html"];
-  //  [myWebView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath: path]]];
-    
-    title.text = NSLocalizedString(@"terms", nil);
+    title.text = NSLocalizedString(@"about_app", nil);
     
     NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"terms" ofType:@"html"];
     NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];
@@ -42,7 +38,7 @@
     NSString *path = [[NSBundle mainBundle] bundlePath];
     NSURL *baseURL = [NSURL fileURLWithPath:path];
     
-    [myWebView loadHTMLString:htmlString baseURL:baseURL];
+    [webView loadHTMLString:htmlString baseURL:baseURL];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,8 +46,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 /*
 #pragma mark - Navigation
@@ -64,7 +58,8 @@
 }
 */
 - (IBAction)back:(id)sender {
-     [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 @end

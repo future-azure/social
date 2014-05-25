@@ -44,6 +44,13 @@
 		FE166E71192DD8A30094D659 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE166E70192DD8A30094D659 /* AddressBook.framework */; };
 		FE166E74192DEDF60094D659 /* PhoneLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE166E73192DEDF60094D659 /* PhoneLoginViewController.m */; };
 		FE166E78192E34990094D659 /* AccountSelectingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE166E77192E34990094D659 /* AccountSelectingViewController.m */; };
+		FE1CBD341931AD4D0096FAA3 /* AccountSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1CBD331931AD4D0096FAA3 /* AccountSettingViewController.m */; };
+		FE1CBD371931AD590096FAA3 /* SettingSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1CBD361931AD590096FAA3 /* SettingSettingViewController.m */; };
+		FE1CBD3D1931ADBB0096FAA3 /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1CBD3C1931ADBB0096FAA3 /* AboutViewController.m */; };
+		FE1CBD401931B3B70096FAA3 /* PasswordSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1CBD3F1931B3B70096FAA3 /* PasswordSettingViewController.m */; };
+		FE1CBD431931B3C30096FAA3 /* EmailSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1CBD421931B3C30096FAA3 /* EmailSettingViewController.m */; };
+		FE1CBD461931B3E30096FAA3 /* PhoneSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1CBD451931B3E30096FAA3 /* PhoneSettingViewController.m */; };
+		FE1CBD501932146B0096FAA3 /* AboutInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE1CBD4F1932146B0096FAA3 /* AboutInfoViewController.m */; };
 		FE235111193031C700DA45A9 /* transparencyPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = FE235110193031C700DA45A9 /* transparencyPattern.png */; };
 		FE235113193031DD00DA45A9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FE235112193031DD00DA45A9 /* LICENSE */; };
 		FE2351161930324600DA45A9 /* CaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2351141930324600DA45A9 /* CaptureViewController.m */; };
@@ -166,6 +173,20 @@
 		FE166E76192E34990094D659 /* AccountSelectingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSelectingViewController.h; sourceTree = "<group>"; };
 		FE166E77192E34990094D659 /* AccountSelectingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSelectingViewController.m; sourceTree = "<group>"; };
 		FE166E79192E355B0094D659 /* UIViewPassValueDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIViewPassValueDelegate.h; sourceTree = "<group>"; };
+		FE1CBD321931AD4D0096FAA3 /* AccountSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountSettingViewController.h; sourceTree = "<group>"; };
+		FE1CBD331931AD4D0096FAA3 /* AccountSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountSettingViewController.m; sourceTree = "<group>"; };
+		FE1CBD351931AD590096FAA3 /* SettingSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingSettingViewController.h; sourceTree = "<group>"; };
+		FE1CBD361931AD590096FAA3 /* SettingSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingSettingViewController.m; sourceTree = "<group>"; };
+		FE1CBD3B1931ADBB0096FAA3 /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
+		FE1CBD3C1931ADBB0096FAA3 /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		FE1CBD3E1931B3B70096FAA3 /* PasswordSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordSettingViewController.h; sourceTree = "<group>"; };
+		FE1CBD3F1931B3B70096FAA3 /* PasswordSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordSettingViewController.m; sourceTree = "<group>"; };
+		FE1CBD411931B3C30096FAA3 /* EmailSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EmailSettingViewController.h; path = ../EmailSettingViewController.h; sourceTree = "<group>"; };
+		FE1CBD421931B3C30096FAA3 /* EmailSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EmailSettingViewController.m; path = ../EmailSettingViewController.m; sourceTree = "<group>"; };
+		FE1CBD441931B3E30096FAA3 /* PhoneSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneSettingViewController.h; sourceTree = "<group>"; };
+		FE1CBD451931B3E30096FAA3 /* PhoneSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneSettingViewController.m; sourceTree = "<group>"; };
+		FE1CBD4E1932146B0096FAA3 /* AboutInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutInfoViewController.h; sourceTree = "<group>"; };
+		FE1CBD4F1932146B0096FAA3 /* AboutInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutInfoViewController.m; sourceTree = "<group>"; };
 		FE235110193031C700DA45A9 /* transparencyPattern.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = transparencyPattern.png; path = "../../../../../Downloads/下载/AGSimpleImageEditorView-master/AGSimpleImageEditorView Demo/AGSimpleImageEditorView/transparencyPattern.png"; sourceTree = "<group>"; };
 		FE235112193031DD00DA45A9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = "../../../../../Downloads/下载/AGSimpleImageEditorView-master/AGSimpleImageEditorView Demo/AGSimpleImageEditorView/LICENSE"; sourceTree = "<group>"; };
 		FE2351141930324600DA45A9 /* CaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CaptureViewController.m; path = "../../../../../Downloads/下载/ImagePickerDemo/ImagePickerDemo/CaptureViewController.m"; sourceTree = "<group>"; };
@@ -333,6 +354,8 @@
 			isa = PBXGroup;
 			children = (
 				FE2351141930324600DA45A9 /* CaptureViewController.m */,
+				FE1CBD411931B3C30096FAA3 /* EmailSettingViewController.h */,
+				FE1CBD421931B3C30096FAA3 /* EmailSettingViewController.m */,
 				FE2351151930324600DA45A9 /* CaptureViewController.h */,
 				FE23510E1930315200DA45A9 /* AGSimpleImageEditorView */,
 				FE65A50A1929F5F40097573B /* SDWebImage */,
@@ -395,6 +418,18 @@
 				FE741B75192F414B007DEB28 /* StatusSettingViewController.m */,
 				FE741B7D192F6ACC007DEB28 /* GenderSettingViewController.h */,
 				FE741B7E192F6ACC007DEB28 /* GenderSettingViewController.m */,
+				FE1CBD321931AD4D0096FAA3 /* AccountSettingViewController.h */,
+				FE1CBD331931AD4D0096FAA3 /* AccountSettingViewController.m */,
+				FE1CBD351931AD590096FAA3 /* SettingSettingViewController.h */,
+				FE1CBD361931AD590096FAA3 /* SettingSettingViewController.m */,
+				FE1CBD3B1931ADBB0096FAA3 /* AboutViewController.h */,
+				FE1CBD3C1931ADBB0096FAA3 /* AboutViewController.m */,
+				FE1CBD3E1931B3B70096FAA3 /* PasswordSettingViewController.h */,
+				FE1CBD3F1931B3B70096FAA3 /* PasswordSettingViewController.m */,
+				FE1CBD441931B3E30096FAA3 /* PhoneSettingViewController.h */,
+				FE1CBD451931B3E30096FAA3 /* PhoneSettingViewController.m */,
+				FE1CBD4E1932146B0096FAA3 /* AboutInfoViewController.h */,
+				FE1CBD4F1932146B0096FAA3 /* AboutInfoViewController.m */,
 			);
 			path = chat;
 			sourceTree = "<group>";
@@ -690,7 +725,10 @@
 				FE741B70192F4130007DEB28 /* NameSettingViewController.m in Sources */,
 				FE65A52C1929F5F40097573B /* SDWebImageDecoder.m in Sources */,
 				B958C78C18F949F90043A3AC /* ThingsViewController.m in Sources */,
+				FE1CBD431931B3C30096FAA3 /* EmailSettingViewController.m in Sources */,
 				B958C78F18FBAF350043A3AC /* DataManager.m in Sources */,
+				FE1CBD371931AD590096FAA3 /* SettingSettingViewController.m in Sources */,
+				FE1CBD341931AD4D0096FAA3 /* AccountSettingViewController.m in Sources */,
 				FE166E78192E34990094D659 /* AccountSelectingViewController.m in Sources */,
 				FE5C23271920B35600DE8007 /* VerificationViewController.m in Sources */,
 				FEC2BC441923893400803C4D /* AddressBook.m in Sources */,
@@ -704,14 +742,18 @@
 				FE510F111924B9010055B4E6 /* NewFriendDB.m in Sources */,
 				B958C75818F7D8320043A3AC /* AppDelegate.m in Sources */,
 				FE5C231E191C9FAF00DE8007 /* SIAlertView.m in Sources */,
+				FE1CBD501932146B0096FAA3 /* AboutInfoViewController.m in Sources */,
 				B95A6EA21906E42800954F9D /* ThingsFilterViewController.m in Sources */,
 				B958C75418F7D8320043A3AC /* main.m in Sources */,
 				FE510F171924DDBD0055B4E6 /* sqlLite.m in Sources */,
 				FE510F081924B8250055B4E6 /* ImageDB.m in Sources */,
+				FE1CBD461931B3E30096FAA3 /* PhoneSettingViewController.m in Sources */,
 				FE741B7F192F6ACC007DEB28 /* GenderSettingViewController.m in Sources */,
+				FE1CBD401931B3B70096FAA3 /* PasswordSettingViewController.m in Sources */,
 				FEC2BC471923A39A00803C4D /* IBActionSheet.m in Sources */,
 				FEE234281905064E0046F525 /* UnderLineLabel.m in Sources */,
 				FE5C23241920AD4F00DE8007 /* ProfileSettingViewController.m in Sources */,
+				FE1CBD3D1931ADBB0096FAA3 /* AboutViewController.m in Sources */,
 				FE741B6D192F156C007DEB28 /* UserTableViewCell.m in Sources */,
 				FEE23425190503B60046F525 /* RegisterViewController.m in Sources */,
 				B9B4DA04190FA34F0042CEDB /* AsyncSocket.m in Sources */,

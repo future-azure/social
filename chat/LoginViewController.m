@@ -74,6 +74,8 @@
         idLabel.text = [numberFormatter stringFromNumber:userId];
       //  idLabel.text = userId;
         textField.text = password;
+        
+        NSLog(@"password: %@", password);
     }
     [dataManager connect];
     socket =[dataManager socket];

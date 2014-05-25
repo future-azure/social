@@ -23,11 +23,17 @@
     MessageDB *msgdb;
     RecentMessageDB *recentMsgDb;
     NSMutableData *imageData;
+    NSString *userData;
+
+    NSString *phoneNum;
+
 
 }
 @property (weak, nonatomic) NSString *phone_number;
 @property (weak, nonatomic) NSString *country_code;
 @property (weak, nonatomic) NSString *verifiCode;
+@property (weak, nonatomic) NSString *isReset;
+
 
 
 @end

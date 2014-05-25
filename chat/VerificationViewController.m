@@ -22,6 +22,7 @@
 @synthesize phone_number;
 @synthesize country_code;
 @synthesize verifiCode;
+@synthesize isReset;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,11 +51,14 @@
     socket =[dataManager socket];
     socket.delegate = self;
     registerUser = @"";
+    userData = @"";
     
     title.text = NSLocalizedString(@"verification", nil);
     NSLog(@"%@", @"verfication");
     NSString *reg = NSLocalizedString(@"verification_send", nil);
     NSString *blank = @"  ";
+    
+    phoneNum = phone_number;
     NSString *content = [reg stringByAppendingFormat:@"%@%@%@%@",@"\r\n",country_code, blank, phone_number];
     
     title_show.text = content;
@@ -87,6 +91,34 @@
     [socket readDataWithTimeout:-1 tag:0];
 }
 
+- (void)updateUser {
+     [self showHubLoading:NSLocalizedString(@"handleing", nil)];
+    
+    type = @"UPDATEUSER";
+    NSMutableDictionary *u = [myDelegate.user mutableCopy];
+    [u setObject:@"PHONE_NUM" forKey:@"updateType"];
+    [u setObject:country_code forKey:@"countryCode"];
+    [u setObject:phone_number forKey:@"phoneNum"];
+    NSString *json;
+    NSString *temp = @"\",\"toUser\":0,\"fromUser\":0}\r\n";
+    json = @"{\"type\":\"UPDATEUSER\",\"object\":\"";
+    NSString *mapString = [dataManager toJSONData:u];
+    mapString = [mapString stringByReplacingOccurrencesOfString :@"\"" withString:@"\\\""];
+    mapString = [mapString stringByReplacingOccurrencesOfString :@"\r" withString:@""];
+    mapString = [mapString stringByReplacingOccurrencesOfString :@"\n" withString:@""];
+    
+    json = [json stringByAppendingFormat:@"%@%@",mapString, temp];
+    NSLog(@"%@", json);
+    [socket writeData:[json dataUsingEncoding:NSUTF8StringEncoding] withTimeout:10 tag:1];
+    [socket readDataWithTimeout:-1 tag:0];
+    // [self closeHubLoading];
+    //  [socket disconnect];
+    //  [self performSegueWithIdentifier:@"re_login" sender:self];
+    
+    
+    
+}
+
 - (IBAction)back:(id)sender {
   
         [self dismissViewControllerAnimated:YES completion:nil];
@@ -102,7 +134,14 @@
         [dataManager showDialog:@"error" content:@"verifycode_error"];
         return;
     }
-    [self register];
+    if (isReset == nil) {
+        [self register];
+
+    } else if ([@"true" isEqualToString:isReset]) {
+        [self updateUser];
+        
+    }
+    
     
 
 }
@@ -396,6 +435,44 @@
             }
         }
     }
+    
+    if([@"UPDATEUSER" isEqualToString:type]) {
+        NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        
+        userData =[userData stringByAppendingString:str];
+        BOOL isSuffix = [str hasSuffix:@"}\r\n"];
+        //  NSLog(@"%hhd", isSuffix);
+        if (isSuffix) {
+            [self closeHubLoading];
+
+            
+            NSData *data1 = [userData dataUsingEncoding:NSUTF8StringEncoding];
+            NSMutableDictionary *dic = [NSJSONSerialization JSONObjectWithData:data1
+                                                                       options:NSJSONReadingAllowFragments
+                                                                         error:&error];
+            //    NSLog(@"%ld %@ %@", tag, dic, error);
+            userData = @"";
+            NSString *str = [dic objectForKey:@"object"];
+            //   NSLog(@"%@", str);
+            if ([@"true" isEqualToString:str] || [@"TRUE" isEqualToString:str]) {
+                [myDelegate.user setObject:country_code forKey:@"countryCode"];
+                [myDelegate.user setObject:phone_number forKey:@"phoneNum"];
+                [self performSegueWithIdentifier:@"AccoutSetting" sender:self];
+
+                
+                
+            } else {
+                [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"update_failure", nil)];
+                [self performSegueWithIdentifier:@"AccoutSetting" sender:self];
+
+                
+            }
+            
+        }
+        
+        
+    }
+
 
     
     

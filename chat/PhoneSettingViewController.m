@@ -1,45 +1,35 @@
 //
-//  RegisterViewController.m
+//  PhoneSettingViewController.m
 //  chat
 //
-//  Created by brightvision on 14-4-21.
+//  Created by brightvision on 14-5-25.
 //
 //
 
-#import "RegisterViewController.h"
-#import "UnderLineLabel.h"
+#import "PhoneSettingViewController.h"
 
-
-@interface RegisterViewController ()
-@property (weak, nonatomic) IBOutlet UILabel *top_title_show;
+@interface PhoneSettingViewController ()
 @property (weak, nonatomic) IBOutlet UILabel *title;
+@property (weak, nonatomic) IBOutlet UILabel *title_show;
 @property (weak, nonatomic) IBOutlet UILabel *countryCode;
-@property (weak, nonatomic) IBOutlet UITextField *phone_number;
-@property (weak, nonatomic) IBOutlet UILabel *agree_to;
-@property (weak, nonatomic) IBOutlet UIPickerView *countrySelect;
-@property (weak, nonatomic) IBOutlet UIToolbar *buttonSelect;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *finishSelect;
-@property (weak, nonatomic) IBOutlet UIView *selectView;
-@property (weak, nonatomic) IBOutlet UIButton *countyName;
+@property (weak, nonatomic) IBOutlet UIButton *countryName;
+
+@property (weak, nonatomic) IBOutlet UITextField *phoneNum;
+@property (weak, nonatomic) IBOutlet UIPickerView *countryPicker;
+@property (weak, nonatomic) IBOutlet UIToolbar *pickerBar;
+@property (weak, nonatomic) IBOutlet UIView *pickerView;
 
 @end
 
-
-
-@implementation RegisterViewController
-
-
-@synthesize top_title_show;
-@synthesize countrySelect;
+@implementation PhoneSettingViewController
 @synthesize title;
+@synthesize title_show;
 @synthesize countryCode;
-@synthesize phone_number;
-@synthesize agree_to;
-@synthesize countyName;
-@synthesize finishSelect;
-@synthesize buttonSelect;
-@synthesize selectView;
-
+@synthesize countryName;
+@synthesize phoneNum;
+@synthesize countryPicker;
+@synthesize pickerBar;
+@synthesize pickerView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -53,9 +43,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    top_title_show.text = NSLocalizedString(@"select_country", nil);
-    title.text =NSLocalizedString(@"phone_num", nil);
+    title_show.text = NSLocalizedString(@"reset_select_country", nil);
+    title.text =NSLocalizedString(@"reset_phone_num", nil);
     countryData = @"";
     pickerArray = [[NSMutableArray alloc] initWithCapacity:10];
     codeArray = [[NSMutableArray alloc] initWithCapacity:10];
@@ -63,8 +52,7 @@
     NSLocale *currentLocale = [NSLocale currentLocale];
     NSLog(@"Country Code is %@", [currentLocale objectForKey:NSLocaleCountryCode]);
     // 获取手机语言
-  //  NSString* strLanguage = [[[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"] objectAtIndex:0];
-    myDelegate = [[UIApplication sharedApplication] delegate];
+       myDelegate = [[UIApplication sharedApplication] delegate];
     if (myDelegate.dataManager == nil) {
         myDelegate.dataManager = [DataManager sharedDataManager];
     }
@@ -72,13 +60,9 @@
     socket =[dataManager socket];
     // [dataManager loadCountry];
     socket.delegate = self;
+        
     [self loadCountry];
-    
-    //         NSError *error = nil;
-    
-    
 }
-
 
 - (void) loadCountry
 {
@@ -95,7 +79,7 @@
     type = @"HASREG";
     NSString *json;
     NSString *code = self.countryCode.text;
-    NSString *phone = self.phone_number.text;
+    NSString *phone = self.phoneNum.text;
     
     NSString *temp = @"{\"type\":\"HASREG\",\"object\":\"{\\\"countryCode\\\":\\\"";
     NSString *temp1 = @"\\\",\\\"phoneNum\\\":\\\"";
@@ -111,7 +95,7 @@
     type = @"SMSREQUEST";
     NSString *json;
     NSString *code = self.countryCode.text;
-    NSString *phone = self.phone_number.text;
+    NSString *phone = self.phoneNum.text;
     BOOL isPerfix = [phone hasPrefix:@"0"];
     if (isPerfix) {
         phone = [phone substringFromIndex:1];
@@ -139,94 +123,57 @@
         
         countryData =[countryData stringByAppendingString:str];
         BOOL isSuffix = [str hasSuffix:@"}\r\n"];
-      //  NSLog(@"%hhd", isSuffix);
+        //  NSLog(@"%hhd", isSuffix);
         if (isSuffix) {
             
             NSData *data1 = [countryData dataUsingEncoding:NSUTF8StringEncoding];
             NSMutableDictionary *dic = [NSJSONSerialization JSONObjectWithData:data1
-                                                                options:NSJSONReadingAllowFragments
-                                                                  error:&error];
-        //    NSLog(@"%ld %@ %@", tag, dic, error);
+                                                                       options:NSJSONReadingAllowFragments
+                                                                         error:&error];
+            //    NSLog(@"%ld %@ %@", tag, dic, error);
             
             NSString *str = [dic objectForKey:@"object"];
-         //   NSLog(@"%@", str);
+            //   NSLog(@"%@", str);
             NSData *data2 = [str dataUsingEncoding:NSUTF8StringEncoding];
             //NSLog(@"%@", str);
             NSMutableArray *country = [NSJSONSerialization JSONObjectWithData:data2
                                                                       options:NSJSONReadingAllowFragments
                                                                         error:nil];
-        //    NSLog(@"%@", country);
+            //    NSLog(@"%@", country);
             
             //NSMutableArray *countryArray = [dataManager country];
             
             for(id obj in country)
             {
                 NSMutableDictionary *cDic = obj;
-            //    NSLog(@"%@", [cDic objectForKey:COUNTRYNAME]);
-             //   NSLog(@"%@", [cDic objectForKey:COUNTRYCODE]);
+                //    NSLog(@"%@", [cDic objectForKey:COUNTRYNAME]);
+                //   NSLog(@"%@", [cDic objectForKey:COUNTRYCODE]);
                 [pickerArray addObject: [cDic objectForKey:COUNTRYNAME]];
                 [codeArray addObject: [cDic objectForKey:COUNTRYCODE]];
             }
             //
-        //    NSLog(@"pickerArray:%@", pickerArray);
-        //    NSLog(@"codeArray:%@", codeArray);
+            //    NSLog(@"pickerArray:%@", pickerArray);
+            //    NSLog(@"codeArray:%@", codeArray);
             
             
             
-            UnderLineLabel *label = [[UnderLineLabel alloc] initWithFrame:CGRectMake(agree_to.frame.origin.x, agree_to.frame.origin.y, 141, 18)];
+            countryPicker.delegate = self;
             
-            //自定义下划线label
-            [label setBackgroundColor:[UIColor clearColor]];
-            // [label setBackgroundColor:[UIColor yellowColor]];
-            [label setTextColor:[UIColor orangeColor]];
-            label.highlightedColor = [UIColor orangeColor];
-            label.shouldUnderline = YES;
-            NSString *str1 = NSLocalizedString(@"terms", nil);
+            countryPicker.dataSource = self;
             
-            
-            [label setText:str1 andCenter:CGPointMake(126 + 75, agree_to.frame.origin.y + 9)];
-            [label addTarget:self action:@selector(labelClicked)];
-            
-            [self.view addSubview:label];
-            
-            
-            //自定义checkbox
-            termsCheckBox = [UIButton buttonWithType:UIButtonTypeCustom];
-            
-            
-            CGRect checkboxRect = CGRectMake(34,agree_to.frame.origin.y,18,18);
-            
-            [termsCheckBox setFrame:checkboxRect];
-            
-            
-            
-            [termsCheckBox setImage:[UIImage imageNamed:@"checkbox_unselect.png"] forState:UIControlStateNormal];
-            
-            [termsCheckBox setImage:[UIImage imageNamed:@"checkbox_selected.png"] forState:UIControlStateSelected];
-            
-            
-            
-            [termsCheckBox addTarget:self action:@selector(checkboxClick:) forControlEvents:UIControlEventTouchUpInside];
-            
-            [self.view addSubview:termsCheckBox];
-            
-            countrySelect.delegate = self;
-            
-            countrySelect.dataSource = self;
-            
-            selectView.hidden = YES;
+            pickerView.hidden = YES;
             
         }
         
         
     }
     if([@"HASREG" isEqualToString:type]) {
-            NSMutableDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
-                                                                options:NSJSONReadingAllowFragments
-                                                                  error:&error];
-          //  NSLog(@"%ld %@ %@", tag, dic, error);
-            
-            NSString *str = [dic objectForKey:@"object"];
+        NSMutableDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
+                                                                   options:NSJSONReadingAllowFragments
+                                                                     error:&error];
+        //  NSLog(@"%ld %@ %@", tag, dic, error);
+        
+        NSString *str = [dic objectForKey:@"object"];
         //    NSLog(@"%@", str);
         if([@"true" isEqualToString:str]) {
             [dataManager showDialog:@"error" content:@"register_already"];
@@ -234,19 +181,19 @@
         } else {
             NSString *register_confirm =NSLocalizedString(@"register_confirm", nil);
             NSString *code = self.countryCode.text;
-            NSString *phone = self.phone_number.text;
+            NSString *phone = self.phoneNum.text;
             NSString *blank = @"  ";
             NSString *content = [register_confirm stringByAppendingFormat:@"%@%@%@",code, blank, phone];
             SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:NSLocalizedString(@"register_confirm_title", nil) andMessage:content];
             [alertView addButtonWithTitle:NSLocalizedString(@"cancel", nil)
                                      type:SIAlertViewButtonTypeCancel
                                   handler:^(SIAlertView *alertView) {
-                                   //   NSLog(@"Cancel Clicked");
+                                      //   NSLog(@"Cancel Clicked");
                                   }];
             [alertView addButtonWithTitle:NSLocalizedString(@"ok", nil)
                                      type:SIAlertViewButtonTypeDefault
                                   handler:^(SIAlertView *alertView) {
-                                 //     NSLog(@"OK Clicked");
+                                      //     NSLog(@"OK Clicked");
                                       [self register];
                                   }];
             alertView.titleColor = [UIColor blueColor];
@@ -255,16 +202,16 @@
             alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
             
             alertView.willShowHandler = ^(SIAlertView *alertView) {
-          //      NSLog(@"%@, willShowHandler2", alertView);
+                //      NSLog(@"%@, willShowHandler2", alertView);
             };
             alertView.didShowHandler = ^(SIAlertView *alertView) {
-         //       NSLog(@"%@, didShowHandler2", alertView);
+                //       NSLog(@"%@, didShowHandler2", alertView);
             };
             alertView.willDismissHandler = ^(SIAlertView *alertView) {
-         //       NSLog(@"%@, willDismissHandler2", alertView);
+                //       NSLog(@"%@, willDismissHandler2", alertView);
             };
             alertView.didDismissHandler = ^(SIAlertView *alertView) {
-        //        NSLog(@"%@, didDismissHandler2", alertView);
+                //        NSLog(@"%@, didDismissHandler2", alertView);
             };
             
             [alertView show];
@@ -273,12 +220,12 @@
     }
     if([@"SMSREQUEST" isEqualToString:type]) {
         NSMutableDictionary *dic = [NSJSONSerialization JSONObjectWithData:data
-                                                            options:NSJSONReadingAllowFragments
-                                                              error:&error];
-   //     NSLog(@"%ld %@ %@", tag, dic, error);
+                                                                   options:NSJSONReadingAllowFragments
+                                                                     error:&error];
+        //     NSLog(@"%ld %@ %@", tag, dic, error);
         
         NSString *str = [dic objectForKey:@"object"];
-  //      NSLog(@"%@", str);
+        //      NSLog(@"%@", str);
         NSRange range = [str rangeOfString:@"fails"];//判断字符串是否包含
         if (range.length >0)//包含
         {
@@ -293,18 +240,18 @@
             return;
             
         }
-       //TODO: 需要恢复
-//        if ([@"" isEqualToString:str])//包含
-//        {
-//            [dataManager showDialog:@"error" content:@"send_error"];
-//            return;
-//            
-//        }
-        [self performSegueWithIdentifier:@"verification" sender:self];
+        //TODO: 需要恢复
+        //        if ([@"" isEqualToString:str])//包含
+        //        {
+        //            [dataManager showDialog:@"error" content:@"send_error"];
+        //            return;
+        //
+        //        }
+        [self performSegueWithIdentifier:@"verificationReset" sender:self];
         
     }
-
-
+    
+    
     [socket readDataToData:[AsyncSocket CRLFData] withTimeout:-1 tag:tag];
 }
 
@@ -324,24 +271,9 @@
 
 - (IBAction)selectStart:(id)sender {
     NSLog(@"start select");
-    selectView.hidden = NO;
+    pickerView.hidden = NO;
 }
 
-
--(void)checkboxClick:(UIButton *)btn
-
-{
-    
-    btn.selected = !btn.selected;
-    
-}
-
--(bool)getSelect:(UIButton *)btn
-
-{
-    return btn.selected;
-    
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -350,38 +282,37 @@
 }
 
 
-- (void)labelClicked
-{
-    NSLog(@"%@", NSStringFromSelector(_cmd));
-    [self performSegueWithIdentifier:@"termsView" sender:self];
-    NSLog(@"end");
-    
-}
-
-- (IBAction)finishButton:(id)sender {
+- (IBAction)finishSelect:(id)sender {
     NSLog(@"finish select finish");
-    NSInteger row = [countrySelect selectedRowInComponent:0];
+    NSInteger row = [countryPicker selectedRowInComponent:0];
     
-    [self.countyName setTitle:[pickerArray objectAtIndex:row] forState:UIControlStateNormal];
+    [self.countryName setTitle:[pickerArray objectAtIndex:row] forState:UIControlStateNormal];
     
     self.countryCode.text = [NSString stringWithFormat:@"%@",[codeArray objectAtIndex:row]];
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if([segue.identifier isEqualToString:@"verification"]) //"goView2"是SEGUE连线的标识
+    if([segue.identifier isEqualToString:@"verificationReset"]) //"goView2"是SEGUE连线的标识
     {
+
+
         id theSegue = segue.destinationViewController;
-        [theSegue setValue:self.phone_number.text forKey:@"phone_number"];
+        [theSegue setValue:self.phoneNum.text forKey:@"phone_number"];
         [theSegue setValue:self.countryCode.text forKey:@"country_code"];
         [theSegue setValue:veriCode forKey:@"verifiCode"];
+        [theSegue setValue:@"true" forKey:@"isReset"];
     }
 }
 
+
+- (IBAction)back:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 - (IBAction)next:(id)sender {
     NSLog(@"next register");
     NSString *code = self.countryCode.text;
-    NSString *phone = self.phone_number.text;
+    NSString *phone = self.phoneNum.text;
     
     if( nil == code || 0 == code.length) {
         [dataManager showDialog:@"error" content:@"select_country"];
@@ -391,17 +322,9 @@
         [dataManager showDialog:@"error" content:@"enter_phone"];
         return;
     }
-    NSLog(@"%hhd", termsCheckBox.selected);
-    if(termsCheckBox.selected == 0) {
-        [dataManager showDialog:@"error" content:@"agree_to_register"];
-        return;
-    }
     [self checkHasReg];
-    
-   
+
 }
-- (IBAction)back:(id)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+
 
 @end

@@ -20,6 +20,8 @@
     AsyncSocket *socket;
     NSString *veriCode;
     DataManager *dataManager;
+    
+    AppDelegate *myDelegate;
 
     
     
