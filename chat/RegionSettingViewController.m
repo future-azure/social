@@ -33,15 +33,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    title.text = NSLocalizedString(@"region", nil);
+    myDelegate = [[UIApplication sharedApplication] delegate];
+
+    title.text = [myDelegate.bundle localizedStringForKey:@"region" value:nil table:@"language"];
     
     
     userData = @"";
     
     mode = 1;
     
-    myDelegate = [[UIApplication sharedApplication] delegate];
-    if (myDelegate.dataManager == nil) {
+       if (myDelegate.dataManager == nil) {
         myDelegate.dataManager = [DataManager sharedDataManager];
     }
     
@@ -129,7 +130,7 @@
 }
 
 - (void)updateRegion:(NSNumber*)regionId {
-    // [self showHubLoading:NSLocalizedString(@"logging_out", nil)];
+    // [self showHubLoading:[myDelegate.bundle localizedStringForKey:@"logging_out" value:nil table:@"language"]];
     
     type = @"UPDATEUSER";
     NSString *json;
@@ -137,7 +138,7 @@
     json = @"{\"type\":\"UPDATEUSER\",\"object\":\"";
     [user setObject:regionId forKey:@"regionId"];
     [user setObject:@"CHANGEREGION" forKey:@"updateType"];
-    NSString *mapString = [dataManager toJSONData:user];
+    NSString *mapString = [myDelegate toJSONData:user];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\"" withString:@"\\\""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\r" withString:@""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\n" withString:@""];
@@ -277,7 +278,7 @@
  */
 
 - (void)getRegionList {
-    [self showHubLoading:NSLocalizedString(@"loading_data", nil)];
+    [self showHubLoading:[myDelegate.bundle localizedStringForKey:@"loading_data" value:nil table:@"language"]];
     
     type = @"REGIONLIST";
     NSString *json;
@@ -292,7 +293,7 @@
 }
 
 - (void)getCountry {
-    // [self showHubLoading:NSLocalizedString(@"loading_data", nil)];
+    // [self showHubLoading:[myDelegate.bundle localizedStringForKey:@"loading_data" value:nil table:@"language"]];
     
     type = @"COUNTRY";
     NSString *json;
@@ -469,7 +470,7 @@
             } else {
                 [user setObject:[NSNumber numberWithInt:old_region_id] forKey:@"regionId"];
                 [user removeObjectForKey:@"updateType"];
-                [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"update_failure", nil)];
+                [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"error" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"update_failure" value:nil table:@"language"]];
             }
             
         }

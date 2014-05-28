@@ -53,9 +53,9 @@
     registerUser = @"";
     userData = @"";
     
-    title.text = NSLocalizedString(@"verification", nil);
+    title.text = [myDelegate.bundle localizedStringForKey:@"verification" value:nil table:@"language"];
     NSLog(@"%@", @"verfication");
-    NSString *reg = NSLocalizedString(@"verification_send", nil);
+    NSString *reg = [myDelegate.bundle localizedStringForKey:@"verification_send" value:nil table:@"language"];
     NSString *blank = @"  ";
     
     phoneNum = phone_number;
@@ -75,14 +75,14 @@
 
 - (void) register
 {
-    [self showHubLoading:NSLocalizedString(@"signing_up", nil)];
+    [self showHubLoading:[myDelegate.bundle localizedStringForKey:@"signing_up" value:nil table:@"language"]];
     type = @"REGISTER";
     NSString *json;
     NSString *temp = @"{\"type\":\"REGISTER\",\"object\":\"{\\\"countryCode\\\":\\\"";
     NSString *temp1 = @"\\\",\\\"phoneNum\\\":\\\"";
     NSString *temp2 = @"\\\",\\\"password\\\":\\\"";
     NSString *temp3 = @"\\\"}\",\"toUser\":0,\"fromUser\":0}\r\n";
-    NSString *password =[dataManager md5:verifiCode];
+    NSString *password =[myDelegate md5:verifiCode];
 
     json = [temp stringByAppendingFormat:@"%@%@%@%@%@%@",country_code, temp1, phone_number, temp2,password, temp3];
     NSLog(@"%@", json);
@@ -92,7 +92,7 @@
 }
 
 - (void)updateUser {
-     [self showHubLoading:NSLocalizedString(@"handleing", nil)];
+     [self showHubLoading:[myDelegate.bundle localizedStringForKey:@"handleing" value:nil table:@"language"]];
     
     type = @"UPDATEUSER";
     NSMutableDictionary *u = [myDelegate.user mutableCopy];
@@ -102,7 +102,7 @@
     NSString *json;
     NSString *temp = @"\",\"toUser\":0,\"fromUser\":0}\r\n";
     json = @"{\"type\":\"UPDATEUSER\",\"object\":\"";
-    NSString *mapString = [dataManager toJSONData:u];
+    NSString *mapString = [myDelegate toJSONData:u];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\"" withString:@"\\\""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\r" withString:@""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\n" withString:@""];
@@ -131,7 +131,7 @@
     NSString *code = self.codeInput.text;
     
     if( nil == code || 0 == code.length ||![verifiCode isEqualToString:code] ) {
-        [dataManager showDialog:@"error" content:@"verifycode_error"];
+        [myDelegate showDialog:@"error" content:@"verifycode_error"];
         return;
     }
     if (isReset == nil) {
@@ -166,7 +166,7 @@
 }
 
 -(void) loginRequest:(NSString *)obj {
-    [self showHubLoading:NSLocalizedString(@"logging_in", nil)];
+    [self showHubLoading:[myDelegate.bundle localizedStringForKey:@"logging_in" value:nil table:@"language"]];
     
     type = @"LOGIN";
     NSString *json;
@@ -216,7 +216,7 @@
                 NSLog(@"log in..");
                 NSNumber *intString=[NSNumber numberWithInt:userId];
                 NSArray  *keys = [NSArray arrayWithObjects:@"languageType", @"email", @"phoneNum", @"id", @"password",nil];
-                NSArray  *objects = [NSArray arrayWithObjects:@"en", userId, userId, intString, [dataManager md5:country_code],nil];
+                NSArray  *objects = [NSArray arrayWithObjects:@"en", userId, userId, intString, [myDelegate md5:country_code],nil];
                 
                 
                 NSDictionary *dictionary = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
@@ -225,7 +225,7 @@
                 [map setObject:[NSNumber numberWithInt: 0] forKey:@"accountType"];
                 [map setObject:[[AddressBook initAddressBook] readAdressBook] forKey:@"phoneList"];
                 
-                NSString *mapString = [dataManager toJSONData:map];
+                NSString *mapString = [myDelegate toJSONData:map];
                 mapString = [mapString stringByReplacingOccurrencesOfString :@"\"" withString:@"\\\""];
                 mapString = [mapString stringByReplacingOccurrencesOfString :@"\r" withString:@""];
                 mapString = [mapString stringByReplacingOccurrencesOfString :@"\n" withString:@""];
@@ -233,7 +233,7 @@
                 [self loginRequest:mapString];
 
             } else {
-                [dataManager showDialog:@"error" content:@"register_error"];
+                [myDelegate showDialog:@"error" content:@"register_error"];
                 return;
 
             }
@@ -426,11 +426,11 @@
                     
                     
                 } else {
-                    [dataManager showDialog:NSLocalizedString(@"login_app", nil) content:NSLocalizedString(@"id_password_error", nil)];
+                    [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"login_app" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"id_password_error" value:nil table:@"language"]];
                     [self closeHubLoading];
                 }
             } else {
-                [dataManager showDialog:NSLocalizedString(@"login_app", nil) content:NSLocalizedString(@"id_password_error", nil)];
+                [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"login_app" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"id_password_error" value:nil table:@"language"]];
                 [self closeHubLoading];
             }
         }
@@ -462,7 +462,7 @@
                 
                 
             } else {
-                [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"update_failure", nil)];
+                [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"error" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"update_failure" value:nil table:@"language"]];
                 [self performSegueWithIdentifier:@"AccoutSetting" sender:self];
 
                 

@@ -34,6 +34,8 @@
 		B9CB01E31900157F001D4100 /* ThingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01E21900157F001D4100 /* ThingsTableViewController.m */; };
 		B9CB01E619001639001D4100 /* ThingsCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01E519001639001D4100 /* ThingsCollectionViewController.m */; };
 		B9CB01E91900F7C6001D4100 /* ThingsPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B9CB01E81900F7C6001D4100 /* ThingsPageViewController.m */; };
+		FE0150AE1935DE1500E127CD /* UserCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE0150AD1935DE1500E127CD /* UserCell.m */; };
+		FE0150B11935E17C00E127CD /* ContactsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE0150B01935E17C00E127CD /* ContactsViewController.m */; };
 		FE136F7E190E07DF00D0D82B /* terms.html in Resources */ = {isa = PBXBuildFile; fileRef = FE136F7D190E07DF00D0D82B /* terms.html */; };
 		FE136F8D190E1F7900D0D82B /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F82190E1F7900D0D82B /* Localizable.strings */; };
 		FE136F8E190E1F7900D0D82B /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE136F85190E1F7900D0D82B /* InfoPlist.strings */; };
@@ -54,6 +56,15 @@
 		FE235111193031C700DA45A9 /* transparencyPattern.png in Resources */ = {isa = PBXBuildFile; fileRef = FE235110193031C700DA45A9 /* transparencyPattern.png */; };
 		FE235113193031DD00DA45A9 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FE235112193031DD00DA45A9 /* LICENSE */; };
 		FE2351161930324600DA45A9 /* CaptureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2351141930324600DA45A9 /* CaptureViewController.m */; };
+		FE2E97871932E3CE005D649F /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2E97861932E3CE005D649F /* FeedbackViewController.m */; };
+		FE2E978A1932E758005D649F /* NotificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2E97891932E758005D649F /* NotificationViewController.m */; };
+		FE2E978D1932E763005D649F /* PrivacyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2E978C1932E763005D649F /* PrivacyViewController.m */; };
+		FE2E97901932E76D005D649F /* GeneralViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE2E978F1932E76D005D649F /* GeneralViewController.m */; };
+		FE2E979219331FB1005D649F /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE2E979119331FB1005D649F /* AudioToolbox.framework */; };
+		FE2E9795193337F3005D649F /* sound.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE2E9794193337F3005D649F /* sound.plist */; };
+		FE32AD5E1934AD1500366579 /* SoundSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE32AD5D1934AD1500366579 /* SoundSettingViewController.m */; };
+		FE32AD6D1934BD1500366579 /* TimeSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE32AD6C1934BD1500366579 /* TimeSettingViewController.m */; };
+		FE32AD701934C97700366579 /* OfferFeatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE32AD6F1934C97700366579 /* OfferFeatureViewController.m */; };
 		FE510EFF1924B6DA0055B4E6 /* UserDB.m in Sources */ = {isa = PBXBuildFile; fileRef = FE510EFE1924B6DA0055B4E6 /* UserDB.m */; };
 		FE510F021924B6EF0055B4E6 /* LoginUserDB.m in Sources */ = {isa = PBXBuildFile; fileRef = FE510F011924B6EF0055B4E6 /* LoginUserDB.m */; };
 		FE510F051924B7E00055B4E6 /* SettingDB.m in Sources */ = {isa = PBXBuildFile; fileRef = FE510F041924B7E00055B4E6 /* SettingDB.m */; };
@@ -87,12 +98,15 @@
 		FE741B70192F4130007DEB28 /* NameSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE741B6F192F4130007DEB28 /* NameSettingViewController.m */; };
 		FE741B73192F413D007DEB28 /* RegionSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE741B72192F413D007DEB28 /* RegionSettingViewController.m */; };
 		FE741B76192F414B007DEB28 /* StatusSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE741B75192F414B007DEB28 /* StatusSettingViewController.m */; };
-		FE741B79192F451E007DEB28 /* HMCustomSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = FE741B78192F451E007DEB28 /* HMCustomSwitch.m */; };
 		FE741B7C192F6990007DEB28 /* GenderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FE741B7B192F6990007DEB28 /* GenderTableViewCell.m */; };
 		FE741B7F192F6ACC007DEB28 /* GenderSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE741B7E192F6ACC007DEB28 /* GenderSettingViewController.m */; };
 		FE741B82192F6DC2007DEB28 /* AGSimpleImageEditorView.m in Sources */ = {isa = PBXBuildFile; fileRef = FE741B81192F6DC2007DEB28 /* AGSimpleImageEditorView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		FE741B84192F6DE2007DEB28 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE741B83192F6DE2007DEB28 /* QuartzCore.framework */; };
 		FE741B86192F6DE9007DEB28 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FE741B85192F6DE9007DEB28 /* AssetsLibrary.framework */; };
+		FE8A8C6B1935A9DD000FAF3A /* ChatBgSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE8A8C6A1935A9DD000FAF3A /* ChatBgSettingViewController.m */; };
+		FE8A8C6E1935A9EA000FAF3A /* LanguageSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE8A8C6D1935A9EA000FAF3A /* LanguageSettingViewController.m */; };
+		FE8A8C711935A9F3000FAF3A /* FontSizeSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FE8A8C701935A9F3000FAF3A /* FontSizeSettingViewController.m */; };
+		FE8A8C741935C316000FAF3A /* language.strings in Resources */ = {isa = PBXBuildFile; fileRef = FE8A8C761935C316000FAF3A /* language.strings */; };
 		FE9BEC76191B9A350050522E /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = FE9BEC75191B9A350050522E /* libsqlite3.dylib */; };
 		FEC2BC411923758B00803C4D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC2BC401923758B00803C4D /* MBProgressHUD.m */; };
 		FEC2BC441923893400803C4D /* AddressBook.m in Sources */ = {isa = PBXBuildFile; fileRef = FEC2BC431923893400803C4D /* AddressBook.m */; };
@@ -158,6 +172,10 @@
 		B9CB01E519001639001D4100 /* ThingsCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThingsCollectionViewController.m; sourceTree = "<group>"; };
 		B9CB01E71900F7C6001D4100 /* ThingsPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThingsPageViewController.h; sourceTree = "<group>"; };
 		B9CB01E81900F7C6001D4100 /* ThingsPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThingsPageViewController.m; sourceTree = "<group>"; };
+		FE0150AC1935DE1500E127CD /* UserCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCell.h; sourceTree = "<group>"; };
+		FE0150AD1935DE1500E127CD /* UserCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCell.m; sourceTree = "<group>"; };
+		FE0150AF1935E17C00E127CD /* ContactsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactsViewController.h; sourceTree = "<group>"; };
+		FE0150B01935E17C00E127CD /* ContactsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactsViewController.m; sourceTree = "<group>"; };
 		FE01E1F21904F3810068A479 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		FE136F7D190E07DF00D0D82B /* terms.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = terms.html; sourceTree = "<group>"; };
 		FE136F83190E1F7900D0D82B /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
@@ -191,6 +209,22 @@
 		FE235112193031DD00DA45A9 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = LICENSE; path = "../../../../../Downloads/下载/AGSimpleImageEditorView-master/AGSimpleImageEditorView Demo/AGSimpleImageEditorView/LICENSE"; sourceTree = "<group>"; };
 		FE2351141930324600DA45A9 /* CaptureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CaptureViewController.m; path = "../../../../../Downloads/下载/ImagePickerDemo/ImagePickerDemo/CaptureViewController.m"; sourceTree = "<group>"; };
 		FE2351151930324600DA45A9 /* CaptureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CaptureViewController.h; path = "../../../../../Downloads/下载/ImagePickerDemo/ImagePickerDemo/CaptureViewController.h"; sourceTree = "<group>"; };
+		FE2E97851932E3CE005D649F /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
+		FE2E97861932E3CE005D649F /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
+		FE2E97881932E758005D649F /* NotificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationViewController.h; sourceTree = "<group>"; };
+		FE2E97891932E758005D649F /* NotificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationViewController.m; sourceTree = "<group>"; };
+		FE2E978B1932E763005D649F /* PrivacyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivacyViewController.h; sourceTree = "<group>"; };
+		FE2E978C1932E763005D649F /* PrivacyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivacyViewController.m; sourceTree = "<group>"; };
+		FE2E978E1932E76D005D649F /* GeneralViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneralViewController.h; sourceTree = "<group>"; };
+		FE2E978F1932E76D005D649F /* GeneralViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneralViewController.m; sourceTree = "<group>"; };
+		FE2E979119331FB1005D649F /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		FE2E9794193337F3005D649F /* sound.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = sound.plist; path = "../../../../../Downloads/下载/ Sections/sound.plist"; sourceTree = "<group>"; };
+		FE32AD5C1934AD1500366579 /* SoundSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundSettingViewController.h; sourceTree = "<group>"; };
+		FE32AD5D1934AD1500366579 /* SoundSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundSettingViewController.m; sourceTree = "<group>"; };
+		FE32AD6B1934BD1500366579 /* TimeSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimeSettingViewController.h; sourceTree = "<group>"; };
+		FE32AD6C1934BD1500366579 /* TimeSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeSettingViewController.m; sourceTree = "<group>"; };
+		FE32AD6E1934C97700366579 /* OfferFeatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferFeatureViewController.h; sourceTree = "<group>"; };
+		FE32AD6F1934C97700366579 /* OfferFeatureViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferFeatureViewController.m; sourceTree = "<group>"; };
 		FE510EFD1924B6DA0055B4E6 /* UserDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDB.h; sourceTree = "<group>"; };
 		FE510EFE1924B6DA0055B4E6 /* UserDB.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserDB.m; sourceTree = "<group>"; };
 		FE510F001924B6EF0055B4E6 /* LoginUserDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginUserDB.h; sourceTree = "<group>"; };
@@ -255,8 +289,6 @@
 		FE741B72192F413D007DEB28 /* RegionSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegionSettingViewController.m; sourceTree = "<group>"; };
 		FE741B74192F414B007DEB28 /* StatusSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusSettingViewController.h; sourceTree = "<group>"; };
 		FE741B75192F414B007DEB28 /* StatusSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusSettingViewController.m; sourceTree = "<group>"; };
-		FE741B77192F451E007DEB28 /* HMCustomSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMCustomSwitch.h; sourceTree = "<group>"; };
-		FE741B78192F451E007DEB28 /* HMCustomSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMCustomSwitch.m; sourceTree = "<group>"; };
 		FE741B7A192F6990007DEB28 /* GenderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenderTableViewCell.h; sourceTree = "<group>"; };
 		FE741B7B192F6990007DEB28 /* GenderTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenderTableViewCell.m; sourceTree = "<group>"; };
 		FE741B7D192F6ACC007DEB28 /* GenderSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenderSettingViewController.h; sourceTree = "<group>"; };
@@ -265,6 +297,14 @@
 		FE741B81192F6DC2007DEB28 /* AGSimpleImageEditorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AGSimpleImageEditorView.m; path = "../../../../../Downloads/下载/AGSimpleImageEditorView-master/AGSimpleImageEditorView Demo/AGSimpleImageEditorView/AGSimpleImageEditorView.m"; sourceTree = "<group>"; };
 		FE741B83192F6DE2007DEB28 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		FE741B85192F6DE9007DEB28 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		FE8A8C691935A9DD000FAF3A /* ChatBgSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChatBgSettingViewController.h; sourceTree = "<group>"; };
+		FE8A8C6A1935A9DD000FAF3A /* ChatBgSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatBgSettingViewController.m; sourceTree = "<group>"; };
+		FE8A8C6C1935A9EA000FAF3A /* LanguageSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LanguageSettingViewController.h; sourceTree = "<group>"; };
+		FE8A8C6D1935A9EA000FAF3A /* LanguageSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LanguageSettingViewController.m; sourceTree = "<group>"; };
+		FE8A8C6F1935A9F3000FAF3A /* FontSizeSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontSizeSettingViewController.h; sourceTree = "<group>"; };
+		FE8A8C701935A9F3000FAF3A /* FontSizeSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontSizeSettingViewController.m; sourceTree = "<group>"; };
+		FE8A8C751935C316000FAF3A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/language.strings; sourceTree = "<group>"; };
+		FE8A8C771935C323000FAF3A /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/language.strings"; sourceTree = "<group>"; };
 		FE9BEC75191B9A350050522E /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		FEC2BC3F1923758B00803C4D /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = "../../../../../Downloads/下载/MBProgressHUD-master/MBProgressHUD.h"; sourceTree = "<group>"; };
 		FEC2BC401923758B00803C4D /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = "../../../../../Downloads/下载/MBProgressHUD-master/MBProgressHUD.m"; sourceTree = "<group>"; };
@@ -287,6 +327,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE2E979219331FB1005D649F /* AudioToolbox.framework in Frameworks */,
 				FE741B86192F6DE9007DEB28 /* AssetsLibrary.framework in Frameworks */,
 				FE741B84192F6DE2007DEB28 /* QuartzCore.framework in Frameworks */,
 				FE166E71192DD8A30094D659 /* AddressBook.framework in Frameworks */,
@@ -335,6 +376,7 @@
 		B958C74618F7D8320043A3AC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FE2E979119331FB1005D649F /* AudioToolbox.framework */,
 				FE741B85192F6DE9007DEB28 /* AssetsLibrary.framework */,
 				FE741B83192F6DE2007DEB28 /* QuartzCore.framework */,
 				FE166E70192DD8A30094D659 /* AddressBook.framework */,
@@ -353,83 +395,106 @@
 		B958C74D18F7D8320043A3AC /* chat */ = {
 			isa = PBXGroup;
 			children = (
-				FE2351141930324600DA45A9 /* CaptureViewController.m */,
-				FE1CBD411931B3C30096FAA3 /* EmailSettingViewController.h */,
-				FE1CBD421931B3C30096FAA3 /* EmailSettingViewController.m */,
-				FE2351151930324600DA45A9 /* CaptureViewController.h */,
+				FE1CBD4E1932146B0096FAA3 /* AboutInfoViewController.h */,
+				FE1CBD4F1932146B0096FAA3 /* AboutInfoViewController.m */,
+				FE1CBD3B1931ADBB0096FAA3 /* AboutViewController.h */,
+				FE1CBD3C1931ADBB0096FAA3 /* AboutViewController.m */,
+				FE166E76192E34990094D659 /* AccountSelectingViewController.h */,
+				FE166E77192E34990094D659 /* AccountSelectingViewController.m */,
+				FE1CBD321931AD4D0096FAA3 /* AccountSettingViewController.h */,
+				FE1CBD331931AD4D0096FAA3 /* AccountSettingViewController.m */,
 				FE23510E1930315200DA45A9 /* AGSimpleImageEditorView */,
-				FE65A50A1929F5F40097573B /* SDWebImage */,
-				FE510EF91924B63A0055B4E6 /* util */,
-				FE510EF81924B60B0055B4E6 /* Widget */,
-				FE510EF71924B5FA0055B4E6 /* DBUtil */,
-				FE136F7F190E1F7900D0D82B /* en.lproj */,
-				FE136F84190E1F7900D0D82B /* zh-Hans.lproj */,
-				FE136F89190E1F7900D0D82B /* zh-Hant.lproj */,
-				B95A6E9C1903F75900954F9D /* FINDALLMOMENT_result.txt */,
-				B95A6E9E19053BFF00954F9D /* FINDTHING_result.txt */,
 				B958C75618F7D8320043A3AC /* AppDelegate.h */,
 				B958C75718F7D8320043A3AC /* AppDelegate.m */,
-				B958C78818F80EC10043A3AC /* Main_iPhone.storyboard */,
-				FEE2342919050CDC0046F525 /* TermsViewController.h */,
-				FEE2342A19050CDC0046F525 /* TermsViewController.m */,
-				B958C78518F7ED720043A3AC /* LoginViewController.h */,
-				B958C78618F7ED720043A3AC /* LoginViewController.m */,
+				FE2351151930324600DA45A9 /* CaptureViewController.h */,
+				FE2351141930324600DA45A9 /* CaptureViewController.m */,
+				FE8A8C691935A9DD000FAF3A /* ChatBgSettingViewController.h */,
+				FE8A8C6A1935A9DD000FAF3A /* ChatBgSettingViewController.m */,
+				FE0150AF1935E17C00E127CD /* ContactsViewController.h */,
+				FE0150B01935E17C00E127CD /* ContactsViewController.m */,
+				B958C78D18FBAF350043A3AC /* DataManager.h */,
+				B958C78E18FBAF350043A3AC /* DataManager.m */,
+				FE510EF71924B5FA0055B4E6 /* DBUtil */,
+				FE1CBD411931B3C30096FAA3 /* EmailSettingViewController.h */,
+				FE1CBD421931B3C30096FAA3 /* EmailSettingViewController.m */,
+				FE136F7F190E1F7900D0D82B /* en.lproj */,
+				FE2E97851932E3CE005D649F /* FeedbackViewController.h */,
+				FE2E97861932E3CE005D649F /* FeedbackViewController.m */,
+				B95A6E9C1903F75900954F9D /* FINDALLMOMENT_result.txt */,
+				B95A6E9E19053BFF00954F9D /* FINDTHING_result.txt */,
+				FE8A8C6F1935A9F3000FAF3A /* FontSizeSettingViewController.h */,
+				FE8A8C701935A9F3000FAF3A /* FontSizeSettingViewController.m */,
+				B92114BF18FEC48C0057EC2E /* FriendSelectViewController.h */,
+				B92114C018FEC48C0057EC2E /* FriendSelectViewController.m */,
+				FE741B7D192F6ACC007DEB28 /* GenderSettingViewController.h */,
+				FE741B7E192F6ACC007DEB28 /* GenderSettingViewController.m */,
+				FE2E978E1932E76D005D649F /* GeneralViewController.h */,
+				FE2E978F1932E76D005D649F /* GeneralViewController.m */,
 				B958C79518FBE7A20043A3AC /* HomeViewController.h */,
 				B958C79618FBE7A20043A3AC /* HomeViewController.m */,
-				FEE23423190503B60046F525 /* RegisterViewController.h */,
-				FEE23424190503B60046F525 /* RegisterViewController.m */,
-				B958C79018FBB7140043A3AC /* MomentsViewController.h */,
-				B958C79118FBB7140043A3AC /* MomentsViewController.m */,
+				B958C79318FBDB790043A3AC /* Images.xcassets */,
+				FE8A8C6C1935A9EA000FAF3A /* LanguageSettingViewController.h */,
+				FE8A8C6D1935A9EA000FAF3A /* LanguageSettingViewController.m */,
+				B958C78518F7ED720043A3AC /* LoginViewController.h */,
+				B958C78618F7ED720043A3AC /* LoginViewController.m */,
+				B958C78818F80EC10043A3AC /* Main_iPhone.storyboard */,
 				B9CB01DE18FFC942001D4100 /* MomentsAddViewController.h */,
 				B9CB01DF18FFC942001D4100 /* MomentsAddViewController.m */,
-				B958C78A18F949F90043A3AC /* ThingsViewController.h */,
+				B958C79018FBB7140043A3AC /* MomentsViewController.h */,
+				B958C79118FBB7140043A3AC /* MomentsViewController.m */,
+				FE741B6E192F4130007DEB28 /* NameSettingViewController.h */,
+				FE741B6F192F4130007DEB28 /* NameSettingViewController.m */,
+				FE2E97881932E758005D649F /* NotificationViewController.h */,
+				FE2E97891932E758005D649F /* NotificationViewController.m */,
+				FE32AD6E1934C97700366579 /* OfferFeatureViewController.h */,
+				FE32AD6F1934C97700366579 /* OfferFeatureViewController.m */,
+				FE1CBD3E1931B3B70096FAA3 /* PasswordSettingViewController.h */,
+				FE1CBD3F1931B3B70096FAA3 /* PasswordSettingViewController.m */,
+				FE166E72192DEDF60094D659 /* PhoneLoginViewController.h */,
+				FE166E73192DEDF60094D659 /* PhoneLoginViewController.m */,
+				FE1CBD441931B3E30096FAA3 /* PhoneSettingViewController.h */,
+				FE1CBD451931B3E30096FAA3 /* PhoneSettingViewController.m */,
+				FE2E978B1932E763005D649F /* PrivacyViewController.h */,
+				FE2E978C1932E763005D649F /* PrivacyViewController.m */,
+				FE5C23221920AD4F00DE8007 /* ProfileSettingViewController.h */,
+				FE5C23231920AD4F00DE8007 /* ProfileSettingViewController.m */,
+				FE741B71192F413D007DEB28 /* RegionSettingViewController.h */,
+				FE741B72192F413D007DEB28 /* RegionSettingViewController.m */,
+				FEE23423190503B60046F525 /* RegisterViewController.h */,
+				FEE23424190503B60046F525 /* RegisterViewController.m */,
+				FE2E9793193337D3005D649F /* Resources */,
+				FE65A50A1929F5F40097573B /* SDWebImage */,
+				FE1CBD351931AD590096FAA3 /* SettingSettingViewController.h */,
+				FE1CBD361931AD590096FAA3 /* SettingSettingViewController.m */,
+				FEF4C94A1919192B004A28B0 /* SettingViewController.h */,
+				FEF4C94B1919192B004A28B0 /* SettingViewController.m */,
+				FE32AD5C1934AD1500366579 /* SoundSettingViewController.h */,
+				FE32AD5D1934AD1500366579 /* SoundSettingViewController.m */,
+				FE741B74192F414B007DEB28 /* StatusSettingViewController.h */,
+				FE741B75192F414B007DEB28 /* StatusSettingViewController.m */,
+				B958C74E18F7D8320043A3AC /* Supporting Files */,
 				FE136F7D190E07DF00D0D82B /* terms.html */,
-				B958C78B18F949F90043A3AC /* ThingsViewController.m */,
-				B9CB01E71900F7C6001D4100 /* ThingsPageViewController.h */,
-				B9CB01E81900F7C6001D4100 /* ThingsPageViewController.m */,
-				B9CB01E11900157F001D4100 /* ThingsTableViewController.h */,
-				B9CB01E21900157F001D4100 /* ThingsTableViewController.m */,
+				FEE2342919050CDC0046F525 /* TermsViewController.h */,
+				FEE2342A19050CDC0046F525 /* TermsViewController.m */,
 				B9CB01E419001639001D4100 /* ThingsCollectionViewController.h */,
 				B9CB01E519001639001D4100 /* ThingsCollectionViewController.m */,
 				B95A6EA01906E42800954F9D /* ThingsFilterViewController.h */,
 				B95A6EA11906E42800954F9D /* ThingsFilterViewController.m */,
-				B92114BF18FEC48C0057EC2E /* FriendSelectViewController.h */,
-				B92114C018FEC48C0057EC2E /* FriendSelectViewController.m */,
-				B958C78D18FBAF350043A3AC /* DataManager.h */,
-				B958C78E18FBAF350043A3AC /* DataManager.m */,
-				B958C79318FBDB790043A3AC /* Images.xcassets */,
-				B958C74E18F7D8320043A3AC /* Supporting Files */,
-				FEF4C94A1919192B004A28B0 /* SettingViewController.h */,
-				FEF4C94B1919192B004A28B0 /* SettingViewController.m */,
-				FE5C23221920AD4F00DE8007 /* ProfileSettingViewController.h */,
-				FE5C23231920AD4F00DE8007 /* ProfileSettingViewController.m */,
+				B9CB01E71900F7C6001D4100 /* ThingsPageViewController.h */,
+				B9CB01E81900F7C6001D4100 /* ThingsPageViewController.m */,
+				B9CB01E11900157F001D4100 /* ThingsTableViewController.h */,
+				B9CB01E21900157F001D4100 /* ThingsTableViewController.m */,
+				B958C78A18F949F90043A3AC /* ThingsViewController.h */,
+				B958C78B18F949F90043A3AC /* ThingsViewController.m */,
+				FE32AD6B1934BD1500366579 /* TimeSettingViewController.h */,
+				FE32AD6C1934BD1500366579 /* TimeSettingViewController.m */,
+				FE166E79192E355B0094D659 /* UIViewPassValueDelegate.h */,
+				FE510EF91924B63A0055B4E6 /* util */,
 				FE5C23251920B35600DE8007 /* VerificationViewController.h */,
 				FE5C23261920B35600DE8007 /* VerificationViewController.m */,
-				FE166E72192DEDF60094D659 /* PhoneLoginViewController.h */,
-				FE166E73192DEDF60094D659 /* PhoneLoginViewController.m */,
-				FE166E76192E34990094D659 /* AccountSelectingViewController.h */,
-				FE166E77192E34990094D659 /* AccountSelectingViewController.m */,
-				FE166E79192E355B0094D659 /* UIViewPassValueDelegate.h */,
-				FE741B6E192F4130007DEB28 /* NameSettingViewController.h */,
-				FE741B6F192F4130007DEB28 /* NameSettingViewController.m */,
-				FE741B71192F413D007DEB28 /* RegionSettingViewController.h */,
-				FE741B72192F413D007DEB28 /* RegionSettingViewController.m */,
-				FE741B74192F414B007DEB28 /* StatusSettingViewController.h */,
-				FE741B75192F414B007DEB28 /* StatusSettingViewController.m */,
-				FE741B7D192F6ACC007DEB28 /* GenderSettingViewController.h */,
-				FE741B7E192F6ACC007DEB28 /* GenderSettingViewController.m */,
-				FE1CBD321931AD4D0096FAA3 /* AccountSettingViewController.h */,
-				FE1CBD331931AD4D0096FAA3 /* AccountSettingViewController.m */,
-				FE1CBD351931AD590096FAA3 /* SettingSettingViewController.h */,
-				FE1CBD361931AD590096FAA3 /* SettingSettingViewController.m */,
-				FE1CBD3B1931ADBB0096FAA3 /* AboutViewController.h */,
-				FE1CBD3C1931ADBB0096FAA3 /* AboutViewController.m */,
-				FE1CBD3E1931B3B70096FAA3 /* PasswordSettingViewController.h */,
-				FE1CBD3F1931B3B70096FAA3 /* PasswordSettingViewController.m */,
-				FE1CBD441931B3E30096FAA3 /* PhoneSettingViewController.h */,
-				FE1CBD451931B3E30096FAA3 /* PhoneSettingViewController.m */,
-				FE1CBD4E1932146B0096FAA3 /* AboutInfoViewController.h */,
-				FE1CBD4F1932146B0096FAA3 /* AboutInfoViewController.m */,
+				FE510EF81924B60B0055B4E6 /* Widget */,
+				FE136F84190E1F7900D0D82B /* zh-Hans.lproj */,
+				FE136F89190E1F7900D0D82B /* zh-Hant.lproj */,
 			);
 			path = chat;
 			sourceTree = "<group>";
@@ -440,6 +505,7 @@
 				B958C74F18F7D8320043A3AC /* chat-Info.plist */,
 				B958C75318F7D8320043A3AC /* main.m */,
 				B958C75518F7D8320043A3AC /* chat-Prefix.pch */,
+				FE8A8C761935C316000FAF3A /* language.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -498,6 +564,14 @@
 			name = AGSimpleImageEditorView;
 			sourceTree = "<group>";
 		};
+		FE2E9793193337D3005D649F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FE2E9794193337F3005D649F /* sound.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		FE510EF71924B5FA0055B4E6 /* DBUtil */ = {
 			isa = PBXGroup;
 			children = (
@@ -537,10 +611,10 @@
 				FE5C231C191C9FAF00DE8007 /* SIAlertView.m */,
 				FE741B6B192F156C007DEB28 /* UserTableViewCell.h */,
 				FE741B6C192F156C007DEB28 /* UserTableViewCell.m */,
-				FE741B77192F451E007DEB28 /* HMCustomSwitch.h */,
-				FE741B78192F451E007DEB28 /* HMCustomSwitch.m */,
 				FE741B7A192F6990007DEB28 /* GenderTableViewCell.h */,
 				FE741B7B192F6990007DEB28 /* GenderTableViewCell.m */,
+				FE0150AC1935DE1500E127CD /* UserCell.h */,
+				FE0150AD1935DE1500E127CD /* UserCell.m */,
 			);
 			name = Widget;
 			sourceTree = "<group>";
@@ -678,11 +752,13 @@
 				FE235111193031C700DA45A9 /* transparencyPattern.png in Resources */,
 				FE5C231D191C9FAF00DE8007 /* SIAlertView.bundle in Resources */,
 				FE136F8E190E1F7900D0D82B /* InfoPlist.strings in Resources */,
+				FE2E9795193337F3005D649F /* sound.plist in Resources */,
 				B958C78918F80EC10043A3AC /* Main_iPhone.storyboard in Resources */,
 				FE136F8F190E1F7900D0D82B /* Localizable.strings in Resources */,
 				FE235113193031DD00DA45A9 /* LICENSE in Resources */,
 				FE136F8D190E1F7900D0D82B /* Localizable.strings in Resources */,
 				B95A6E9D1903F75900954F9D /* FINDALLMOMENT_result.txt in Resources */,
+				FE8A8C741935C316000FAF3A /* language.strings in Resources */,
 				FE136F7E190E07DF00D0D82B /* terms.html in Resources */,
 				B95A6E9F19053BFF00954F9D /* FINDTHING_result.txt in Resources */,
 				FE136F90190E1F7900D0D82B /* InfoPlist.strings in Resources */,
@@ -704,13 +780,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE2E97901932E76D005D649F /* GeneralViewController.m in Sources */,
 				FEE2342B19050CDC0046F525 /* TermsViewController.m in Sources */,
 				B9CB01E31900157F001D4100 /* ThingsTableViewController.m in Sources */,
 				FE510F051924B7E00055B4E6 /* SettingDB.m in Sources */,
 				FE741B82192F6DC2007DEB28 /* AGSimpleImageEditorView.m in Sources */,
 				FEC2BC411923758B00803C4D /* MBProgressHUD.m in Sources */,
+				FE2E978D1932E763005D649F /* PrivacyViewController.m in Sources */,
+				FE32AD6D1934BD1500366579 /* TimeSettingViewController.m in Sources */,
 				FE65A52B1929F5F40097573B /* SDWebImageCompat.m in Sources */,
-				FE741B79192F451E007DEB28 /* HMCustomSwitch.m in Sources */,
 				B9CB01E619001639001D4100 /* ThingsCollectionViewController.m in Sources */,
 				FE741B7C192F6990007DEB28 /* GenderTableViewCell.m in Sources */,
 				FE1371EF1929E5B400590704 /* Constants.m in Sources */,
@@ -732,6 +810,7 @@
 				FE166E78192E34990094D659 /* AccountSelectingViewController.m in Sources */,
 				FE5C23271920B35600DE8007 /* VerificationViewController.m in Sources */,
 				FEC2BC441923893400803C4D /* AddressBook.m in Sources */,
+				FE8A8C6B1935A9DD000FAF3A /* ChatBgSettingViewController.m in Sources */,
 				FE741B76192F414B007DEB28 /* StatusSettingViewController.m in Sources */,
 				FE65A5341929F5F40097573B /* UIImage+WebP.m in Sources */,
 				B9CB01E018FFC942001D4100 /* MomentsAddViewController.m in Sources */,
@@ -739,9 +818,12 @@
 				FEF4C94C1919192B004A28B0 /* SettingViewController.m in Sources */,
 				FE65A5281929F5F40097573B /* MKAnnotationView+WebCache.m in Sources */,
 				B9CB01E91900F7C6001D4100 /* ThingsPageViewController.m in Sources */,
+				FE8A8C6E1935A9EA000FAF3A /* LanguageSettingViewController.m in Sources */,
 				FE510F111924B9010055B4E6 /* NewFriendDB.m in Sources */,
 				B958C75818F7D8320043A3AC /* AppDelegate.m in Sources */,
 				FE5C231E191C9FAF00DE8007 /* SIAlertView.m in Sources */,
+				FE2E978A1932E758005D649F /* NotificationViewController.m in Sources */,
+				FE0150B11935E17C00E127CD /* ContactsViewController.m in Sources */,
 				FE1CBD501932146B0096FAA3 /* AboutInfoViewController.m in Sources */,
 				B95A6EA21906E42800954F9D /* ThingsFilterViewController.m in Sources */,
 				B958C75418F7D8320043A3AC /* main.m in Sources */,
@@ -754,12 +836,15 @@
 				FEE234281905064E0046F525 /* UnderLineLabel.m in Sources */,
 				FE5C23241920AD4F00DE8007 /* ProfileSettingViewController.m in Sources */,
 				FE1CBD3D1931ADBB0096FAA3 /* AboutViewController.m in Sources */,
+				FE32AD701934C97700366579 /* OfferFeatureViewController.m in Sources */,
+				FE32AD5E1934AD1500366579 /* SoundSettingViewController.m in Sources */,
 				FE741B6D192F156C007DEB28 /* UserTableViewCell.m in Sources */,
 				FEE23425190503B60046F525 /* RegisterViewController.m in Sources */,
 				B9B4DA04190FA34F0042CEDB /* AsyncSocket.m in Sources */,
 				FE65A52D1929F5F40097573B /* SDWebImageDownloader.m in Sources */,
 				FE510F021924B6EF0055B4E6 /* LoginUserDB.m in Sources */,
 				FE166E74192DEDF60094D659 /* PhoneLoginViewController.m in Sources */,
+				FE8A8C711935A9F3000FAF3A /* FontSizeSettingViewController.m in Sources */,
 				FE65A5321929F5F40097573B /* UIImage+GIF.m in Sources */,
 				FE510F0E1924B8BA0055B4E6 /* RecentMessageDB.m in Sources */,
 				FE65A52A1929F5F40097573B /* SDImageCache.m in Sources */,
@@ -771,6 +856,8 @@
 				FE65A5351929F5F40097573B /* UIImageView+WebCache.m in Sources */,
 				B92114C118FEC48C0057EC2E /* FriendSelectViewController.m in Sources */,
 				B958C78718F7ED720043A3AC /* LoginViewController.m in Sources */,
+				FE0150AE1935DE1500E127CD /* UserCell.m in Sources */,
+				FE2E97871932E3CE005D649F /* FeedbackViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,6 +919,15 @@
 				FE136F8B190E1F7900D0D82B /* zh-Hant */,
 			);
 			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FE8A8C761935C316000FAF3A /* language.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FE8A8C751935C316000FAF3A /* en */,
+				FE8A8C771935C323000FAF3A /* zh-Hans */,
+			);
+			name = language.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

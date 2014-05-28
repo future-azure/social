@@ -37,8 +37,10 @@
 @synthesize anewFriendDB;
 @synthesize recommendFriendDB;
 @synthesize userImage;
+@synthesize anewMsgNumMap;
 
 @synthesize dataManager;
+@synthesize bundle;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSMutableDictionary *)launchOptions
@@ -59,8 +61,24 @@
     anewFriendMap = [[NSMutableDictionary alloc]initWithCapacity:5];
     recommendFriendMap = [[NSMutableDictionary alloc]initWithCapacity:5];
     setting = [[NSMutableDictionary alloc]initWithCapacity:5];
+    anewMsgNumMap = [[NSMutableDictionary alloc]initWithCapacity:5];
+
     
     languageType = @"en";
+    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+    NSNumber *userId = [defaults objectForKey:@"userId"];//根据键值取出name
+    if (userId != nil) {
+        setting = [settingDB getUserSetting:[userId intValue]];
+        languageType = [setting objectForKey:@"language"];
+    }
+    NSString *string;
+    if ([@"en" isEqualToString:languageType]) {
+        string = @"en";
+    } else {
+        string = @"zh-Hans";
+    }
+    NSString *path = [[NSBundle mainBundle] pathForResource:string ofType:@"lproj"];
+    bundle = [NSBundle bundleWithPath:path];
 
     
     return YES;
@@ -93,6 +111,79 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void) showDialog:(NSString *)dialogType content:(NSString*)content {
+    
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:[bundle localizedStringForKey:dialogType value:nil table:@"language"] andMessage:[bundle localizedStringForKey:content value:nil table:@"language"]];
+    [alertView addButtonWithTitle:[bundle localizedStringForKey:@"ok" value:nil table:@"language"]                                 type:SIAlertViewButtonTypeDefault
+                          handler:^(SIAlertView *alertView) {
+                              //    NSLog(@"OK Clicked");
+                              
+                          }];
+    alertView.titleColor = [UIColor blueColor];
+    alertView.cornerRadius = 10;
+    alertView.buttonFont = [UIFont boldSystemFontOfSize:15];
+    alertView.transitionStyle = SIAlertViewTransitionStyleBounce;
+    
+    alertView.willShowHandler = ^(SIAlertView *alertView) {
+        //     NSLog(@"%@, willShowHandler2", alertView);
+    };
+    alertView.didShowHandler = ^(SIAlertView *alertView) {
+        //       NSLog(@"%@, didShowHandler2", alertView);
+    };
+    alertView.willDismissHandler = ^(SIAlertView *alertView) {
+        //      NSLog(@"%@, willDismissHandler2", alertView);
+    };
+    alertView.didDismissHandler = ^(SIAlertView *alertView) {
+        //     NSLog(@"%@, didDismissHandler2", alertView);
+    };
+    
+    [alertView show];
+    
+}
+
+
+
+
+- (NSString *)md5:(NSString *)str
+
+{
+    
+    const char *cStr = [str UTF8String];
+    
+    unsigned char result[16];
+    
+    CC_MD5(cStr, strlen(cStr), result); // This is the md5 call
+    
+    return [NSString stringWithFormat:
+            
+            @"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+            
+            result[0], result[1], result[2], result[3],
+            
+            result[4], result[5], result[6], result[7],
+            
+            result[8], result[9], result[10], result[11],
+            
+            result[12], result[13], result[14], result[15]
+            
+            ];
+    
+}
+
+- (NSString *)toJSONData:(id)theData{
+    
+    NSError *error = nil;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:theData
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    
+    if ([jsonData length] > 0 && error == nil){
+        return [[NSString alloc] initWithData:jsonData
+                                     encoding:NSUTF8StringEncoding];
+    }else{
+        return nil;
+    }
+}
 
 
 @end

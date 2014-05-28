@@ -31,12 +31,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    title.text = NSLocalizedString(@"status", nil);
+    myDelegate = [[UIApplication sharedApplication] delegate];
+    title.text = [myDelegate.bundle localizedStringForKey:@"status" value:nil table:@"language"];
   
     old_status = @"";
     userData = @"";
     
-    myDelegate = [[UIApplication sharedApplication] delegate];
+    
     if (myDelegate.dataManager == nil) {
         myDelegate.dataManager = [DataManager sharedDataManager];
     }
@@ -62,13 +63,13 @@
 }
 
 - (void)updateUser {
-    // [self showHubLoading:NSLocalizedString(@"logging_out", nil)];
+    // [self showHubLoading:[myDelegate.bundle localizedStringForKey:@"logging_out" value:nil table:@"language"]];
     
     type = @"UPDATEUSER";
     NSString *json;
     NSString *temp = @"\",\"toUser\":0,\"fromUser\":0}\r\n";
     json = @"{\"type\":\"UPDATEUSER\",\"object\":\"";
-    NSString *mapString = [dataManager toJSONData:user];
+    NSString *mapString = [myDelegate toJSONData:user];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\"" withString:@"\\\""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\r" withString:@""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\n" withString:@""];
@@ -114,7 +115,7 @@
             } else {
                 [user setObject:old_status forKey:@"status"];
                 [user removeObjectForKey:@"updateType"];
-                [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"update_failure", nil)];
+                [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"error" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"update_failure" value:nil table:@"language"]];
             }
             
         }
@@ -131,7 +132,7 @@
 
 - (IBAction)confirm:(id)sender {
     if ([statusEdit.text isEqualToString:old_status]) {
-        [dataManager showDialog:NSLocalizedString(@"info", nil) content:NSLocalizedString(@"status_no_change", nil)];
+        [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"info" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"status_no_change" value:nil table:@"language"]];
         return;
     }
     [user setObject:statusEdit.text forKey:@"status"];

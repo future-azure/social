@@ -31,11 +31,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    title.text = NSLocalizedString(@"email", nil);
+     myDelegate = [[UIApplication sharedApplication] delegate];
+    title.text = [myDelegate.bundle localizedStringForKey:@"email" value:nil table:@"language"];
     old_email = @"";
     userData = @"";
     
-    myDelegate = [[UIApplication sharedApplication] delegate];
+  //  myDelegate = [[UIApplication sharedApplication] delegate];
     if (myDelegate.dataManager == nil) {
         myDelegate.dataManager = [DataManager sharedDataManager];
     }
@@ -48,7 +49,8 @@
     user = myDelegate.user;
     
     if ([user objectForKey:@"email"] == nil || [@"" isEqualToString:[user objectForKey:@"email"]]) {
-        emailEdit.placeholder = NSLocalizedString(@"setting_email",nil);
+        emailEdit.placeholder = [myDelegate.bundle localizedStringForKey:@"setting_email" value:nil table:@"language"];
+
     } else {
         emailEdit.text = [user objectForKey:@"email"];
         old_email = [user objectForKey:@"email"];
@@ -64,15 +66,15 @@
 
 - (IBAction)confirm:(id)sender {
     if ([@"" isEqualToString:emailEdit.text]) {
-        [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"email_empty", nil)];
+        [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"error" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"email_empty" value:nil table:@"language"]];
         return;
     }
     if ([emailEdit.text isEqualToString:old_email]) {
-        [dataManager showDialog:NSLocalizedString(@"info", nil) content:NSLocalizedString(@"email_no_change", nil)];
+        [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"info" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"email_no_change" value:nil table:@"language"]];
         return;
     }
     if (![self isEmail:emailEdit.text]) {
-        [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"email_error", nil)];
+        [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"error" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"email_error" value:nil table:@"language"]];
         return;
 
     }
@@ -92,13 +94,13 @@
 }
 
 - (void)updateUser {
-    // [self showHubLoading:NSLocalizedString(@"logging_out", nil)];
+    // [self showHubLoading:[myDelegate.bundle localizedStringForKey:@"logging_out" value:nil table:@"language"]];
     
     type = @"UPDATEUSER";
     NSString *json;
     NSString *temp = @"\",\"toUser\":0,\"fromUser\":0}\r\n";
     json = @"{\"type\":\"UPDATEUSER\",\"object\":\"";
-    NSString *mapString = [dataManager toJSONData:user];
+    NSString *mapString = [myDelegate toJSONData:user];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\"" withString:@"\\\""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\r" withString:@""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\n" withString:@""];
@@ -144,7 +146,7 @@
             } else {
                 [user setObject:old_email forKey:@"email"];
                 [user removeObjectForKey:@"updateType"];
-                [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"update_failure", nil)];
+                [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"error" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"update_failure" value:nil table:@"language"]];
             }
             
         }

@@ -37,6 +37,16 @@
     sql = [NSString stringWithFormat:@"CREATE UNIQUE INDEX IF NOT EXISTS unique_index_id ON user_setting_%d (_id);",userId];
     [database execSql:sql];
     
+    NSArray  *keys= [NSArray arrayWithObjects:@"chatBg", @"enterSend", @"fontSize", @"language",@"alert",@"sound",@"soundName", @"vibe", @"whole_day", @"begin_time",@"end_time", @"offer",nil];
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"]; //this is the sqlite's format
+
+    NSArray *objects= [NSArray arrayWithObjects:[NSNumber numberWithInt:1], [NSNumber numberWithInt:0], [NSNumber numberWithInt:18], @"en",[NSNumber numberWithInt:1],[NSNumber numberWithInt:0], @"", [NSNumber numberWithInt:0], [NSNumber numberWithInt:1],  [formatter stringFromDate:[NSDate date]],  [formatter stringFromDate:[NSDate date]], [NSNumber numberWithInt:0],nil];
+    
+    NSMutableDictionary *user = [NSMutableDictionary dictionaryWithObjects:objects forKeys:keys];
+
+    
     NSString *sqlQuery = [NSString stringWithFormat:@"SELECT *,datetime(begin_time,'localtime'), datetime(end_time,'localtime') FROM user_setting_%d ORDER BY _id DESC LIMIT 1", userId];
     sqlite3_stmt * statement;
     if (sqlite3_prepare_v2(db, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
@@ -50,33 +60,39 @@
             NSNumber *sound = [NSNumber numberWithInt: sqlite3_column_int(statement, 6)];
             NSNumber *vibe = [NSNumber numberWithInt: sqlite3_column_int(statement, 8)];
             NSNumber *offer = [NSNumber numberWithInt: sqlite3_column_int(statement, 12)];
-
+            
             
             char *language = (char*)sqlite3_column_text(statement, 3);
             NSString *languageString = [[NSString alloc]initWithUTF8String:language];
             char *soundName =(char*)sqlite3_column_text(statement, 7);
             NSString *soundNameString = [[NSString alloc]initWithUTF8String:soundName];
-           
-            char *bt =(char*)sqlite3_column_text(statement, 13);
+            //NSLog(@"%@", statement);
+            char *bt =(char*)sqlite3_column_text(statement, 10);
             NSString *btString = [[NSString alloc]initWithUTF8String:bt];
-            char *et =(char*)sqlite3_column_text(statement, 14);
+            char *et =(char*)sqlite3_column_text(statement, 11);
             NSString *etString = [[NSString alloc]initWithUTF8String:et];
             
             NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
             [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"]; //this is the sqlite's format
-            NSDate *begin_time = [formatter dateFromString:btString];
-            NSDate *end_time = [formatter dateFromString:etString];
+      //      NSDate *begin_time = [formatter dateFromString:btString];
+       //     NSDate *end_time = [formatter dateFromString:etString];
            
-            NSArray  *keys= [NSArray arrayWithObjects:@"chatBg", @"enterSend", @"fontSize", @"language",@"alert",@"sound",@"soundName", @"vibe", @"whole_day", @"begin_time",@"end_time", @"offer",nil];
-            NSArray *objects= [NSArray arrayWithObjects:chatBg, enterSend, fontSize, languageString,alert,sound, soundNameString, vibe, whole_day, begin_time, end_time, offer,nil];
-            
-            NSMutableDictionary *user = [NSMutableDictionary dictionaryWithObjects:objects forKeys:keys];
-            return user;
-            
+            [user setObject:chatBg forKey:@"chatBg"];
+            [user setObject:enterSend forKey:@"enterSend"];
+            [user setObject:fontSize forKey:@"fontSize"];
+            [user setObject:languageString forKey:@"language"];
+            [user setObject:alert forKey:@"alert"];
+            [user setObject:sound forKey:@"sound"];
+            [user setObject:soundNameString forKey:@"soundName"];
+            [user setObject:vibe forKey:@"vibe"];
+            [user setObject:whole_day forKey:@"whole_day"];
+            [user setObject:btString forKey:@"begin_time"];
+            [user setObject:etString forKey:@"end_time"];
+            [user setObject:offer forKey:@"offer"];
         }
     }
     
-    return nil;
+    return user;
 }
 
 - (void) saveSetting:(int)userId userSetting:(NSDictionary *)userSetting{
@@ -89,7 +105,7 @@
     [database execSql:sql];
     
     
-    sql = [NSString stringWithFormat:@"INSERT OR REPLACE user_setting_%d (_id, enterSend, fontSize, language, chatBg,  alert, sound, soundName, vibe, whole_day, begin_time, end_time, offer) values(1,'%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@');", userId, [userSetting objectForKey:@"enterSend"],[userSetting objectForKey:@"fontSize"], [userSetting objectForKey:@"langauge"],[userSetting objectForKey:@"chatBg"],[userSetting objectForKey:@"alert"],[userSetting objectForKey:@"sound"], [userSetting objectForKey:@"soundName"],[userSetting objectForKey:@"vibe"], [userSetting objectForKey:@"whole_day"],[userSetting objectForKey:@"begin_time"],[userSetting objectForKey:@"end_time"],[userSetting objectForKey:@"offer"]];
+    sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO user_setting_%d (_id, enterSend, fontSize, language, chatBg,  alert, sound, soundName, vibe, whole_day, begin_time, end_time, offer) values(1,'%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@','%@');", userId, [userSetting objectForKey:@"enterSend"],[userSetting objectForKey:@"fontSize"], [userSetting objectForKey:@"language"],[userSetting objectForKey:@"chatBg"],[userSetting objectForKey:@"alert"],[userSetting objectForKey:@"sound"], [userSetting objectForKey:@"soundName"],[userSetting objectForKey:@"vibe"], [userSetting objectForKey:@"whole_day"],[userSetting objectForKey:@"begin_time"],[userSetting objectForKey:@"end_time"],[userSetting objectForKey:@"offer"]];
     [database execSql:sql];
     
 }

@@ -13,6 +13,7 @@
 #import "SIAlertView.h"
 #import <CommonCrypto/CommonDigest.h>
 #import "MBProgressHUD.h"
+#import "Constants.h"
 
 //#import "AppDelegate.h"
 
@@ -63,11 +64,10 @@
 - (NSArray *)loadMoments;
 - (NSArray *)loadThings;
 - (void)loadCountry;
-- (void) showDialog:(NSString *)dialogType content:(NSString*)content;
-- (NSString *)md5:(NSString *)str;
+
 - (NSArray *)getLoggedUser;
 - (NSUserDefaults *)getDefaults;
-- (NSString *)toJSONData:(id)theData;
+
 - (void)connect;
 
 

@@ -7,6 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-@interface TermsViewController : UIViewController
+@interface TermsViewController : UIViewController{
+    
+    AppDelegate *myDelegate;
+
+    
+}
+
 @end

@@ -35,6 +35,9 @@
         [self execSql:sql];
         sql = @"CREATE TABLE IF NOT EXISTS launcher(id INTEGER PRIMARY KEY AUTOINCREMENT,photo BINARY);";
         [self execSql:sql];
+        
+        //sql = @"DROP TABLE IF EXISTS user_setting_8";
+        //[self execSql:sql];
 
 
     }

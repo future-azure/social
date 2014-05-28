@@ -41,24 +41,26 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    title.text = NSLocalizedString(@"password", nil);
-    oriPassword.text = NSLocalizedString(@"ori_pw", nil);
+    myDelegate = [[UIApplication sharedApplication] delegate];
+    
+    title.text = [myDelegate.bundle localizedStringForKey:@"password" value:nil table:@"language"];
+    oriPassword.text = [myDelegate.bundle localizedStringForKey:@"ori_pw" value:nil table:@"language"];
 
-    aNewPassword.text = NSLocalizedString(@"new_pw", nil);
+    aNewPassword.text = [myDelegate.bundle localizedStringForKey:@"new_pw" value:nil table:@"language"];
 
-    passConfirm.text = NSLocalizedString(@"new_pw", nil);
+    passConfirm.text = [myDelegate.bundle localizedStringForKey:@"new_pw" value:nil table:@"language"];
 
     
-    oriText.placeholder = NSLocalizedString(@"ori_pw_hint", nil);
+    oriText.placeholder = [myDelegate.bundle localizedStringForKey:@"ori_pw_hint" value:nil table:@"language"];
     oriText.secureTextEntry = true;
-    aNewText.placeholder = NSLocalizedString(@"new_pw_hint", nil);
+    aNewText.placeholder = [myDelegate.bundle localizedStringForKey:@"new_pw_hint" value:nil table:@"language"];
     aNewText.secureTextEntry = true;
-    confirmText.placeholder = NSLocalizedString(@"con_new_pw_hint", nil);
+    confirmText.placeholder = [myDelegate.bundle localizedStringForKey:@"con_new_pw_hint" value:nil table:@"language"];
     confirmText.secureTextEntry = true;
     
     userData = @"";
     
-    myDelegate = [[UIApplication sharedApplication] delegate];
+    
     if (myDelegate.dataManager == nil) {
         myDelegate.dataManager = [DataManager sharedDataManager];
     }
@@ -81,31 +83,31 @@
 
 - (IBAction)confrim:(id)sender {
     if ([@"" isEqualToString:oriText.text] || [@"" isEqualToString:aNewText.text] || [@"" isEqualToString:confirmText.text]) {
-        [dataManager showDialog:NSLocalizedString(@"info", nil) content:NSLocalizedString(@"pw_empty", nil)];
+        [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"info" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"pw_empty" value:nil table:@"language"]];
         return;
     }
-    if (![[dataManager md5:oriText.text] isEqualToString:[user objectForKey:@"password"]]) {
-        [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"pw_not_correct", nil)];
+    if (![[myDelegate md5:oriText.text] isEqualToString:[user objectForKey:@"password"]]) {
+        [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"error" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"pw_not_correct" value:nil table:@"language"]];
         return;
     }
     if (![aNewText.text isEqualToString:confirmText.text]) {
-        [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"pw_not_equal", nil)];
+        [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"error" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"pw_not_equal" value:nil table:@"language"]];
         return;
     }
-    [user setObject:[dataManager md5:aNewText.text] forKey:@"password"];
+    [user setObject:[myDelegate md5:aNewText.text] forKey:@"password"];
     [user setObject:@"PASSWORD" forKey:@"updateType"];
     [self updateUser];
     
 }
 
 - (void)updateUser {
-    // [self showHubLoading:NSLocalizedString(@"logging_out", nil)];
+    // [self showHubLoading:[myDelegate.bundle localizedStringForKey:@"logging_out" value:nil table:@"language"]];
     
     type = @"UPDATEUSER";
     NSString *json;
     NSString *temp = @"\",\"toUser\":0,\"fromUser\":0}\r\n";
     json = @"{\"type\":\"UPDATEUSER\",\"object\":\"";
-    NSString *mapString = [dataManager toJSONData:user];
+    NSString *mapString = [myDelegate toJSONData:user];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\"" withString:@"\\\""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\r" withString:@""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\n" withString:@""];
@@ -149,12 +151,12 @@
                 NSString *password = aNewText.text;
                 [defaults setObject:password forKey:@"password"];
                 [defaults synchronize];
-                [self showToast:NSLocalizedString(@"update_success", nil)];
+                [self showToast:[myDelegate.bundle localizedStringForKey:@"update_success" value:nil table:@"language"]];
                 
             } else {
                
                 [user removeObjectForKey:@"updateType"];
-                [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"update_failure", nil)];
+                [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"error" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"update_failure" value:nil table:@"language"]];
             }
             
         }

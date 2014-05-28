@@ -31,6 +31,10 @@
     NSMutableDictionary *friendMap;
     NSMutableDictionary *anewFriendMap;
     NSMutableDictionary *recommendFriendMap;
+    NSMutableDictionary *anewMsgNumMap;
+    
+    NSMutableArray *mRecentList;
+    
     
     NSString *languageType;
     
@@ -50,6 +54,8 @@
     
     DataManager *dataManager;
     
+    NSBundle *bundle;
+    
 }
 
 @property (strong, nonatomic) UIWindow *window;
@@ -65,6 +71,7 @@
 @property (strong, nonatomic) NSMutableDictionary *friendMap;
 @property (strong, nonatomic) NSMutableDictionary *anewFriendMap;
 @property (strong, nonatomic) NSMutableDictionary *recommendFriendMap;
+@property (strong, nonatomic) NSMutableDictionary *anewMsgNumMap;
 
 @property (strong, nonatomic) NSString *languageType;
 
@@ -81,8 +88,10 @@
 @property (strong, nonatomic) NewFriendDB *anewFriendDB;
 @property (strong, nonatomic) RecommendFriendDB *recommendFriendDB;
 @property (strong, nonatomic) UIImage *userImage;
+@property (strong, nonatomic) NSBundle *bundle;
 
 
-
-
+- (void) showDialog:(NSString *)dialogType content:(NSString*)content;
+- (NSString *)md5:(NSString *)str;
+- (NSString *)toJSONData:(id)theData;
 @end

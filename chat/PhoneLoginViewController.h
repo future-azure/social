@@ -21,6 +21,7 @@
     AsyncSocket *socket;
     DataManager *dataManager;
     NSObject<UIViewPassValueDelegate> * delegate;
+    AppDelegate *myDelegate;
     
 }
 

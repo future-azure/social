@@ -34,12 +34,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    title.text = NSLocalizedString(@"name", nil);
-    comment.text = NSLocalizedString(@"name_hint", nil);
+     myDelegate = [[UIApplication sharedApplication] delegate];
+    title.text = [myDelegate.bundle localizedStringForKey:@"name" value:nil table:@"language"];
+    comment.text = [myDelegate.bundle localizedStringForKey:@"name_hint" value:nil table:@"language"];
     old_name = @"";
     userData = @"";
     
-    myDelegate = [[UIApplication sharedApplication] delegate];
+   
     if (myDelegate.dataManager == nil) {
         myDelegate.dataManager = [DataManager sharedDataManager];
     }
@@ -52,7 +53,7 @@
     user = myDelegate.user;
     
     if ([user objectForKey:@"name"] == nil || [@"" isEqualToString:[user objectForKey:@"name"]]) {
-        nameEdit.placeholder = NSLocalizedString(@"setting_name",nil);
+        nameEdit.placeholder = [myDelegate.bundle localizedStringForKey:@"setting_name" value:nil table:@"language"];
     } else {
         nameEdit.text = [user objectForKey:@"name"];
         old_name = [user objectForKey:@"name"];
@@ -72,11 +73,11 @@
 }
 - (IBAction)confirm:(id)sender {
     if ([@"" isEqualToString:nameEdit.text]) {
-        [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"name_empty", nil)];
+        [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"error" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"name_empty" value:nil table:@"language"]];
         return;
     }
     if ([nameEdit.text isEqualToString:old_name]) {
-        [dataManager showDialog:NSLocalizedString(@"info", nil) content:NSLocalizedString(@"name_no_change", nil)];
+        [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"info" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"name_no_change" value:nil table:@"language"]];
         return;
     }
     [user setObject:nameEdit.text forKey:@"name"];
@@ -86,13 +87,13 @@
 }
 
 - (void)updateUser {
-   // [self showHubLoading:NSLocalizedString(@"logging_out", nil)];
+   // [self showHubLoading:[myDelegate.bundle localizedStringForKey:@"logging_out" value:nil table:@"language"]];
     
     type = @"UPDATEUSER";
     NSString *json;
     NSString *temp = @"\",\"toUser\":0,\"fromUser\":0}\r\n";
     json = @"{\"type\":\"UPDATEUSER\",\"object\":\"";
-    NSString *mapString = [dataManager toJSONData:user];
+    NSString *mapString = [myDelegate toJSONData:user];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\"" withString:@"\\\""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\r" withString:@""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\n" withString:@""];
@@ -138,7 +139,7 @@
             } else {
                 [user setObject:old_name forKey:@"name"];
                 [user removeObjectForKey:@"updateType"];
-                [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"update_failure", nil)];
+                [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"error" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"update_failure" value:nil table:@"language"]];
             }
             
         }

@@ -42,14 +42,40 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    myDelegate = [[UIApplication sharedApplication] delegate];
+    
+    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
+    NSNumber *userId = [defaults objectForKey:@"userId"];//根据键值取出name
+    NSString *password = [defaults objectForKey:@"password"];//根据键值取出name
+    if (userId != nil && password != nil) {
+        NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
+        idLabel.text = [numberFormatter stringFromNumber:userId];
+        //  idLabel.text = userId;
+        textField.text = password;
+        
+        NSLog(@"password: %@", password);
+    }
+
+    if (userId != nil){
+    myDelegate.setting = [myDelegate.settingDB getUserSetting:[userId intValue]];
+    NSString* languageType = [myDelegate.setting objectForKey:@"language"];
+    
+    NSString *string;
+    if ([@"en" isEqualToString:languageType]) {
+        string = @"en";
+    } else {
+        string = @"zh-Hans";
+    }
+    NSString *path = [[NSBundle mainBundle] pathForResource:string ofType:@"lproj"];
+    myDelegate.bundle = [NSBundle bundleWithPath:path];
+    }
     
     textField.delegate = self;
-    textField.placeholder = NSLocalizedString(@"password",nil);
+    textField.placeholder = [myDelegate.bundle localizedStringForKey:@"password" value:nil table:@"language"];
     textField.secureTextEntry = true;
-    idInput.placeholder = NSLocalizedString(@"user_id", nil);
-    [switchAccount setTitle:NSLocalizedString(@"switch_account", nil) forState:UIControlStateNormal];
-    [signUp setTitle:NSLocalizedString(@"sign_up", nil) forState:UIControlStateNormal];
+    idInput.placeholder = [myDelegate.bundle localizedStringForKey:@"user_id" value:nil table:@"language"];
+    [switchAccount setTitle:[myDelegate.bundle localizedStringForKey:@"switch_account" value:nil table:@"language"]  forState:UIControlStateNormal];
+    [signUp setTitle:[myDelegate.bundle localizedStringForKey:@"sign_up" value:nil table:@"language"] forState:UIControlStateNormal];
     
     loginData = @"";
     idInput.hidden = true;
@@ -57,7 +83,7 @@
     
     imageData = [[NSMutableData alloc] init];
     
-    myDelegate = [[UIApplication sharedApplication] delegate];
+   
     if (myDelegate.dataManager == nil) {
        // [dataManager socket]
         myDelegate.dataManager = [DataManager sharedDataManager];
@@ -66,17 +92,6 @@
     msgdb = myDelegate.messageDB;
     recentMsgDb = myDelegate.recentMessageDB;
     dataManager = myDelegate.dataManager;
-    NSUserDefaults *defaults =[NSUserDefaults standardUserDefaults];
-    NSNumber *userId = [defaults objectForKey:@"userId"];//根据键值取出name
-    NSString *password = [defaults objectForKey:@"password"];//根据键值取出name
-    if (userId != nil && password != nil) {
-        NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-        idLabel.text = [numberFormatter stringFromNumber:userId];
-      //  idLabel.text = userId;
-        textField.text = password;
-        
-        NSLog(@"password: %@", password);
-    }
     [dataManager connect];
     socket =[dataManager socket];
     // [[DataManager sharedDataManager] loadCountry];
@@ -136,7 +151,7 @@
 }
 
 -(void) loginRequest:(NSString *)obj {
-    [self showHubLoading:NSLocalizedString(@"logging_in", nil)];
+    [self showHubLoading:[myDelegate.bundle localizedStringForKey:@"logging_in" value:nil table:@"language"]];
     
     type = @"LOGIN";
     NSString *json;
@@ -149,7 +164,7 @@
 }
 
 -(void) passwordRequest:(NSString *)obj {
-    [self showHubLoading:NSLocalizedString(@"handleing", nil)];
+    [self showHubLoading:[myDelegate.bundle localizedStringForKey:@"handleing" value:nil table:@"language"]];
     
     type = @"SENDPW";
     NSString *json;
@@ -189,7 +204,7 @@
     NSArray *objects;
     
     if (userId == nil || [@"" isEqualToString:userId] ||  textField.text == nil || [@"" isEqualToString:textField.text] ) {
-        [dataManager showDialog:NSLocalizedString(@"login_app", nil) content:NSLocalizedString(@"id_password_empty", nil)];
+        [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"login_app" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"id_password_empty" value:nil table:@"language"]];
         return;
     }
     
@@ -197,11 +212,11 @@
     {
         intString=[NSNumber numberWithInt:[userId intValue]];
         keys = [NSArray arrayWithObjects:@"languageType", @"email", @"phoneNum", @"id", @"password",nil];
-        objects = [NSArray arrayWithObjects:@"en", userId, userId, intString, [dataManager md5:textField.text],nil];
+        objects = [NSArray arrayWithObjects:@"en", userId, userId, intString, [myDelegate md5:textField.text],nil];
         
     } else {
         keys = [NSArray arrayWithObjects:@"languageType", @"email", @"phoneNum",@"password", nil];
-        objects = [NSArray arrayWithObjects:@"en", userId, userId, [dataManager md5:textField.text], nil];
+        objects = [NSArray arrayWithObjects:@"en", userId, userId, [myDelegate md5:textField.text], nil];
         
     }
     
@@ -211,7 +226,7 @@
     [map setObject:accountType forKey:@"accountType"];
     [map setObject:[[AddressBook initAddressBook] readAdressBook] forKey:@"phoneList"];
     
-    NSString *mapString = [dataManager toJSONData:map];
+    NSString *mapString = [myDelegate toJSONData:map];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\"" withString:@"\\\""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\r" withString:@""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\n" withString:@""];
@@ -231,26 +246,27 @@
 - (IBAction)switchAccount:(id)sender {
     [textField resignFirstResponder];
     [idInput resignFirstResponder];
-    actionSheet = [[IBActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel",nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"logged_account", nil), NSLocalizedString(@"id_email", nil), NSLocalizedString(@"phone", nil), nil];
+    actionSheet = [[IBActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:[myDelegate.bundle localizedStringForKey:@"cancel"  value:nil table:@"language"]
+                                destructiveButtonTitle:nil otherButtonTitles:[myDelegate.bundle localizedStringForKey:@"logged_account" value:nil table:@"language"], [myDelegate.bundle localizedStringForKey:@"id_email" value:nil table:@"language"], [myDelegate.bundle localizedStringForKey:@"phone" value:nil table:@"language"], nil];
     
     actionSheet.buttonResponse = IBActionSheetButtonResponseFadesOnPress;
     
     [actionSheet setButtonTextColor:[UIColor whiteColor] forButtonAtIndex:0];
     [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:253/255.0 green:108/255.0 blue:53/255.0 alpha:1] forButtonAtIndex:0];
-    [actionSheet setFont:[UIFont fontWithName:NSLocalizedString(@"logged_account", nil) size:22] forButtonAtIndex:0];
+    [actionSheet setFont:[UIFont fontWithName:[myDelegate.bundle localizedStringForKey:@"logged_account" value:nil table:@"language"] size:22] forButtonAtIndex:0];
     
     [actionSheet setButtonTextColor:[UIColor whiteColor] forButtonAtIndex:1];
     [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:253/255.0 green:108/255.0 blue:53/255.0 alpha:1] forButtonAtIndex:1];
-    [actionSheet setFont:[UIFont fontWithName:NSLocalizedString(@"id_email", nil) size:22] forButtonAtIndex:1];
+    [actionSheet setFont:[UIFont fontWithName:[myDelegate.bundle localizedStringForKey:@"id_email" value:nil table:@"language"] size:22] forButtonAtIndex:1];
     
     [actionSheet setButtonTextColor:[UIColor whiteColor] forButtonAtIndex:2];
     [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:253/255.0 green:108/255.0 blue:53/255.0 alpha:1] forButtonAtIndex:2];
-    [actionSheet setFont:[UIFont fontWithName:NSLocalizedString(@"phone", nil) size:22] forButtonAtIndex:2];
+    [actionSheet setFont:[UIFont fontWithName:[myDelegate.bundle localizedStringForKey:@"phone" value:nil table:@"language"] size:22] forButtonAtIndex:2];
     
     
     [actionSheet setButtonTextColor:[UIColor whiteColor] forButtonAtIndex:3];
     [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1] forButtonAtIndex:3];
-    [actionSheet setFont:[UIFont fontWithName:NSLocalizedString(@"cancel",nil) size:22] forButtonAtIndex:3];
+    [actionSheet setFont:[UIFont fontWithName:[myDelegate.bundle localizedStringForKey:@"cancel" value:nil table:@"language"] size:22] forButtonAtIndex:3];
     
     [actionSheet showInView:self.view];
 }
@@ -258,27 +274,27 @@
 -(void)actionSheet:(UIActionSheet *)actionSheet1 clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     NSString *buttonTitle = [actionSheet1 buttonTitleAtIndex:buttonIndex];
-    if ([NSLocalizedString(@"logged_account", nil) isEqualToString:buttonTitle]) {
+    if ([[myDelegate.bundle localizedStringForKey:@"logged_account" value:nil table:@"language"] isEqualToString:buttonTitle]) {
         accountType = [NSNumber numberWithInt: 1];
          [self performSegueWithIdentifier:@"loggedAccount" sender:self];
-    }else if ([NSLocalizedString(@"id_email", nil) isEqualToString:buttonTitle]) {
+    }else if ([[myDelegate.bundle localizedStringForKey:@"id_email" value:nil table:@"language"] isEqualToString:buttonTitle]) {
         accountType = [NSNumber numberWithInt: 2];
         idLabel.hidden = true;
         idInput.hidden = false;
-    }else if([NSLocalizedString(@"phone", nil) isEqualToString:buttonTitle]) {
+    }else if([[myDelegate.bundle localizedStringForKey:@"phone" value:nil table:@"language"] isEqualToString:buttonTitle]) {
 
         accountType = [NSNumber numberWithInt: 3];
         
         [self performSegueWithIdentifier:@"phoneLogin" sender:self];
 
       //  NSLog(@"confirm2");
-    }else if([NSLocalizedString(@"cancel", nil) isEqualToString:buttonTitle]) {
+    }else if([[myDelegate.bundle localizedStringForKey:@"cancel" value:nil table:@"language"] isEqualToString:buttonTitle]) {
 
         NSLog(@"cancel");
         
-    }else if ([NSLocalizedString(@"log_in_via_email", nil) isEqualToString:buttonTitle]) {
+    }else if ([[myDelegate.bundle localizedStringForKey:@"log_in_via_email" value:nil table:@"language"] isEqualToString:buttonTitle]) {
         [self sendPassword:1];
-    }else if([NSLocalizedString(@"log_in_via_sms", nil) isEqualToString:buttonTitle]) {
+    }else if([[myDelegate.bundle localizedStringForKey:@"log_in_via_sms" value:nil table:@"language"] isEqualToString:buttonTitle]) {
         
         [self sendPassword:2];
     }
@@ -328,7 +344,7 @@
     NSArray *objects;
     
     if (userId == nil || [@"" isEqualToString:userId] ) {
-        [dataManager showDialog:NSLocalizedString(@"info", nil) content:NSLocalizedString(@"id_empty", nil)];
+        [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"info" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"id_empty" value:nil table:@"language"]];
         return;
     }
     
@@ -351,7 +367,7 @@
     [map setObject:accountType forKey:@"accountType"];
     [map setObject:sendType forKey:@"sendType"];
     
-    NSString *mapString = [dataManager toJSONData:map];
+    NSString *mapString = [myDelegate toJSONData:map];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\"" withString:@"\\\""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\r" withString:@""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\n" withString:@""];
@@ -360,22 +376,22 @@
 }
 
 - (IBAction)forgotPassword:(id)sender {
-    actionSheet = [[IBActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel",nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"log_in_via_email", nil), NSLocalizedString(@"log_in_via_sms", nil), nil];
+    actionSheet = [[IBActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:[myDelegate.bundle localizedStringForKey:@"cancel" value:nil table:@"language"]destructiveButtonTitle:nil otherButtonTitles:[myDelegate.bundle localizedStringForKey:@"log_in_via_email" value:nil table:@"language"], [myDelegate.bundle localizedStringForKey:@"log_in_via_sms" value:nil table:@"language"], nil];
     
     actionSheet.buttonResponse = IBActionSheetButtonResponseFadesOnPress;
     
     [actionSheet setButtonTextColor:[UIColor whiteColor] forButtonAtIndex:0];
     [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:253/255.0 green:108/255.0 blue:53/255.0 alpha:1] forButtonAtIndex:0];
-    [actionSheet setFont:[UIFont fontWithName:NSLocalizedString(@"log_in_via_email", nil) size:22] forButtonAtIndex:0];
+    [actionSheet setFont:[UIFont fontWithName:[myDelegate.bundle localizedStringForKey:@"log_in_via_email" value:nil table:@"language"] size:22] forButtonAtIndex:0];
     
     [actionSheet setButtonTextColor:[UIColor whiteColor] forButtonAtIndex:1];
     [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:253/255.0 green:108/255.0 blue:53/255.0 alpha:1] forButtonAtIndex:1];
-    [actionSheet setFont:[UIFont fontWithName:NSLocalizedString(@"log_in_via_sms", nil) size:22] forButtonAtIndex:1];
+    [actionSheet setFont:[UIFont fontWithName:[myDelegate.bundle localizedStringForKey:@"log_in_via_sms" value:nil table:@"language"] size:22] forButtonAtIndex:1];
     
     
     [actionSheet setButtonTextColor:[UIColor whiteColor] forButtonAtIndex:2];
     [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/255.0 alpha:1] forButtonAtIndex:2];
-    [actionSheet setFont:[UIFont fontWithName:NSLocalizedString(@"cancel",nil) size:22] forButtonAtIndex:2];
+    [actionSheet setFont:[UIFont fontWithName:[myDelegate.bundle localizedStringForKey:@"cancel" value:nil table:@"language"] size:22] forButtonAtIndex:2];
     
     [actionSheet showInView:self.view];
 
@@ -452,6 +468,17 @@
                     myDelegate.momentUpdateTime =  [NSDate date];
                     myDelegate.thingUpdateTime = [NSDate date];
                     myDelegate.setting = [myDelegate.settingDB getUserSetting:userId];
+                    NSString* languageType = [myDelegate.setting objectForKey:@"language"];
+                
+                NSString *string;
+                if ([@"en" isEqualToString:languageType]) {
+                    string = @"en";
+                } else {
+                    string = @"zh-Hans";
+                }
+                NSString *path = [[NSBundle mainBundle] pathForResource:string ofType:@"lproj"];
+                myDelegate.bundle = [NSBundle bundleWithPath:path];
+
                     imgdb = myDelegate.imageDB;
                     int imgId = [[user objectForKey:@"imgId"] intValue];
                     UIImage *bm = [imgdb getImage:imgId];
@@ -472,26 +499,31 @@
                     NSArray *serverMessage =[user objectForKey:@"serverMessage"];
                     if (serverMessage != nil && serverMessage.count > 0) {
                         myDelegate.newChatFlag = 1;
-                        for (id obj in serverMessage) {
+                        for (NSDictionary *obj in serverMessage) {
                             int fromId = [[obj objectForKey:@"fromId"] intValue];
+                            NSLog(@"obj : %@", obj);
                             NSDictionary *user2 = [myDelegate.userDB selectInfo:fromId userId:userId];
                             int friendId = [[user2 objectForKey:@"id"] intValue];
                             
-                            NSMutableDictionary *msgNumMap = myDelegate.anewFriendMap;
+                            NSMutableDictionary *msgNumMap = myDelegate.anewMsgNumMap;
                             if ([msgNumMap objectForKey:[obj objectForKey:@"fromId"]] != nil) {
                                 NSNumber *num = [NSNumber numberWithInt: fromId + 1];
-                                [msgNumMap setObject:num forKey:@"fromId"];
+                                [msgNumMap setObject:num forKey:[obj objectForKey:@"fromId"]];
                             } else {
                                 NSNumber *num = [NSNumber numberWithInt: 1];
-                                [msgNumMap setObject:num forKey:@"fromId"];
+                                [msgNumMap setObject:num forKey:[obj objectForKey:@"fromId"]];
                             }
                             
                             NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
                             [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-                            NSString *date=[dateFormatter stringFromDate:[obj objectForKey:@"messageTime"]];
+                            NSString *date=[obj objectForKey:@"messageTime"];
                             
                             NSArray  *keys= [NSArray arrayWithObjects:@"name", @"date", @"message", @"img",@"imgPath", @"msgType", nil];
-                            NSArray *objects= [NSArray arrayWithObjects:[user2 objectForKey:@"name"], date, [obj objectForKey:@"message"], [user2 objectForKey:@"imgId"],[user2 objectForKey:@"img"], true, nil];
+                            NSString *message = [obj objectForKey:@"message"];
+                            NSLog(@"%@", message);
+                            
+                            NSNumber *msgType = [NSNumber numberWithInt:1];
+                            NSArray *objects= [NSArray arrayWithObjects:[user2 objectForKey:@"name"], date, [obj objectForKey:@"message"], [user2 objectForKey:@"imgId"],[user2 objectForKey:@"img"], msgType, nil];
                             
                             NSDictionary *dic = [NSDictionary dictionaryWithObjects:objects forKeys:keys];
                             
@@ -507,8 +539,8 @@
                         }
                     }
                     
-                    for (id obj in userList) {
-                        NSMutableDictionary *f = obj;
+                    for (int i = 1; i < userList.count; i++) {
+                        NSMutableDictionary *f = [userList objectAtIndex:i];
                         [myDelegate.friendMap setObject:f forKey:[f objectForKey:@"id"]];
                         int friendType = [[f objectForKey:@"friendType"] intValue];
                         if (friendType == 3) {
@@ -591,11 +623,11 @@
                     
                     
                 } else {
-                    [dataManager showDialog:NSLocalizedString(@"login_app", nil) content:NSLocalizedString(@"id_password_error", nil)];
+                    [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"login_app" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"id_password_error" value:nil table:@"language"]];
                     [self closeHubLoading];
                 }
             } else {
-                [dataManager showDialog:NSLocalizedString(@"login_app", nil) content:NSLocalizedString(@"id_password_error", nil)];
+                [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"login_app" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"id_password_error" value:nil table:@"language"]];
                 [self closeHubLoading];
             }
         }
@@ -633,14 +665,14 @@
                 
                 if (success == 1) {
                     if (sendType == 1) {
-                        [dataManager showDialog:NSLocalizedString(@"info", nil) content:NSLocalizedString(@"send_pw_email_success", nil)];
+                        [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"info" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"send_pw_email_success" value:nil table:@"language"]];
                     } else if(sendType == 2) {
-                        [dataManager showDialog:NSLocalizedString(@"info", nil) content:NSLocalizedString(@"send_pw_sms_success", nil)];
+                        [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"info" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"send_pw_sms_success" value:nil table:@"language"]];
                     }
                 } else if (success == 2) {
-                     [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"send_pw_email_error", nil)];
+                     [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"error" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"send_pw_email_error" value:nil table:@"language"]];
                 } else {
-                     [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"send_pw_error", nil)];
+                     [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"error" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"send_pw_error" value:nil table:@"language"]];
                 }
                 
             }

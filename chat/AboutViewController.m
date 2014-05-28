@@ -46,16 +46,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    myDelegate = [[UIApplication sharedApplication] delegate];
     dataManage = [DataManager sharedDataManager];
-    title.text = NSLocalizedString(@"about", nil);
-    version.text =[@"    " stringByAppendingString: NSLocalizedString(@"app_ver", nil)] ;
-    [rate setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"rate_app", nil)] forState:UIControlStateNormal];
-    [about setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"about_app", nil)] forState:UIControlStateNormal];
-    [follow_facebook setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"like_f", nil)] forState:UIControlStateNormal];
-    [follow_twitter setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"follow_t", nil)] forState:UIControlStateNormal];
-    [feedback setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"feedback", nil)] forState:UIControlStateNormal];
-    [check_update setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"check_update", nil)] forState:UIControlStateNormal];
-    [terms setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"terms_privacy", nil)] forState:UIControlStateNormal];
+    title.text = [myDelegate.bundle localizedStringForKey:@"about" value:nil table:@"language"];
+    version.text =[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"app_ver" value:nil table:@"language"]] ;
+    [rate setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"rate_app" value:nil table:@"language"]] forState:UIControlStateNormal];
+    [about setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"about_app" value:nil table:@"language"]] forState:UIControlStateNormal];
+    [follow_facebook setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"like_f" value:nil table:@"language"]] forState:UIControlStateNormal];
+    [follow_twitter setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"follow_t" value:nil table:@"language"]] forState:UIControlStateNormal];
+    [feedback setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"feedback" value:nil table:@"language"]] forState:UIControlStateNormal];
+    [check_update setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"check_update" value:nil table:@"language"]] forState:UIControlStateNormal];
+    [terms setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"terms_privacy" value:nil table:@"language"]] forState:UIControlStateNormal];
     
     NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
     
@@ -126,15 +127,15 @@
         
         if (![lastVersion isEqualToString:currentVersion]) {
             
-            NSString *message = [NSString stringWithFormat:@"%@%@%@", NSLocalizedString(@"find_new_ver", nil), @" ", lastVersion];
+            NSString *message = [NSString stringWithFormat:@"%@%@%@", [myDelegate.bundle localizedStringForKey:@"find_new_ver" value:nil table:@"language"], @" ", lastVersion];
             
-            SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:NSLocalizedString(@"update", nil) andMessage:message];
-            [alertView addButtonWithTitle:NSLocalizedString(@"cancel", nil)
+            SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:[myDelegate.bundle localizedStringForKey:@"update" value:nil table:@"language"] andMessage:message];
+            [alertView addButtonWithTitle:[myDelegate.bundle localizedStringForKey:@"cancel" value:nil table:@"language"]
                                      type:SIAlertViewButtonTypeCancel
                                   handler:^(SIAlertView *alertView) {
                                       //   NSLog(@"Cancel Clicked");
                                   }];
-            [alertView addButtonWithTitle:NSLocalizedString(@"ok", nil)
+            [alertView addButtonWithTitle:[myDelegate.bundle localizedStringForKey:@"ok" value:nil table:@"language"]
                                      type:SIAlertViewButtonTypeDefault
                                   handler:^(SIAlertView *alertView) {
                                       //     NSLog(@"OK Clicked");
@@ -165,8 +166,8 @@
         }
         else
         {
-            NSString *message = [NSString stringWithFormat:@"%@%@%@", currentVersion, @" ", NSLocalizedString(@"latest_ver", nil)];
-            [dataManage showDialog:NSLocalizedString(@"update", nil) content:message];
+            NSString *message = [NSString stringWithFormat:@"%@%@%@", currentVersion, @" ", [myDelegate.bundle localizedStringForKey:@"latest_ver" value:nil table:@"language"]];
+            [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"update" value:nil table:@"language"] content:message];
         }
     }
 }

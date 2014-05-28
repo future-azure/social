@@ -53,9 +53,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    top_title_show.text = NSLocalizedString(@"select_country", nil);
-    title.text =NSLocalizedString(@"phone_num", nil);
+    myDelegate = [[UIApplication sharedApplication] delegate];
+    top_title_show.text = [myDelegate.bundle localizedStringForKey:@"select_country" value:nil table:@"language"];
+    title.text =[myDelegate.bundle localizedStringForKey:@"phone_num" value:nil table:@"language"];
     countryData = @"";
     pickerArray = [[NSMutableArray alloc] initWithCapacity:10];
     codeArray = [[NSMutableArray alloc] initWithCapacity:10];
@@ -64,7 +64,7 @@
     NSLog(@"Country Code is %@", [currentLocale objectForKey:NSLocaleCountryCode]);
     // 获取手机语言
   //  NSString* strLanguage = [[[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"] objectAtIndex:0];
-    myDelegate = [[UIApplication sharedApplication] delegate];
+    
     if (myDelegate.dataManager == nil) {
         myDelegate.dataManager = [DataManager sharedDataManager];
     }
@@ -181,7 +181,7 @@
             [label setTextColor:[UIColor orangeColor]];
             label.highlightedColor = [UIColor orangeColor];
             label.shouldUnderline = YES;
-            NSString *str1 = NSLocalizedString(@"terms", nil);
+            NSString *str1 = [myDelegate.bundle localizedStringForKey:@"terms" value:nil table:@"language"];
             
             
             [label setText:str1 andCenter:CGPointMake(126 + 75, agree_to.frame.origin.y + 9)];
@@ -229,21 +229,21 @@
             NSString *str = [dic objectForKey:@"object"];
         //    NSLog(@"%@", str);
         if([@"true" isEqualToString:str]) {
-            [dataManager showDialog:@"error" content:@"register_already"];
+            [myDelegate showDialog:@"error" content:@"register_already"];
             return;
         } else {
-            NSString *register_confirm =NSLocalizedString(@"register_confirm", nil);
+            NSString *register_confirm =[myDelegate.bundle localizedStringForKey:@"register_confirm" value:nil table:@"language"];
             NSString *code = self.countryCode.text;
             NSString *phone = self.phone_number.text;
             NSString *blank = @"  ";
             NSString *content = [register_confirm stringByAppendingFormat:@"%@%@%@",code, blank, phone];
-            SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:NSLocalizedString(@"register_confirm_title", nil) andMessage:content];
-            [alertView addButtonWithTitle:NSLocalizedString(@"cancel", nil)
+            SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:[myDelegate.bundle localizedStringForKey:@"register_confirm_title" value:nil table:@"language"] andMessage:content];
+            [alertView addButtonWithTitle:[myDelegate.bundle localizedStringForKey:@"cancel" value:nil table:@"language"]
                                      type:SIAlertViewButtonTypeCancel
                                   handler:^(SIAlertView *alertView) {
                                    //   NSLog(@"Cancel Clicked");
                                   }];
-            [alertView addButtonWithTitle:NSLocalizedString(@"ok", nil)
+            [alertView addButtonWithTitle:[myDelegate.bundle localizedStringForKey:@"ok" value:nil table:@"language"]
                                      type:SIAlertViewButtonTypeDefault
                                   handler:^(SIAlertView *alertView) {
                                  //     NSLog(@"OK Clicked");
@@ -282,21 +282,21 @@
         NSRange range = [str rangeOfString:@"fails"];//判断字符串是否包含
         if (range.length >0)//包含
         {
-            [dataManager showDialog:@"error" content:@"send_error"];
+            [myDelegate showDialog:@"error" content:@"send_error"];
             return;
             
         }
         range = [str rangeOfString:@"FAILS"];//判断字符串是否包含
         if (range.length >0)//包含
         {
-            [dataManager showDialog:@"error" content:@"send_error"];
+            [myDelegate showDialog:@"error" content:@"send_error"];
             return;
             
         }
        //TODO: 需要恢复
 //        if ([@"" isEqualToString:str])//包含
 //        {
-//            [dataManager showDialog:@"error" content:@"send_error"];
+//            [myDelegate showDialog:@"error" content:@"send_error"];
 //            return;
 //            
 //        }
@@ -384,16 +384,16 @@
     NSString *phone = self.phone_number.text;
     
     if( nil == code || 0 == code.length) {
-        [dataManager showDialog:@"error" content:@"select_country"];
+        [myDelegate showDialog:@"error" content:@"select_country"];
         return;
     }
     if( nil == phone || 0 == phone.length) {
-        [dataManager showDialog:@"error" content:@"enter_phone"];
+        [myDelegate showDialog:@"error" content:@"enter_phone"];
         return;
     }
     NSLog(@"%hhd", termsCheckBox.selected);
     if(termsCheckBox.selected == 0) {
-        [dataManager showDialog:@"error" content:@"agree_to_register"];
+        [myDelegate showDialog:@"error" content:@"agree_to_register"];
         return;
     }
     [self checkHasReg];

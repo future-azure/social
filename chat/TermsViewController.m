@@ -30,11 +30,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+     myDelegate = [[UIApplication sharedApplication] delegate];
     NSLog(@"termsLoad");
   //  NSString *path = [[NSBundle mainBundle] pathForResource:@"terms" ofType:@"html"];
   //  [myWebView loadRequest:[NSURLRequest requestWithURL:[NSURL fileURLWithPath: path]]];
     
-    title.text = NSLocalizedString(@"terms", nil);
+    title.text = [myDelegate.bundle localizedStringForKey:@"terms" value:nil table:@"language"];
     
     NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"terms" ofType:@"html"];
     NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];

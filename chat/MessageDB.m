@@ -98,6 +98,7 @@
 - (void) clearAllMsg:(int)userId {
     NSString *sqlQuery =@"select name from sqlite_master where type='table' order by name";
     sqlite3_stmt * statement;
+    NSMutableArray *tables = [[NSMutableArray alloc] initWithCapacity:5];
     if (sqlite3_prepare_v2(db, [sqlQuery UTF8String], -1, &statement, nil) == SQLITE_OK) {
         while (sqlite3_step(statement) == SQLITE_ROW) {
             char *name =(char*)sqlite3_column_text(statement, 0);
@@ -107,11 +108,15 @@
 
             NSRange foundObj=[tableName rangeOfString:msg options:NSCaseInsensitiveSearch];
             if(foundObj.length>0) {
-                NSString *sql =[NSString stringWithFormat:@"DROP TABLE IF EXISTS '%@';", tableName];
-                [database execSql:sql];
+                [tables addObject:tableName];
+              
             } 
             
         }
+    }
+    for (NSString *name in tables) {
+        NSString *sql =[NSString stringWithFormat:@"DROP TABLE IF EXISTS '%@';", name];
+        [database execSql:sql];
     }
 
 }

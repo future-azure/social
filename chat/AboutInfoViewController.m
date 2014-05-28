@@ -30,7 +30,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    title.text = NSLocalizedString(@"about_app", nil);
+    myDelegate = [[UIApplication sharedApplication] delegate];
+    title.text = [myDelegate.bundle localizedStringForKey:@"about_app" value:nil table:@"language"];
     
     NSString *htmlFile = [[NSBundle mainBundle] pathForResource:@"terms" ofType:@"html"];
     NSString* htmlString = [NSString stringWithContentsOfFile:htmlFile encoding:NSUTF8StringEncoding error:nil];

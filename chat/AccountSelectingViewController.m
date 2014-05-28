@@ -36,13 +36,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    title.text =NSLocalizedString(@"account", nil);
+
     
     myDelegate = [[UIApplication sharedApplication] delegate];
     db = myDelegate.loginUserDB;
     imgdb = myDelegate.imageDB;
     loggedAccount =[db getUser];
-   
+       title.text =[myDelegate.bundle localizedStringForKey:@"account" value:nil table:@"language"];
 }
 
 - (void)didReceiveMemoryWarning
@@ -98,12 +98,12 @@
   //  [cell viewWithTag:TAG_IMG].layer.borderColor = [[UIColor whiteColor] CGColor];
     
   //  NSNumberFormatter* numberFormatter = [[NSNumberFormatter alloc] init];
-   // [(UILabel *) [cell viewWithTag:TAG_ID_LABLE] setText:NSLocalizedString(@"id", nil)];
+   // [(UILabel *) [cell viewWithTag:TAG_ID_LABLE] setText:[myDelegate.bundle localizedStringForKey:@"id" value:nil table:@"language"]];
    // [(UILabel *) [cell viewWithTag:TAG_ID_TEXT] setText:[numberFormatter stringFromNumber:[logedUser objectForKey:@"id"]]];
-   // [(UILabel *) [cell viewWithTag:TAG_NAME_LABLE] setText:NSLocalizedString(@"name", nil)]; [(UILabel *) [cell viewWithTag:TAG_NAME_TEXT] setText:[logedUser objectForKey:@"name"] ];
-    cell.idLabel.text =NSLocalizedString(@"id", nil);
+   // [(UILabel *) [cell viewWithTag:TAG_NAME_LABLE] setText:[myDelegate.bundle localizedStringForKey:@"name" value:nil table:@"language"]]; [(UILabel *) [cell viewWithTag:TAG_NAME_TEXT] setText:[logedUser objectForKey:@"name"] ];
+    cell.idLabel.text =[myDelegate.bundle localizedStringForKey:@"id" value:nil table:@"language"];
     cell.idText.text =[[logedUser objectForKey:@"id"] stringValue];
-    cell.nameLabel.text =NSLocalizedString(@"name", nil);
+    cell.nameLabel.text =[myDelegate.bundle localizedStringForKey:@"name" value:nil table:@"language"];
     cell.nameText.text =[logedUser objectForKey:@"name"];
     return cell;
 }

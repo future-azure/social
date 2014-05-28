@@ -18,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *userId;
 @property (weak, nonatomic) IBOutlet UILabel *points;
 @property (weak, nonatomic) IBOutlet UIButton *vip;
-@property (weak, nonatomic) IBOutlet UINavigationItem *navigationItem;
+
 @property (weak, nonatomic) IBOutlet UIButton *account;
 @property (weak, nonatomic) IBOutlet UIButton *setting;
 @property (weak, nonatomic) IBOutlet UIButton *about;
@@ -35,7 +35,7 @@
 @synthesize userId;
 @synthesize points;
 @synthesize vip;
-@synthesize navigationItem;
+
 @synthesize account;
 @synthesize setting;
 @synthesize about;
@@ -52,15 +52,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    navigationItem.hidesBackButton = true;
-    title.text =NSLocalizedString(@"me", nil);
+     myDelegate = [[UIApplication sharedApplication] delegate];
+
+    title.text =[myDelegate.bundle localizedStringForKey:@"me" value:nil table:@"language"];
     
-    [account setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"account", nil)] forState:UIControlStateNormal];
-    [setting setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"setting", nil)] forState:UIControlStateNormal];
-    [about setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"about", nil)] forState:UIControlStateNormal];
+    [account setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"account" value:nil table:@"language"]] forState:UIControlStateNormal];
+    [setting setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"setting" value:nil table:@"language"]] forState:UIControlStateNormal];
+    [about setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"about" value:nil table:@"language"]] forState:UIControlStateNormal];
    
     
-    myDelegate = [[UIApplication sharedApplication] delegate];
+   
     if (myDelegate.dataManager == nil) {
         myDelegate.dataManager = [DataManager sharedDataManager];
     }
@@ -72,10 +73,10 @@
 
     user = myDelegate.user;
     
-    userName.text = [user objectForKey:@"name"] == nil? NSLocalizedString(@"setting_name", nil) : [user objectForKey:@"name"];
+    userName.text = [user objectForKey:@"name"] == nil? [myDelegate.bundle localizedStringForKey:@"setting_name" value:nil table:@"language"] : [user objectForKey:@"name"];
     
-    userId.text = [NSLocalizedString(@"id", nil) stringByAppendingFormat:@"%@%@",@": ", [[user objectForKey:@"id"] stringValue]];
-    points.text = [NSLocalizedString(@"points", nil) stringByAppendingFormat:@"%@%@",@" ", [[user objectForKey:@"points"] stringValue]];
+    userId.text = [[myDelegate.bundle localizedStringForKey:@"id" value:nil table:@"language"] stringByAppendingFormat:@"%@%@",@": ", [[user objectForKey:@"id"] stringValue]];
+    points.text = [[myDelegate.bundle localizedStringForKey:@"points" value:nil table:@"language"] stringByAppendingFormat:@"%@%@",@" ", [[user objectForKey:@"points"] stringValue]];
     
     int isVip = [[user objectForKey:@"vip"] intValue];
     if (isVip == 0) {
@@ -161,13 +162,13 @@
 }
 
 - (IBAction)logOut:(id)sender {
-    [self showHubLoading:NSLocalizedString(@"logging_out", nil)];
+    [self showHubLoading:[myDelegate.bundle localizedStringForKey:@"logging_out" value:nil table:@"language"]];
         
         type = @"LOGOUT";
         NSString *json;
         NSString *temp = @"\",\"toUser\":0,\"fromUser\":0}\r\n";
         json = @"{\"type\":\"LOGOUT\",\"object\":\"";
-        NSString *mapString = [dataManager toJSONData:user];
+        NSString *mapString = [myDelegate toJSONData:user];
         mapString = [mapString stringByReplacingOccurrencesOfString :@"\"" withString:@"\\\""];
         mapString = [mapString stringByReplacingOccurrencesOfString :@"\r" withString:@""];
         mapString = [mapString stringByReplacingOccurrencesOfString :@"\n" withString:@""];
@@ -227,10 +228,10 @@
 {
     user = myDelegate.user;
     
-    userName.text = [user objectForKey:@"name"] == nil? NSLocalizedString(@"setting_name", nil) : [user objectForKey:@"name"];
+    userName.text = [user objectForKey:@"name"] == nil? [myDelegate.bundle localizedStringForKey:@"setting_name" value:nil table:@"language"] : [user objectForKey:@"name"];
     
-    userId.text = [NSLocalizedString(@"id", nil) stringByAppendingFormat:@"%@%@",@": ", [[user objectForKey:@"id"] stringValue]];
-    points.text = [NSLocalizedString(@"points", nil) stringByAppendingFormat:@"%@%@",@" ", [[user objectForKey:@"points"] stringValue]];
+    userId.text = [[myDelegate.bundle localizedStringForKey:@"id" value:nil table:@"language"] stringByAppendingFormat:@"%@%@",@": ", [[user objectForKey:@"id"] stringValue]];
+    points.text = [[myDelegate.bundle localizedStringForKey:@"points" value:nil table:@"language"] stringByAppendingFormat:@"%@%@",@" ", [[user objectForKey:@"points"] stringValue]];
     
     int isVip = [[user objectForKey:@"vip"] intValue];
     if (isVip == 0) {

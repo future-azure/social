@@ -51,15 +51,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    title.text = NSLocalizedString(@"profile", nil);
-    [profileImage setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"profile_image", nil)] forState:UIControlStateNormal];
-    [name setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"name", nil)] forState:UIControlStateNormal];
-    [gender setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"gender", nil)] forState:UIControlStateNormal];
-    [region setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"region", nil)] forState:UIControlStateNormal];
-    [status setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"status", nil)] forState:UIControlStateNormal];
-    
     myDelegate = [[UIApplication sharedApplication] delegate];
-    if (myDelegate.dataManager == nil) {
+
+    title.text = [myDelegate.bundle localizedStringForKey:@"profile" value:nil table:@"language"];
+    [profileImage setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"profile_image" value:nil table:@"language"]] forState:UIControlStateNormal];
+    [name setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"name" value:nil table:@"language"]] forState:UIControlStateNormal];
+    [gender setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"gender" value:nil table:@"language"]] forState:UIControlStateNormal];
+    [region setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"region" value:nil table:@"language"]] forState:UIControlStateNormal];
+    [status setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"status" value:nil table:@"language"]] forState:UIControlStateNormal];
+    
+       if (myDelegate.dataManager == nil) {
         myDelegate.dataManager = [DataManager sharedDataManager];
     }
     
@@ -70,10 +71,10 @@
     
     user = myDelegate.user;
 
-    curName.text = [user objectForKey:@"name"]==nil? NSLocalizedString(@"not_setting", nil) : [user objectForKey:@"name"];
-     curRegion.text = [user objectForKey:@"region"]==nil? NSLocalizedString(@"not_setting", nil) : [user objectForKey:@"region"];
-     curGender.text = [user objectForKey:@"gender"]==nil? NSLocalizedString(@"not_setting", nil) : [user objectForKey:@"gender"];
-     curStatus.text = [user objectForKey:@"status"]==nil? NSLocalizedString(@"not_setting", nil) : [user objectForKey:@"status"];
+    curName.text = [user objectForKey:@"name"]==nil? [myDelegate.bundle localizedStringForKey:@"not_setting" value:nil table:@"language"] : [user objectForKey:@"name"];
+     curRegion.text = [user objectForKey:@"region"]==nil? [myDelegate.bundle localizedStringForKey:@"not_setting" value:nil table:@"language"] : [user objectForKey:@"region"];
+     curGender.text = [user objectForKey:@"gender"]==nil? [myDelegate.bundle localizedStringForKey:@"not_setting" value:nil table:@"language"] : [user objectForKey:@"gender"];
+     curStatus.text = [user objectForKey:@"status"]==nil? [myDelegate.bundle localizedStringForKey:@"not_setting" value:nil table:@"language"] : [user objectForKey:@"status"];
     
     [userImage setImage:myDelegate.userImage];
     
@@ -156,7 +157,7 @@
     UIImagePickerController * picker = [[UIImagePickerController alloc] init];
     picker.delegate = self;
     NSString *buttonTitle = [actionSheet1 buttonTitleAtIndex:buttonIndex];
-    if ([NSLocalizedString(@"camera", nil) isEqualToString:buttonTitle]) {
+    if ([[myDelegate.bundle localizedStringForKey:@"camera" value:nil table:@"language"] isEqualToString:buttonTitle]) {
         if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
             picker.sourceType = UIImagePickerControllerSourceTypeCamera;
             
@@ -166,11 +167,11 @@
         }
         [self presentModalViewController:picker animated:YES];
        
-    }else if ([NSLocalizedString(@"album", nil) isEqualToString:buttonTitle]) {
+    }else if ([[myDelegate.bundle localizedStringForKey:@"album" value:nil table:@"language"] isEqualToString:buttonTitle]) {
         picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         [self presentModalViewController:picker animated:YES];
         
-    }else if([NSLocalizedString(@"cancel", nil) isEqualToString:buttonTitle]) {
+    }else if([[myDelegate.bundle localizedStringForKey:@"cancel" value:nil table:@"language"] isEqualToString:buttonTitle]) {
         
         NSLog(@"cancel");
     }
@@ -245,18 +246,18 @@
 
 
 - (IBAction)profileSetting:(id)sender {
-    actionSheet = [[IBActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:NSLocalizedString(@"cancel",nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"camera", nil), NSLocalizedString(@"album", nil), nil];
+    actionSheet = [[IBActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:[myDelegate.bundle localizedStringForKey:@"cancel" value:nil table:@"language"] destructiveButtonTitle:nil otherButtonTitles:[myDelegate.bundle localizedStringForKey:@"camera" value:nil table:@"language"], [myDelegate.bundle localizedStringForKey:@"album" value:nil table:@"language"], nil];
     
     actionSheet.buttonResponse = IBActionSheetButtonResponseFadesOnPress;
     [actionSheet setButtonTextColor:[UIColor whiteColor] forButtonAtIndex:0];
     [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:253/255.0 green:108/255.0 blue:53/255.0 alpha:1] forButtonAtIndex:0];
-    [actionSheet setFont:[UIFont fontWithName:NSLocalizedString(@"camera", nil) size:22] forButtonAtIndex:0];
+    [actionSheet setFont:[UIFont fontWithName:[myDelegate.bundle localizedStringForKey:@"camera" value:nil table:@"language"] size:22] forButtonAtIndex:0];
     [actionSheet setButtonTextColor:[UIColor whiteColor] forButtonAtIndex:1];
     [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:253/255.0 green:108/255.0 blue:53/255.0 alpha:1] forButtonAtIndex:1];
-    [actionSheet setFont:[UIFont fontWithName:NSLocalizedString(@"album", nil) size:22] forButtonAtIndex:1];
+    [actionSheet setFont:[UIFont fontWithName:[myDelegate.bundle localizedStringForKey:@"album" value:nil table:@"language"] size:22] forButtonAtIndex:1];
     [actionSheet setButtonTextColor:[UIColor whiteColor] forButtonAtIndex:2];
     [actionSheet setButtonBackgroundColor:[UIColor colorWithRed:253/255.0 green:108/255.0 blue:53/255.0 alpha:1] forButtonAtIndex:2];
-    [actionSheet setFont:[UIFont fontWithName:NSLocalizedString(@"cancel", nil) size:22] forButtonAtIndex:2];
+    [actionSheet setFont:[UIFont fontWithName:[myDelegate.bundle localizedStringForKey:@"cancel" value:nil table:@"language"] size:22] forButtonAtIndex:2];
     [actionSheet showInView:self.view];
     
 }
@@ -320,10 +321,10 @@
 
 - (void) passValue:(NSString *)value {
     user = myDelegate.user;
-    curName.text = [user objectForKey:@"name"]==nil? NSLocalizedString(@"not_setting", nil) : [user objectForKey:@"name"];
-    curRegion.text = [user objectForKey:@"region"]==nil? NSLocalizedString(@"not_setting", nil) : [user objectForKey:@"region"];
-    curGender.text = [user objectForKey:@"gender"]==nil? NSLocalizedString(@"not_setting", nil) : [user objectForKey:@"gender"];
-    curStatus.text = [user objectForKey:@"status"]==nil? NSLocalizedString(@"not_setting", nil) : [user objectForKey:@"status"];
+    curName.text = [user objectForKey:@"name"]==nil? [myDelegate.bundle localizedStringForKey:@"not_setting" value:nil table:@"language"] : [user objectForKey:@"name"];
+    curRegion.text = [user objectForKey:@"region"]==nil? [myDelegate.bundle localizedStringForKey:@"not_setting" value:nil table:@"language"] : [user objectForKey:@"region"];
+    curGender.text = [user objectForKey:@"gender"]==nil? [myDelegate.bundle localizedStringForKey:@"not_setting" value:nil table:@"language"] : [user objectForKey:@"gender"];
+    curStatus.text = [user objectForKey:@"status"]==nil? [myDelegate.bundle localizedStringForKey:@"not_setting" value:nil table:@"language"] : [user objectForKey:@"status"];
 
 }
 

@@ -31,12 +31,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    title.text = NSLocalizedString(@"gender", nil);
+     myDelegate = [[UIApplication sharedApplication] delegate];
+    title.text = [myDelegate.bundle localizedStringForKey:@"gender" value:nil table:@"language"];
     
     old_gender = @"";
     userData = @"";
     
-    myDelegate = [[UIApplication sharedApplication] delegate];
+  //  myDelegate = [[UIApplication sharedApplication] delegate];
     if (myDelegate.dataManager == nil) {
         myDelegate.dataManager = [DataManager sharedDataManager];
     }
@@ -52,12 +53,12 @@
         old_gender = [user objectForKey:@"gender"];
     }
     
-    genderArray =  [NSArray arrayWithObjects:NSLocalizedString(@"male", nil),NSLocalizedString(@"female", nil), nil];
-    genderArrayDisplay =  [NSArray arrayWithObjects:NSLocalizedString(@"male1", nil),NSLocalizedString(@"female1", nil), nil];
+    genderArray =  [NSArray arrayWithObjects:[myDelegate.bundle localizedStringForKey:@"male" value:nil table:@"language"],[myDelegate.bundle localizedStringForKey:@"female" value:nil table:@"language"], nil];
+    genderArrayDisplay =  [NSArray arrayWithObjects:[myDelegate.bundle localizedStringForKey:@"male1" value:nil table:@"language"],[myDelegate.bundle localizedStringForKey:@"female1" value:nil table:@"language"], nil];
     
-    if ([NSLocalizedString(@"male", nil) isEqualToString:old_gender]) {
+    if ([[myDelegate.bundle localizedStringForKey:@"male" value:nil table:@"language"] isEqualToString:old_gender]) {
         lastpath =[NSIndexPath indexPathForRow:0 inSection:0];
-    } else if ([NSLocalizedString(@"female", nil) isEqualToString:old_gender]) {
+    } else if ([[myDelegate.bundle localizedStringForKey:@"female" value:nil table:@"language"] isEqualToString:old_gender]) {
 
          lastpath =[NSIndexPath indexPathForRow:1 inSection:0];
     }
@@ -131,7 +132,7 @@
 }
 - (IBAction)confirm:(id)sender {
     if (selectGender == nil) {
-        [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"gender_no_select", nil)];
+        [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"error" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"gender_no_select" value:nil table:@"language"]];
         return;
     }
 
@@ -142,13 +143,13 @@
 }
 
 - (void)updateUser {
-    // [self showHubLoading:NSLocalizedString(@"logging_out", nil)];
+    // [self showHubLoading:[myDelegate.bundle localizedStringForKey:@"logging_out" value:nil table:@"language"]];
     
     type = @"UPDATEUSER";
     NSString *json;
     NSString *temp = @"\",\"toUser\":0,\"fromUser\":0}\r\n";
     json = @"{\"type\":\"UPDATEUSER\",\"object\":\"";
-    NSString *mapString = [dataManager toJSONData:user];
+    NSString *mapString = [myDelegate toJSONData:user];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\"" withString:@"\\\""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\r" withString:@""];
     mapString = [mapString stringByReplacingOccurrencesOfString :@"\n" withString:@""];
@@ -194,7 +195,7 @@
             } else {
                 [user setObject:old_gender forKey:@"status"];
                 [user removeObjectForKey:@"updateType"];
-                [dataManager showDialog:NSLocalizedString(@"error", nil) content:NSLocalizedString(@"update_failure", nil)];
+                [myDelegate showDialog:[myDelegate.bundle localizedStringForKey:@"error" value:nil table:@"language"] content:[myDelegate.bundle localizedStringForKey:@"update_failure" value:nil table:@"language"]];
             }
             
         }

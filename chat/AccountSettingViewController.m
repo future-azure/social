@@ -49,19 +49,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    title.text = NSLocalizedString(@"account", nil);
-    userId.text = NSLocalizedString(@"id", nil);
+    myDelegate = [[UIApplication sharedApplication] delegate];
+
+    title.text = [myDelegate.bundle localizedStringForKey:@"account" value:nil table:@"language"];
+    userId.text = [myDelegate.bundle localizedStringForKey:@"id" value:nil table:@"language"];
     
-    [password setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"pw", nil)] forState:UIControlStateNormal];
-    [email setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"email", nil)] forState:UIControlStateNormal];
-    [facebook setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"facebook", nil)] forState:UIControlStateNormal];
-    [twitter setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"twitter", nil)] forState:UIControlStateNormal];
-    [mobile setTitle:[@"    " stringByAppendingString: NSLocalizedString(@"phone", nil)] forState:UIControlStateNormal];
+    [password setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"pw" value:nil table:@"language"]] forState:UIControlStateNormal];
+    [email setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"email" value:nil table:@"language"]] forState:UIControlStateNormal];
+    [facebook setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"facebook" value:nil table:@"language"]] forState:UIControlStateNormal];
+    [twitter setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"twitter" value:nil table:@"language"]] forState:UIControlStateNormal];
+    [mobile setTitle:[@"    " stringByAppendingString: [myDelegate.bundle localizedStringForKey:@"phone" value:nil table:@"language"]] forState:UIControlStateNormal];
     
     userData = @"";
     
-    myDelegate = [[UIApplication sharedApplication] delegate];
-    if (myDelegate.dataManager == nil) {
+        if (myDelegate.dataManager == nil) {
         myDelegate.dataManager = [DataManager sharedDataManager];
     }
     

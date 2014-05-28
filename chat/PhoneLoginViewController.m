@@ -44,9 +44,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+     myDelegate = [[UIApplication sharedApplication] delegate];
     
-    title_show.text = NSLocalizedString(@"select_country", nil);
-    title.text =NSLocalizedString(@"phone_num", nil);
+    title_show.text = [myDelegate.bundle localizedStringForKey:@"select_country" value:nil table:@"language"];
+    title.text =[myDelegate.bundle localizedStringForKey:@"phone_num" value:nil table:@"language"];
     countryData = @"";
     pickerArray = [[NSMutableArray alloc] initWithCapacity:10];
     codeArray = [[NSMutableArray alloc] initWithCapacity:10];
@@ -55,7 +56,7 @@
     NSLog(@"Country Code is %@", [currentLocale objectForKey:NSLocaleCountryCode]);
     // 获取手机语言
     NSString* strLanguage = [[[NSUserDefaults standardUserDefaults] objectForKey:@"AppleLanguages"] objectAtIndex:0];
-    AppDelegate *myDelegate = [[UIApplication sharedApplication] delegate];
+   
     if (myDelegate.dataManager == nil) {
         myDelegate.dataManager = [DataManager sharedDataManager];
     }
@@ -188,11 +189,11 @@
     NSString *phone = self.phoneNum.text;
     
     if( nil == code || 0 == code.length) {
-        [dataManager showDialog:@"error" content:@"select_country"];
+        [myDelegate showDialog:@"error" content:@"select_country"];
         return;
     }
     if( nil == phone || 0 == phone.length) {
-        [dataManager showDialog:@"error" content:@"enter_phone"];
+        [myDelegate showDialog:@"error" content:@"enter_phone"];
         return;
     }
     [delegate passValue:phone];

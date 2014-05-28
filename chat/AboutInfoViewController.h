@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
 
-@interface AboutInfoViewController : UIViewController
+@interface AboutInfoViewController : UIViewController{
+    AppDelegate *myDelegate;
+
+}
 
 @end

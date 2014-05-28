@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppDelegate.h"
+@interface SettingSettingViewController : UIViewController{
+    
+    AppDelegate *myDelegate;
+    
+    
+}
 
-@interface SettingSettingViewController : UIViewController
 
 @end

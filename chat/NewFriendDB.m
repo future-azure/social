@@ -79,7 +79,8 @@
     sql = [sql stringByAppendingFormat:@"%d%@",userId, sql1];
     [database execSql:sql];
 
-    
+    NSLog(@"u : %@", u);
+    NSLog(@"user : %@", user);
     
    sql = [NSString stringWithFormat:@"INSERT OR REPLACE INTO new_friend_%d VALUES ('%@','%@','%@','%@','%@');", userId, [user objectForKey:@"id"],[u objectForKey:@"id"],[u objectForKey:@"friendType"],[u objectForKey:@"friendRequest"],[u objectForKey:@"requestView"]];
     [database execSql:sql];
